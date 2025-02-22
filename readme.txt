@@ -1,4 +1,4 @@
-=== Wp Multi Block ===
+=== Image Multi Block ===
 Contributors:      The WordPress Contributors
 Tags:              block
 Tested up to:      6.6
