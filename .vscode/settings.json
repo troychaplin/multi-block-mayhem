@@ -1,0 +1,22 @@
+{
+	"[php]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "obliviousharmony.vscode-php-codesniffer"
+	},
+
+	"phpCodeSniffer.standard": "Custom",
+	"phpCodeSniffer.standardCustom": "WordPress",
+	"phpCodeSniffer.exec.osx": "vendor/bin/phpcs",
+	"phpCodeSniffer.exec.linux": "vendor/bin/phpcs",
+
+	"eslint.enable": true,
+	"eslint.options": {
+		"configFile": "${workspaceFolder}/.eslintrc.json"
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	]
+}
