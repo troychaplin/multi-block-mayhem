@@ -1,2 +1,5 @@
 /build/
-/ vendor /
+/vendor/
+/node_modules/
+*.css
+*.scss

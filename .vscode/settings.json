@@ -9,14 +9,17 @@
 	"phpCodeSniffer.exec.osx": "vendor/bin/phpcs",
 	"phpCodeSniffer.exec.linux": "vendor/bin/phpcs",
 
-	"eslint.enable": true,
-	"eslint.options": {
-		"configFile": "${workspaceFolder}/.eslintrc.json"
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": "explicit"
+		}
 	},
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact"
-	]
+	"eslint.enable": true,
+	"eslint.format.enable": true,
+	"javascript.format.enable": false,
+	"prettier.enable": false
 }
