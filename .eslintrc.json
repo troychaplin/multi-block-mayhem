@@ -1,6 +1,6 @@
 // filepath: /Users/troychaplin/Develop/idc.wordpress/wp-content/plugins/idc-block-plugin/.eslintrc.json
 {
-	"extends": [ "plugin:@wordpress/eslint-plugin/recommended" ],
+	"extends": ["plugin:@wordpress/eslint-plugin/recommended", "prettier"],
 	"env": {
 		"browser": true,
 		"es6": true,
@@ -11,6 +11,13 @@
 		"sourceType": "module"
 	},
 	"rules": {
+		"prettier/prettier": [
+			"error",
+			{},
+			{
+				"usePrettierrc": true
+			}
+		]
 		// Add any custom rules here if needed
 	}
 }
