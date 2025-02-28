@@ -1,8 +1,8 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace Madness;
+namespace MultiBlockOfMadness;
 
-use Madness\PluginPaths;
+use MultiBlockOfMadness\PluginPaths;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class is responsible for enqueueing scripts and styles for the plugin.
  *
- * @package Madness
+ * @package MultiBlockOfMadness
  */
 class Enqueues {
 

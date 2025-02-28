@@ -1,8 +1,8 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace Madness;
+namespace MultiBlockOfMadness;
 
-use Madness\PluginPaths;
+use MultiBlockOfMadness\PluginPaths;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class is responsible for registering custom Gutenberg blocks for the plugin.
  *
- * @package Madness
+ * @package MultiBlockOfMadness
  */
 class RegisterBlocks {
 
@@ -42,6 +42,7 @@ class RegisterBlocks {
 		}
 
 		$blocks_dirs = array(
+			PluginPaths::plugin_path() . 'build/blocks/examples/',
 			PluginPaths::plugin_path() . 'build/blocks/hero/',
 			PluginPaths::plugin_path() . 'build/blocks/image/',
 			PluginPaths::plugin_path() . 'build/blocks/interactive/',

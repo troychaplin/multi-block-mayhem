@@ -13,7 +13,7 @@ class ComposerStaticInit1075aa69e0c5fd6f52bb653971fe726c
         ),
         'M' => 
         array (
-            'Madness\\' => 8,
+            'MultiBlockOfMadness\\' => 20,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInit1075aa69e0c5fd6f52bb653971fe726c
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
-        'Madness\\' => 
+        'MultiBlockOfMadness\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Functions',
         ),

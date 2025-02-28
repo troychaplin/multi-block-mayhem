@@ -1,6 +1,6 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace Madness;
+namespace MultiBlockOfMadness;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class provides methods to handle and retrieve various paths related to the plugin.
  *
- * @package Madness
+ * @package MultiBlockOfMadness
  */
 class PluginPaths {
 

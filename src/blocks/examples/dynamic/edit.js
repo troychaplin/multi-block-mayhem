@@ -4,8 +4,11 @@ import './editor.scss';
 
 export default function Edit() {
 	return (
-		<div {...useBlockProps()}>
-			<p>{__('Start building a block', 'multi-block-of-madness')}</p>
-		</div>
+		<p {...useBlockProps()}>
+			{__(
+				'News Feed (dynamic block) in the editor',
+				'wp-multi-block-starter'
+			)}
+		</p>
 	);
 }

@@ -1,15 +1,15 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'news-feed' => array(
+	'dynamic' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/news-feed',
+		'name' => 'example/dynamic',
 		'version' => '0.1.0',
-		'title' => 'News Feed (Dynamic Example)',
+		'title' => 'Dynamic Example',
 		'category' => 'text',
 		'icon' => 'wordpress',
-		'description' => 'Example of a dynamic block loaded via a single compiled asset in the block editor.',
+		'description' => 'Example of a dynamic block.',
 		'example' => array(
 			
 		),
@@ -22,31 +22,10 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
-	'random-quote' => array(
+	'interactive' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/random-quote',
-		'version' => '0.1.0',
-		'title' => 'Random Quote (Dynamic Example)',
-		'category' => 'text',
-		'icon' => 'wordpress',
-		'description' => 'Example of a dynamic block loaded via a single compiled asset in the block editor.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'textdomain' => 'multi-block-of-madness',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
-	),
-	'interactive-block' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/interactive-block',
+		'name' => 'example/interactive',
 		'version' => '0.1.0',
 		'title' => 'Interactive Block',
 		'category' => 'text',
@@ -56,7 +35,7 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'interactive' => true
 		),
 		'textdomain' => 'multi-block-of-madness',
 		'editorScript' => 'file:./index.js',
@@ -65,15 +44,15 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScriptModule' => 'file:./view.js'
 	),
-	'custom-embed' => array(
+	'static' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/custom-embed',
+		'name' => 'example/static',
 		'version' => '0.1.0',
-		'title' => 'Custom Embed (Static Example)',
+		'title' => 'Static Example',
 		'category' => 'text',
 		'icon' => 'wordpress',
-		'description' => 'Example of a static block loaded via a single compiled asset in the block editor.',
+		'description' => 'Example of a static block.',
 		'example' => array(
 			
 		),
@@ -84,29 +63,6 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
-	),
-	'hero-banner' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/hero-banner',
-		'version' => '0.1.0',
-		'title' => 'Hero Banner (Static Example)',
-		'category' => 'text',
-		'icon' => 'wordpress',
-		'description' => 'Example of a static block loaded via a single compiled asset in the block editor.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false
-		),
-		'textdomain' => 'multi-block-of-madness',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	)
 );

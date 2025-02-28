@@ -1,0 +1,16 @@
+<div <?php
+/**
+ * Renders a paragraph HTML element with block wrapper attributes.
+ *
+ * This function outputs a paragraph (`<p>`) HTML element with attributes
+ * obtained from the `get_block_wrapper_attributes()` function. The attributes
+ * are escaped using `esc_attr()` to ensure they are safe for output.
+ *
+ * @package MultiBlockOfMadness
+ */
+
+echo esc_attr( get_block_wrapper_attributes() ); ?>>
+	<p>
+		<?php esc_html_e( 'Start building a block', 'multi-block-of-madness' ); ?>
+	</p>
+</div>
