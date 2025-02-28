@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "multi-block-of-madness/interactive-block",
+	"version": "0.1.0",
+	"title": "Interactive Block",
+	"category": "text",
+	"icon": "wordpress",
+	"description": "Example of an interactive block.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "multi-block-of-madness",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}
