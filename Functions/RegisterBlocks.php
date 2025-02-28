@@ -42,9 +42,9 @@ class RegisterBlocks {
 		}
 
 		$blocks_dirs = array(
-			PluginPaths::plugin_path() . 'build/blocks/dynamic/',
+			PluginPaths::plugin_path() . 'build/blocks/hero/',
+			PluginPaths::plugin_path() . 'build/blocks/image/',
 			PluginPaths::plugin_path() . 'build/blocks/interactive/',
-			PluginPaths::plugin_path() . 'build/blocks/static/',
 		);
 
 		foreach ( $blocks_dirs as $blocks_dir ) {
