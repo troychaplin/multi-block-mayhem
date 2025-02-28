@@ -11,9 +11,9 @@ class ComposerStaticInit1075aa69e0c5fd6f52bb653971fe726c
         array (
             'PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 57,
         ),
-        'I' => 
+        'M' => 
         array (
-            'ImageMultiBlock\\' => 16,
+            'Madness\\' => 8,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInit1075aa69e0c5fd6f52bb653971fe726c
         array (
             0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
-        'ImageMultiBlock\\' => 
+        'Madness\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Functions',
         ),

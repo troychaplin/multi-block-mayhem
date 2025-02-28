@@ -1,31 +1,36 @@
 <?php
 /**
- * Plugin Name:       Image Multi Block
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin Name:       Multi Block of Madness
+ * Description:       A plugin that brings a collection of blocks and related functionality to the WordPress block editor.
  * Requires at least: 6.6
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            Troy Chaplin
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       image-multi-block
+ * Text Domain:       multi-block-of-madness
  *
- * @package ImageMultiBlock
+ * @package Madness
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Define plugin constants.
+define( 'MADNESS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MADNESS_URL', plugin_dir_url( __FILE__ ) );
+
 // Include Composer's autoload file.
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 // Instantiate the classes.
-$image_multi_block_classes = array(
-	\ImageMultiBlock\PluginPaths::class,
-	\ImageMultiBlock\RegisterBlocks::class,
+$madness_classes = array(
+	\Madness\Enqueues::class,
+	\Madness\PluginPaths::class,
+	\Madness\RegisterBlocks::class,
 );
 
-foreach ( $image_multi_block_classes as $image_multi_block_class ) {
-	new $image_multi_block_class();
+foreach ( $madness_classes as $madness_class ) {
+	new $madness_class();
 }

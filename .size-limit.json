@@ -1,14 +1,10 @@
 [
 	{
-		"path": "build/scripts/block-editor.js",
-		"limit": "100 kB"
-	},
-	{
-		"path": "build/styles/editor-styles.css",
+		"path": "build/madness-editor.js",
 		"limit": "50 kB"
 	},
 	{
-		"path": "build/styles/idc-blocks-ui.css",
+		"path": "build/madness-frontend.js",
 		"limit": "50 kB"
 	}
 ]
