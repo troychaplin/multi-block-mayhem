@@ -1,8 +1,8 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace MultiBlockOfMadness;
+namespace MultiBlockMayhem;
 
-use MultiBlockOfMadness\PluginPaths;
+use MultiBlockMayhem\PluginPaths;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class is responsible for enqueueing scripts and styles for the plugin.
  *
- * @package MultiBlockOfMadness
+ * @package MultiBlockMayhem
  */
 class Enqueues {
 
@@ -21,19 +21,19 @@ class Enqueues {
 	 * Constructor for the class.
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', array( $this, 'madness_enqueue_block_assets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'madness_enqueue_frontend_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'mayhem_enqueue_block_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'mayhem_enqueue_frontend_assets' ) );
 	}
 
 	/**
 	 * Enqueues the block assets for the editor
 	 */
-	public function madness_enqueue_block_assets() {
-		$asset_file = include PluginPaths::plugin_path() . 'build/madness-editor.asset.php';
+	public function mayhem_enqueue_block_assets() {
+		$asset_file = include PluginPaths::plugin_path() . 'build/mayhem-editor.asset.php';
 
 		wp_enqueue_script(
-			'madness-editor-js',
-			PluginPaths::plugin_url() . 'build/madness-editor.js',
+			'mayhem-editor-js',
+			PluginPaths::plugin_url() . 'build/mayhem-editor.js',
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			false
@@ -43,12 +43,12 @@ class Enqueues {
 	/**
 	 * Enqueues the block assets for the frontend
 	 */
-	public function madness_enqueue_frontend_assets() {
-		$asset_file = include PluginPaths::plugin_path() . 'build/madness-frontend.asset.php';
+	public function mayhem_enqueue_frontend_assets() {
+		$asset_file = include PluginPaths::plugin_path() . 'build/mayhem-frontend.asset.php';
 
 		wp_enqueue_script(
-			'madness-frontend-js',
-			PluginPaths::plugin_url() . 'build/madness-frontend.js',
+			'mayhem-frontend-js',
+			PluginPaths::plugin_url() . 'build/mayhem-frontend.js',
 			$asset_file['dependencies'],
 			$asset_file['version'],
 			true

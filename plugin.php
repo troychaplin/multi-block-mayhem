@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Multi Block of Madness
+ * Plugin Name:       Multi Block Mayhem
  * Description:       A plugin that brings a collection of blocks and related functionality to the WordPress block editor.
  * Requires at least: 6.6
  * Requires PHP:      7.0
@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       multi-block-of-madness
  *
- * @package MultiBlockOfMadness
+ * @package MultiBlockMayhem
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,17 +18,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'MADNESS_PATH', plugin_dir_path( __FILE__ ) );
-define( 'MADNESS_URL', plugin_dir_url( __FILE__ ) );
+define( 'MAYHEM_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MAYHEM_URL', plugin_dir_url( __FILE__ ) );
 
 // Include Composer's autoload file.
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 // Instantiate the classes.
 $madness_classes = array(
-	\MultiBlockOfMadness\Enqueues::class,
-	\MultiBlockOfMadness\PluginPaths::class,
-	\MultiBlockOfMadness\RegisterBlocks::class,
+	\MultiBlockMayhem\Enqueues::class,
+	\MultiBlockMayhem\PluginPaths::class,
+	\MultiBlockMayhem\RegisterBlocks::class,
 );
 
 foreach ( $madness_classes as $madness_class ) {

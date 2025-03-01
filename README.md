@@ -1,4 +1,4 @@
-# Multi Block Starter Plugin
+# Multi Block Mayhem
 
 Supercharge your WordPress block development with this modern, production-ready starter plugin. Built for developers who need a robust foundation for creating multiple block types, this plugin combines the power of static, dynamic, and interactive blocks in one efficient setup. Say goodbye to juggling multiple plugins and hello to a streamlined development workflow with optimized asset loading, modern build tools, and best practices baked in.
 
