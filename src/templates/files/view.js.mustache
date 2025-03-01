@@ -1,16 +1,12 @@
+{{#isInteractiveVariant}}
 /**
  * WordPress dependencies
  */
-import { store, getContext } from '@wordpress/interactivity';
+import { store } from '@wordpress/interactivity';
 
-const { state } = store('interactivity', {
-	state: {
-		// Define a getter that returns different text based on the theme.
-	},
-	actions: {
-		// Define an action that toggles the theme.
-	},
-	callbacks: {
-		// Define a callback that logs the value of `isOpen` each time it changes.
-	},
-});
+store( '{{slug}}', {
+	state: {},
+	actions: {},
+	callbacks: {},
+} );
+{{/isInteractiveVariant}}

@@ -4,8 +4,8 @@ import './editor.scss';
 
 export default function Edit() {
 	return (
-		<div {...useBlockProps()}>
-			<p>{__('Start building a block', 'multi-block-of-madness')}</p>
-		</div>
+		<p { ...useBlockProps() }>
+			{ __( '{{title}} – hello from the editor!', '{{textdomain}}' ) }
+		</p>
 	);
 }

@@ -132,6 +132,12 @@ If wp-env issues occur try the following:
 -   `npm run lint:css` - Lint CSS files
 -   `npm run format` - Format code using WordPress standards
 
+## Create Block Templates
+
+```
+npx @wordpress/create-block@latest {{ADD_BLOCK_NAME}} --template ./src/templates --no-plugin --target-dir='./src/blocks/{{ADD_BLOCK_NAME}}'
+```
+
 ## Coding Standards
 
 This project follows WordPress coding standards using:
