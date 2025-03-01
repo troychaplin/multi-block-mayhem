@@ -10,7 +10,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       multi-block-of-madness
  *
- * @package Madness
+ * @package MultiBlockOfMadness
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,9 +26,9 @@ require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 // Instantiate the classes.
 $madness_classes = array(
-	\Madness\Enqueues::class,
-	\Madness\PluginPaths::class,
-	\Madness\RegisterBlocks::class,
+	\MultiBlockOfMadness\Enqueues::class,
+	\MultiBlockOfMadness\PluginPaths::class,
+	\MultiBlockOfMadness\RegisterBlocks::class,
 );
 
 foreach ( $madness_classes as $madness_class ) {

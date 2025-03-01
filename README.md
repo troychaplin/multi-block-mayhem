@@ -4,84 +4,6 @@ Supercharge your WordPress block development with this modern, production-ready 
 
 This plugin serves as a foundational template for WordPress block development, uniquely combining different block types (dynamic, static, and interactive) into a single, efficient plugin structure.
 
-## Table of Contents
-
--   [Core Features & Architecture](#core-features--architecture)
-    -   [Block Architecture](#block-architecture)
-        -   [Unified Block Management](#unified-block-management)
-        -   [Efficient Asset Loading](#efficient-asset-loading)
-    -   [Build System](#build-system)
-        -   [Asset Management](#asset-management)
-    -   [Technical Implementation](#technical-implementation)
-    -   [Development Environment](#development-environment)
--   [Prerequisites](#prerequisites)
--   [Getting Setup](#getting-setup)
--   [Local WordPress Environment](#local-wordpress-environment)
-    -   [Local Site Info](#local-site-info)
-    -   [Troubleshooting](#troubleshooting)
--   [Development Commands](#development-commands)
--   [Coding Standards](#coding-standards)
--   [Project Structure](#project-structure)
-
-## Core Features & Architecture
-
-### Block Architecture
-
-#### Unified Block Management
-
-The plugin provides a structured approach to managing multiple block types:
-
--   Static Blocks: Traditional Gutenberg blocks rendered entirely in JavaScript
--   Dynamic Blocks: Server-side rendered blocks using PHP for dynamic content
--   Interactive Blocks: Client-side interactive blocks with JavaScript functionality
-
-#### Efficient Asset Loading
-
-Each block operates as an independent unit, similar to single-block plugins, with:
-
--   Isolated asset loading - scripts and styles load only when blocks are used
--   Separate frontend and editor bundles to optimize performance
--   Smart asset versioning through WordPress's build process (the asset.php files automatically track dependencies and versions based on content changes)
-
-### Build System
-
-#### Asset Management
-
-The plugin uses WordPress's modern build system with some notable features:
-
--   Automatic version hashing through `.asset.php` files
--   The version numbers in `Enqueues.php` are dynamically generated during build, preventing cache issues and ensuring users always get the latest block versions
--   Dependencies are automatically tracked and included in the build process
-
-The build process supports loading an additional script into the block editor for:
-
--   Block variations and modifications
--   Custom style variations
--   Custom block categories
--   Other block related functionality
-
-### Technical Implementation
-
-The plugin demonstrates modern WordPress development practices:
-
--   Proper namespacing and class structure
--   Clean separation of concerns between editor and frontend code
--   WordPress coding standards compliance
--   Development tooling for code quality (ESLint, PHP_CodeSniffer, Prettier)
-
-### Development Environment
-
-The plugin includes a complete development environment with:
-
--   Docker-based local WordPress setup through `wp-env`
--   Hot reloading for development
--   Automated build processes for production
--   Comprehensive linting and formatting tools
-
-This structure provides a robust foundation for building complex block-based solutions while maintaining clean code organization and optimal performance.
-
----
-
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -132,6 +54,26 @@ If wp-env issues occur try the following:
 -   `npm run lint:css` - Lint CSS files
 -   `npm run format` - Format code using WordPress standards
 
+## Create Block Templates
+
+### Create dynamic block
+
+```
+npx @wordpress/create-block@latest {{ADD_BLOCK_NAME}} --template ./src/templates --no-plugin --target-dir='./src/blocks/{{ADD_BLOCK_NAME}}'
+```
+
+### Create static block
+
+```
+npx @wordpress/create-block@latest {{ADD_BLOCK_NAME}} --template ./src/templates --no-plugin --target-dir='./src/blocks/{{ADD_BLOCK_NAME}} --variant static'
+```
+
+### Create interactive block
+
+```
+npx @wordpress/create-block@latest {{ADD_BLOCK_NAME}} --template ./src/templates --no-plugin --target-dir='./src/blocks/{{ADD_BLOCK_NAME}} --variant interactive'
+```
+
 ## Coding Standards
 
 This project follows WordPress coding standards using:
@@ -152,24 +94,4 @@ For PHP_CodeSniffer issues:
 
 ```
 composer dump-autoload
-```
-
-## Project Structure
-
-```
-wp-multi-block-starter/
-├── build/                  # Compiled files
-├── src/                    # Source files
-│   └── blocks/             # Block components
-│       └── dynamic/        # Dynamic blocks
-│       └── interactive/    # Interactive blocks
-│       └── static/         # Static blocks
-├── Functions/              # PHP classes
-├── vendor/                 # Composer dependencies
-├── node_modules/           # Node dependencies
-├── .eslintrc.json          # ESLint configuration
-├── .wp-env.json            # WordPress environment config
-├── composer.json           # PHP dependencies
-├── package.json            # Node dependencies
-└── README.md               # This file
 ```
