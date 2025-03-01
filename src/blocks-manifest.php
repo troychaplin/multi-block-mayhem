@@ -65,15 +65,30 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
-	'masonry' => array(
+	'mosaic-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/image-masonry',
+		'name' => 'multi-block-mayhem/mosaic-gallery',
 		'version' => '0.1.0',
-		'title' => 'Image Masonry',
+		'title' => 'Mosaic Gallery',
 		'category' => 'media',
 		'icon' => 'wordpress',
 		'description' => 'An block that displays images in a masonry grid.',
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'picture-frame-gallery' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/picture-frame-gallery',
+		'version' => '0.1.0',
+		'title' => 'Picture Frame Gallery',
+		'category' => 'media',
+		'icon' => 'wordpress',
+		'description' => 'An block that displays images in a css grid.',
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',

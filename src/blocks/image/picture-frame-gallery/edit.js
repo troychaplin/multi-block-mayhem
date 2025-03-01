@@ -5,7 +5,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p {...useBlockProps()}>
-			{__('Masonry Grid – hello from the editor!', 'multi-block-mayhem')}
+			{__('Picture frame gallery in the editor!', 'multi-block-mayhem')}
 		</p>
 	);
 }

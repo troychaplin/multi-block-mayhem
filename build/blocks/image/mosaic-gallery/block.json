@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "multi-block-mayhem/image-masonry",
+  "name": "multi-block-mayhem/mosaic-gallery",
   "version": "0.1.0",
-  "title": "Image Masonry",
+  "title": "Mosaic Gallery",
   "category": "media",
   "icon": "wordpress",
   "description": "An block that displays images in a masonry grid.",
