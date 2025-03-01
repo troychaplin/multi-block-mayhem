@@ -16,7 +16,7 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
-		'textdomain' => 'multi-block-of-madness',
+		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -37,7 +37,7 @@ return array(
 		'supports' => array(
 			'interactive' => true
 		),
-		'textdomain' => 'multi-block-of-madness',
+		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -59,7 +59,7 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
-		'textdomain' => 'multi-block-of-madness',
+		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -68,13 +68,13 @@ return array(
 	'masonry' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-of-madness/image-masonry',
+		'name' => 'multi-block-mayhem/image-masonry',
 		'version' => '0.1.0',
-		'title' => 'Image: Masonry',
+		'title' => 'Image Masonry',
 		'category' => 'media',
 		'icon' => 'wordpress',
 		'description' => 'An block that displays images in a masonry grid.',
-		'textdomain' => 'multi-block-of-madness',
+		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',

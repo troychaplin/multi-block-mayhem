@@ -5,8 +5,8 @@ module.exports = {
 	...defaultConfig,
 	entry: {
 		...defaultConfig.entry,
-		'madness-editor': path.resolve(__dirname, 'src/madness-editor.js'),
-		'madness-frontend': path.resolve(__dirname, 'src/madness-frontend.js'),
+		'mayhem-editor': path.resolve(__dirname, 'src/mayhem-editor.js'),
+		'mayhem-frontend': path.resolve(__dirname, 'src/mayhem-frontend.js'),
 	},
 	output: {
 		...defaultConfig.output,
