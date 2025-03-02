@@ -72,7 +72,7 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Mosaic Gallery',
 		'category' => 'media',
-		'description' => 'An gallery block that displays images in a mosaic grid layout.',
+		'description' => 'A gallery block that displays images in a mosaic grid layout.',
 		'supports' => array(
 			'align' => array(
 				'full',
