@@ -29,6 +29,50 @@
 		"attributes": {
 			"columns": 3,
 			"gap": 10
-		}
+		},
+		"innerBlocks": [
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 175
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 201
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 146
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 138
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 89
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 103
+				}
+			},
+			{
+				"name": "core/image",
+				"attributes": {
+					"height": 153
+				}
+			}
+		]
 	}
 }
