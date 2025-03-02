@@ -1,6 +1,6 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace MultiBlockOfMadness;
+namespace MultiBlockMayhem;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class provides methods to handle and retrieve various paths related to the plugin.
  *
- * @package MultiBlockOfMadness
+ * @package MultiBlockMayhem
  */
 class PluginPaths {
 
@@ -22,10 +22,10 @@ class PluginPaths {
 	 */
 	public static function plugin_url() {
 		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MADNESS_URL' ) ) {
+		if ( ! defined( 'MAYHEM_URL' ) ) {
 			return '';
 		}
-		return MADNESS_URL;
+		return MAYHEM_URL;
 	}
 
 	/**
@@ -35,9 +35,9 @@ class PluginPaths {
 	 */
 	public static function plugin_path() {
 		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MADNESS_PATH' ) ) {
+		if ( ! defined( 'MAYHEM_PATH' ) ) {
 			return '';
 		}
-		return MADNESS_PATH;
+		return MAYHEM_PATH;
 	}
 }

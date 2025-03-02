@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "multi-block-mayhem/mosaic-gallery",
+  "version": "0.1.0",
+  "title": "Mosaic Gallery",
+  "category": "media",
+  "description": "A gallery block that displays images in a mosaic grid layout.",
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "alignWide": true,
+    "html": false
+  },
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "gap": {
+      "type": "number",
+      "default": 10
+    }
+  },
+  "textdomain": "multi-block-mayhem",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {
+    "attributes": {
+      "columns": 3,
+      "gap": 10
+    }
+  }
+}

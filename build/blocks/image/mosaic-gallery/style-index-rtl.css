@@ -1,0 +1,1 @@
+.wp-block-multi-block-mayhem-mosaic-gallery:not(.multi-block-mayhem-editor){-moz-column-count:var(--mosaic-cols,3);column-count:var(--mosaic-cols,3);-moz-column-gap:var(--mosaic-gap,1rem);column-gap:var(--mosaic-gap,1rem)}.wp-block-multi-block-mayhem-mosaic-gallery:not(.multi-block-mayhem-editor) .wp-block-image{margin-bottom:var(--mosaic-gap,1rem)}

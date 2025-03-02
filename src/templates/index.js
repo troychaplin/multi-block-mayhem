@@ -15,11 +15,11 @@ module.exports = {
 			};
 		},
 		version: '0.1.0',
-		namespace: 'multi-block-of-madness',
+		namespace: 'multi-block-mayhem',
 		description:
 			'A plugin that brings a collection of blocks and related functionality to the WordPress block editor.',
 		category: 'widgets',
-		textdomain: 'multi-block-of-madness',
+		textdomain: 'multi-block-mayhem',
 		editorScript: 'file:./index.js',
 		editorStyle: 'file:./index.css',
 		style: 'file:./style-index.css',
@@ -36,8 +36,8 @@ module.exports = {
 		},
 		static: {
 			customBlockJSON: {
-				render: null
-			}
+				render: null,
+			},
 		},
 	},
 	blockTemplatesPath: join(__dirname, 'files'),
