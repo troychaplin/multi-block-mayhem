@@ -72,13 +72,35 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Mosaic Gallery',
 		'category' => 'media',
-		'icon' => 'wordpress',
-		'description' => 'An block that displays images in a masonry grid.',
+		'description' => 'An gallery block that displays images in a mosaic grid layout.',
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'gap' => array(
+				'type' => 'number',
+				'default' => 10
+			)
+		),
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'example' => array(
+			'attributes' => array(
+				'columns' => 3,
+				'gap' => 10
+			)
+		)
 	),
 	'picture-frame-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

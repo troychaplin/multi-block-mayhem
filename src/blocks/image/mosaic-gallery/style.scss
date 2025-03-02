@@ -1,5 +1,8 @@
-.wp-block-multi-block-mayhem-mosaic-gallery {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.wp-block-multi-block-mayhem-mosaic-gallery:not(.multi-block-mayhem-editor) {
+    column-count: var(--mosaic-cols, 3);
+    column-gap: var(--mosaic-gap, 1rem);
+
+    .wp-block-image {
+        margin-bottom: var(--mosaic-gap, 1rem);
+    }
 }

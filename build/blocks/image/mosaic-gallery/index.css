@@ -1,1 +1,1 @@
-.wp-block-multi-block-mayhem-mosaic-gallery{border:1px dotted red}
+.wp-block-multi-block-mayhem-mosaic-gallery.multi-block-mayhem-editor .block-editor-inner-blocks .block-editor-block-list__layout{-moz-column-count:var(--mosaic-cols,3);column-count:var(--mosaic-cols,3);-moz-column-gap:var(--mosaic-gap,1rem);column-gap:var(--mosaic-gap,1rem)}.wp-block-multi-block-mayhem-mosaic-gallery.multi-block-mayhem-editor .block-editor-inner-blocks .block-editor-block-list__layout .wp-block-image{margin-bottom:var(--mosaic-gap,1rem)}
