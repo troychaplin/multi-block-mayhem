@@ -5,7 +5,6 @@
 	"version": "0.1.0",
 	"title": "Picture Frame Gallery",
 	"category": "media",
-	"icon": "wordpress",
 	"description": "An block that displays images in a css grid.",
 	"textdomain": "multi-block-mayhem",
 	"editorScript": "file:./index.js",

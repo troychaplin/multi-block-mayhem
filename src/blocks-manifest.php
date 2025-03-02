@@ -99,6 +99,50 @@ return array(
 			'attributes' => array(
 				'columns' => 3,
 				'gap' => 10
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 175
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 201
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 146
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 138
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 89
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 103
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 153
+					)
+				)
 			)
 		)
 	),
@@ -109,7 +153,6 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Picture Frame Gallery',
 		'category' => 'media',
-		'icon' => 'wordpress',
 		'description' => 'An block that displays images in a css grid.',
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
