@@ -22,6 +22,10 @@
     "gap": {
       "type": "number",
       "default": 10
+    },
+    "radius": {
+      "type": "number",
+      "default": 10
     }
   },
   "textdomain": "multi-block-mayhem",
@@ -31,7 +35,8 @@
   "example": {
     "attributes": {
       "columns": 3,
-      "gap": 10
+      "gap": 10,
+      "borderRadius": 5
     },
     "innerBlocks": [
       {

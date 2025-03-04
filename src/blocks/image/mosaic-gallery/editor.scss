@@ -1,12 +1,16 @@
 .wp-block-multi-block-mayhem-mosaic-gallery.multi-block-mayhem-editor {
-    .block-editor-inner-blocks {
-        .block-editor-block-list__layout {
-            column-count: var(--mosaic-cols, 3);
-            column-gap: var(--mosaic-gap, 1rem);
+	.block-editor-inner-blocks {
+		.block-editor-block-list__layout {
+			column-count: var(--mosaic-cols, 3);
+			column-gap: var(--mosaic-gap, 1rem);
 
-            .wp-block-image {
-                margin-bottom: var(--mosaic-gap, 1rem);
-            }
-        }
-    }
+			.wp-block-image {
+				margin-bottom: var(--mosaic-gap, 1rem);
+
+				img {
+					border-radius: var(--mosaic-radius, 0);
+				}
+			}
+		}
+	}
 }
