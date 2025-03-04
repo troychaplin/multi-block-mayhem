@@ -5,6 +5,8 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
+
+import './filter-image';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes, style }) {
