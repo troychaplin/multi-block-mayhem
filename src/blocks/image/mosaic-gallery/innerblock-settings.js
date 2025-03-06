@@ -48,6 +48,6 @@ function restrictImageBlockSettingsInMosaicGallery(
 // Add the filters
 addFilter(
 	'blockEditor.useSetting.before',
-	'multi-block-mayhem/image-in-mosaic-gallery',
+	'multi-block-mayhem/filter-mosaic-gallery-image-settings',
 	restrictImageBlockSettingsInMosaicGallery
 );
