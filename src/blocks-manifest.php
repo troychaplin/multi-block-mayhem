@@ -89,6 +89,10 @@ return array(
 			'gap' => array(
 				'type' => 'number',
 				'default' => 10
+			),
+			'radius' => array(
+				'type' => 'number',
+				'default' => 10
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
@@ -98,7 +102,8 @@ return array(
 		'example' => array(
 			'attributes' => array(
 				'columns' => 3,
-				'gap' => 10
+				'gap' => 10,
+				'borderRadius' => 5
 			),
 			'innerBlocks' => array(
 				array(

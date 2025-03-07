@@ -6,9 +6,11 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 import './editor.scss';
+import './innerblock-settings';
+import './innerblock-styles';
 
 export default function Edit({ attributes, setAttributes, style }) {
-	const { columns, gap } = attributes;
+	const { columns, gap, radius } = attributes;
 
 	const blockProps = useBlockProps({
 		className: 'multi-block-mayhem-editor',
@@ -16,6 +18,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 			...style,
 			'--mosaic-cols': String(columns),
 			'--mosaic-gap': `${gap}px`,
+			'--mosaic-radius': `${radius}px`,
 		},
 	});
 
@@ -39,6 +42,13 @@ export default function Edit({ attributes, setAttributes, style }) {
 						max={50}
 						value={gap}
 						onChange={(value) => setAttributes({ gap: value })}
+					/>
+					<RangeControl
+						label={__('Border Radius', 'multi-block-mayhem')}
+						min={0}
+						max={50}
+						value={radius}
+						onChange={(value) => setAttributes({ radius: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>
