@@ -6,6 +6,8 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 import './editor.scss';
+import './innerblock-settings';
+import './innerblock-styles';
 
 export default function Edit({ attributes, setAttributes, style }) {
 	const { columns, gap, radius } = attributes;

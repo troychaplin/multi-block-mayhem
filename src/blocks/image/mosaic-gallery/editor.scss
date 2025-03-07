@@ -6,9 +6,27 @@
 
 			.wp-block-image {
 				margin-bottom: var(--mosaic-gap, 1rem);
+				break-inside: avoid;
 
 				img {
 					border-radius: var(--mosaic-radius, 0);
+				}
+			}
+		}
+	}
+}
+
+.wp-block-multi-block-mayhem-mosaic-gallery.multi-block-mayhem-editor {
+	.block-editor-inner-blocks {
+		.block-editor-block-list__layout {
+			.wp-block-image {
+				.components-placeholder {
+					display: block;
+					width: 100%;
+
+					.components-placeholder__label {
+						margin-bottom: 1.1rem;
+					}
 				}
 			}
 		}
