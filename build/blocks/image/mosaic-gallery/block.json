@@ -1,83 +1,86 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "multi-block-mayhem/mosaic-gallery",
-	"version": "0.1.0",
-	"title": "Mosaic Gallery",
-	"category": "media",
-	"description": "A gallery block that displays images in a mosaic grid layout.",
-	"supports": {
-		"align": ["full", "wide"],
-		"alignWide": true,
-		"html": false
-	},
-	"attributes": {
-		"columns": {
-			"type": "number",
-			"default": 3
-		},
-		"gap": {
-			"type": "number",
-			"default": 10
-		},
-		"radius": {
-			"type": "number",
-			"default": 10
-		}
-	},
-	"textdomain": "multi-block-mayhem",
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"example": {
-		"attributes": {
-			"columns": 3,
-			"gap": 10,
-			"borderRadius": 5
-		},
-		"innerBlocks": [
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 175
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 201
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 146
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 138
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 89
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 103
-				}
-			},
-			{
-				"name": "core/image",
-				"attributes": {
-					"height": 153
-				}
-			}
-		]
-	}
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "multi-block-mayhem/mosaic-gallery",
+  "version": "0.1.0",
+  "title": "Mosaic Gallery",
+  "category": "media",
+  "description": "A gallery block that displays images in a mosaic grid layout.",
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "alignWide": true,
+    "html": false
+  },
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "gap": {
+      "type": "number",
+      "default": 10
+    },
+    "radius": {
+      "type": "number",
+      "default": 10
+    }
+  },
+  "textdomain": "multi-block-mayhem",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {
+    "attributes": {
+      "columns": 3,
+      "gap": 10,
+      "borderRadius": 5
+    },
+    "innerBlocks": [
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 175
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 201
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 146
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 138
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 89
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 103
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "height": 153
+        }
+      }
+    ]
+  }
 }

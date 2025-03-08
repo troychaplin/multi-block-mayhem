@@ -1,3 +1,19 @@
-.wp-block-multi-block-mayhem-image-collage {
-	border: 1px dotted #f00;
+/**
+ * Mosaic Gallery Editor Styles
+ */
+
+.wp-block-multi-block-mayhem-image-collage.multi-block-mayhem-editor {
+	.block-editor-inner-blocks .block-editor-block-list__layout {
+		column-count: var(--collage-cols, 3);
+		column-gap: var(--collage-gap, 1rem);
+	}
+
+	.wp-block-image {
+		margin-bottom: var(--collage-gap, 1rem);
+		break-inside: avoid; // Prevent placeholder from breaking across columns
+
+		img {
+			border-radius: var(--collage-radius, 0);
+		}
+	}
 }

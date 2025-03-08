@@ -11,7 +11,7 @@
 	.wp-block-image {
 		margin-bottom: var(--mosaic-gap, 1rem);
 		break-inside: avoid; // Prevent placeholder from breaking across columns
-		
+
 		img {
 			border-radius: var(--mosaic-radius, 0);
 		}

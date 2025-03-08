@@ -73,11 +73,83 @@ return array(
 		'title' => 'Image Collage',
 		'category' => 'media',
 		'description' => 'An block that displays a collage of images in a css grid.',
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'gap' => array(
+				'type' => 'number',
+				'default' => 10
+			),
+			'radius' => array(
+				'type' => 'number',
+				'default' => 10
+			)
+		),
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'example' => array(
+			'attributes' => array(
+				'columns' => 3,
+				'gap' => 10,
+				'borderRadius' => 5
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'height' => 150
+					)
+				)
+			)
+		)
 	),
 	'mosaic-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
