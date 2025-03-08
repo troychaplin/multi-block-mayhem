@@ -7,14 +7,14 @@ import { select } from '@wordpress/data';
  * A simple higher-order component to unregister styles for image blocks 
  * inside mosaic gallery blocks
  */
-const MosaicGalleryInnerblockImageStyles = createHigherOrderComponent((BlockEdit) => {
+const ImageCollageInnerblockImageStyles = createHigherOrderComponent((BlockEdit) => {
     return (props) => {
         if (props.name === 'core/image') {
             // Check if this image block is inside a mosaic gallery
             const { getBlockParents, getBlockName } = select('core/block-editor');
             const blockParents = getBlockParents(props.clientId, true);
             const inMosaicGallery = blockParents.some(
-                (parentId) => getBlockName(parentId) === 'multi-block-mayhem/mosaic-gallery'
+                (parentId) => getBlockName(parentId) === 'multi-block-mayhem/image-collage'
             );
             
             // If it's in a mosaic gallery, unregister styles
@@ -26,11 +26,11 @@ const MosaicGalleryInnerblockImageStyles = createHigherOrderComponent((BlockEdit
         
         return <BlockEdit {...props} />;
     };
-}, 'MosaicGalleryInnerblockImageStyles');
+}, 'ImageCollageInnerblockImageStyles');
 
 // Add the filter
 addFilter(
     'editor.BlockEdit',
-    'multi-block-mayhem/filter-mosaic-gallery-image-styles',
-    MosaicGalleryInnerblockImageStyles
+    'multi-block-mayhem/image-collage-innerblock-image-styles',
+    ImageCollageInnerblockImageStyles
 );

@@ -1,7 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
 import { select } from '@wordpress/data';
 
-function MosaicGalleryInnerblockImageSettings(
+function ImageCollageInnerblockImageSettings(
 	settingValue,
 	settingName,
 	clientId,
@@ -21,7 +21,7 @@ function MosaicGalleryInnerblockImageSettings(
 	// Check if one of the parents is the mosaic gallery block
 	const inMosaicGallery = blockParents.some(
 		(parentId) =>
-			getBlockName(parentId) === 'multi-block-mayhem/mosaic-gallery'
+			getBlockName(parentId) === 'multi-block-mayhem/image-collage'
 	);
 
 	// If the image is inside the mosaic gallery, modify these settings
@@ -48,6 +48,6 @@ function MosaicGalleryInnerblockImageSettings(
 // Add the filters
 addFilter(
 	'blockEditor.useSetting.before',
-	'multi-block-mayhem/filter-mosaic-gallery-image-settings',
-	MosaicGalleryInnerblockImageSettings
+	'multi-block-mayhem/image-collage-innerblock-image-settings',
+	ImageCollageInnerblockImageSettings
 );
