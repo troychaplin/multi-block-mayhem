@@ -1,0 +1,13 @@
+/**
+ * Image Collage Single Item Editor Styles
+ */
+
+.wp-block-multi-block-mayhem-image-collage-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: darkolivegreen;
+	border-radius: var(--mbm-image-collage-radius, 0);
+	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+}

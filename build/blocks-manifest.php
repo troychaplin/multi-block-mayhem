@@ -73,11 +73,125 @@ return array(
 		'title' => 'Image Collage',
 		'category' => 'media',
 		'description' => 'An block that displays a collage of images in a css grid.',
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'gap' => array(
+				'type' => 'number',
+				'default' => 10
+			),
+			'radius' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => 'Standard - 4:3'
+			)
+		),
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'example' => array(
+			'attributes' => array(
+				'columns' => 3,
+				'gap' => 5,
+				'borderRadius' => 0,
+				'aspectRatio' => '4/3'
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				)
+			)
+		)
+	),
+	'image-collage-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/image-collage-item',
+		'version' => '0.1.0',
+		'title' => 'Image Collage',
+		'category' => 'media',
+		'description' => 'An block that displays a collage of images in a css grid.',
+		'parent' => array(
+			'multi-block-mayhem/image-collage'
+		),
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => null
+			),
+			'focalPoint' => array(
+				'type' => 'object',
+				'default' => array(
+					'x' => 0.5,
+					'y' => 0.5
+				)
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
 	),
 	'mosaic-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
@@ -106,7 +220,7 @@ return array(
 			),
 			'radius' => array(
 				'type' => 'number',
-				'default' => 10
+				'default' => 0
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',

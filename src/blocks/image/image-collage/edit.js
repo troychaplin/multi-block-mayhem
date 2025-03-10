@@ -4,26 +4,28 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
-import './innerblock-settings';
-import './innerblock-styles';
 
 export default function Edit({ attributes, setAttributes, style }) {
-	const { columns, gap, radius } = attributes;
+	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps({
 		className: 'multi-block-mayhem-editor',
 		style: {
 			...style,
-			'--collage-cols': String(columns),
-			'--collage-gap': `${gap}px`,
-			'--collage-radius': `${radius}px`,
+			'--mbm-image-collage-cols': String(columns),
+			'--mbm-image-collage-gap': `${gap}px`,
+			'--mbm-image-collage-radius': `${radius}px`,
+			'--mbm-image-collage-aspect-ratio': aspectRatio,
 		},
 	});
 
-	const allowedBlocks = ['core/image'];
-	const blockTemplate = Array(6).fill(['core/image', {}]);
+	const allowedBlocks = ['multi-block-mayhem/image-collage-item'];
+	const blockTemplate = Array(6).fill([
+		'multi-block-mayhem/image-collage-item',
+		{},
+	]);
 
 	return (
 		<>
@@ -49,6 +51,43 @@ export default function Edit({ attributes, setAttributes, style }) {
 						max={50}
 						value={radius}
 						onChange={(value) => setAttributes({ radius: value })}
+					/>
+					<SelectControl
+						label="Aspect Ratio"
+						value={aspectRatio}
+						options={[
+							{
+								label: 'Square - 1:1',
+								value: '1/1',
+							},
+							{
+								label: 'Standard - 4:3',
+								value: '4/3',
+							},
+							{
+								label: 'Portrait - 3:4',
+								value: '3/4',
+							},
+							{
+								label: 'Classic - 3:2',
+								value: '3/2',
+							},
+							{
+								label: 'Classic Portrait - 2:3',
+								value: '2/3',
+							},
+							{
+								label: 'Wide - 16:9',
+								value: '16/9',
+							},
+							{
+								label: 'Tall - 9:16',
+								value: '9/16',
+							},
+						]}
+						onChange={(value) =>
+							setAttributes({ aspectRatio: value })
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>

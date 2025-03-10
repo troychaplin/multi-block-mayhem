@@ -25,7 +25,11 @@
     },
     "radius": {
       "type": "number",
-      "default": 10
+      "default": 0
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "Standard - 4:3"
     }
   },
   "textdomain": "multi-block-mayhem",
@@ -35,50 +39,51 @@
   "example": {
     "attributes": {
       "columns": 3,
-      "gap": 10,
-      "borderRadius": 5
+      "gap": 5,
+      "borderRadius": 0,
+      "aspectRatio": "4/3"
     },
     "innerBlocks": [
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       },
       {
         "name": "core/image",
         "attributes": {
-          "height": 150
+          "columnSpan": "1"
         }
       }
     ]

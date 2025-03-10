@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "multi-block-mayhem/image-collage-item",
+  "version": "0.1.0",
+  "title": "Image Collage",
+  "category": "media",
+  "description": "An block that displays a collage of images in a css grid.",
+  "parent": [
+    "multi-block-mayhem/image-collage"
+  ],
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "alignWide": true,
+    "html": false
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": null
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "textdomain": "multi-block-mayhem",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
