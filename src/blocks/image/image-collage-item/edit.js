@@ -75,9 +75,9 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 					<InspectorImageUploader
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
-						imageSize="large"
-						minWidth={1024}
-						minHeight={768}
+						imageSize={columnSpan === 1 ? 'medium' : 'large'}
+						minWidth={columnSpan === 1 ? 600 : 1024}
+						minHeight={columnSpan === 1 ? 450 : 768}
 						attributes={attributes}
 					/>
 				</PanelBody>

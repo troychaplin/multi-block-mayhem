@@ -16,6 +16,38 @@ export const InspectorImageUploader = ({
 
 	// Define fallback sizes in order of preference
 	const fallbackSizes = ['large', 'medium', 'thumbnail'];
+
+	// Helper function to get image details from media object
+	const getImageDetails = (media) => {
+		if (!media) return null;
+
+		// Try to get specified size first
+		if (imageSize && media.media_details?.sizes?.[imageSize]) {
+			return {
+				url: media.media_details.sizes[imageSize].source_url,
+				width: media.media_details.sizes[imageSize].width,
+				height: media.media_details.sizes[imageSize].height,
+			};
+		}
+
+		// Try fallback sizes in order
+		for (const size of fallbackSizes) {
+			if (media.media_details?.sizes?.[size]) {
+				return {
+					url: media.media_details.sizes[size].source_url,
+					width: media.media_details.sizes[size].width,
+					height: media.media_details.sizes[size].height,
+				};
+			}
+		}
+
+		// If no sizes available, use original
+		return {
+			url: media.source_url,
+			width: media.media_details?.width,
+			height: media.media_details?.height,
+		};
+	};
 	
 	// Get image details including available sizes
 	const imageDetails = useSelect(
@@ -25,35 +57,8 @@ export const InspectorImageUploader = ({
 			const media = select('core').getMedia(mediaId);
 			if (!media) return null;
 
-			// Try to get specified size first
-			if (imageSize && media.media_details?.sizes?.[imageSize]) {
-				return {
-					url: media.media_details.sizes[imageSize].source_url,
-					width: media.media_details.sizes[imageSize].width,
-					height: media.media_details.sizes[imageSize].height,
-					id: media.id,
-				};
-			}
-
-			// Try fallback sizes in order
-			for (const size of fallbackSizes) {
-				if (media.media_details?.sizes?.[size]) {
-					return {
-						url: media.media_details.sizes[size].source_url,
-						width: media.media_details.sizes[size].width,
-						height: media.media_details.sizes[size].height,
-						id: media.id,
-					};
-				}
-			}
-
-			// If no sizes available, use original
-			return {
-				url: media.source_url,
-				width: media.media_details?.width,
-				height: media.media_details?.height,
-				id: media.id,
-			};
+			const details = getImageDetails(media);
+			return details ? { ...details, id: media.id } : null;
 		},
 		[mediaId, imageSize]
 	);
@@ -61,22 +66,39 @@ export const InspectorImageUploader = ({
 	// Update image details when they change
 	useEffect(() => {
 		if (imageDetails) {
-			setAttributes({
-				imageUrl: imageDetails.url,
-				mediaId: imageDetails.id,
-				imageDimensions: {
-					width: imageDetails.width,
-					height: imageDetails.height,
-				},
-			});
+			// Only update if the URLs match to prevent cross-contamination
+			if (!imageUrl || imageDetails.url === imageUrl) {
+				setAttributes({
+					imageUrl: imageDetails.url,
+					mediaId: imageDetails.id,
+					imageDimensions: {
+						width: imageDetails.width,
+						height: imageDetails.height,
+					},
+				});
+			}
 		}
-	}, [imageDetails, setAttributes]);
+	}, [imageDetails, setAttributes, imageUrl]);
 
 	// Check if image meets minimum dimensions
 	const hasMinimumDimensions = !attributes?.imageDimensions
 		? true
 		: (!minWidth || attributes.imageDimensions.width >= minWidth) &&
 		  (!minHeight || attributes.imageDimensions.height >= minHeight);
+
+	// Get recommendation message based on which dimensions are specified
+	const getRecommendationMessage = () => {
+		if (minWidth && minHeight) {
+			return `width of ${minWidth}px and height of ${minHeight}px`;
+		}
+		if (minWidth) {
+			return `width of ${minWidth}px`;
+		}
+		if (minHeight) {
+			return `height of ${minHeight}px`;
+		}
+		return '';
+	};
 
 	// Handle image selection
 	const onSelectImage = (media) => {
@@ -89,7 +111,21 @@ export const InspectorImageUploader = ({
 			});
 			return;
 		}
+
+		// Get image details immediately
+		const details = getImageDetails(media);
+		if (!details) return;
+
+		// Update everything at once
 		setMediaId(media.id);
+		setAttributes({
+			imageUrl: details.url,
+			mediaId: media.id,
+			imageDimensions: {
+				width: details.width,
+				height: details.height,
+			},
+		});
 	};
 
 	// Handle image removal
@@ -103,9 +139,18 @@ export const InspectorImageUploader = ({
 	};
 
 	// Show warning if image exists and dimensions don't meet requirements
-	const showWarning = imageUrl && 
-		attributes?.imageDimensions && 
-		!hasMinimumDimensions;
+	const showWarning = Boolean(
+		imageUrl && 
+		attributes?.imageDimensions &&
+		!hasMinimumDimensions
+	);
+
+	// Initialize mediaId from attributes when component mounts or imageUrl changes
+	useEffect(() => {
+		if (imageUrl && attributes?.mediaId) {
+			setMediaId(attributes.mediaId);
+		}
+	}, [imageUrl, attributes?.mediaId]);
 
 	return (
 		<div className="mbm-image-uploader">
@@ -127,8 +172,7 @@ export const InspectorImageUploader = ({
 					className="mbm-image-warning"
 				>
 					Current image size ({attributes.imageDimensions.width}×
-					{attributes.imageDimensions.height}px) is smaller than recommended (
-					{minWidth || 'any'}×{minHeight || 'any'}px)
+					{attributes.imageDimensions.height}px) is smaller than recommended {getRecommendationMessage()}
 				</Notice>
 			)}
 
