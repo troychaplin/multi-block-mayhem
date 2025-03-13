@@ -71,20 +71,18 @@ export const InspectorImageUploader = ({
 				setAttributes({
 					imageUrl: imageDetails.url,
 					mediaId: imageDetails.id,
-					imageDimensions: {
-						width: imageDetails.width,
-						height: imageDetails.height,
-					},
+					imageWidth: imageDetails.width,
+					imageHeight: imageDetails.height,
 				});
 			}
 		}
 	}, [imageDetails, setAttributes, imageUrl]);
 
 	// Check if image meets minimum dimensions
-	const hasMinimumDimensions = !attributes?.imageDimensions
+	const hasMinimumDimensions = !attributes?.imageWidth
 		? true
-		: (!minWidth || attributes.imageDimensions.width >= minWidth) &&
-		  (!minHeight || attributes.imageDimensions.height >= minHeight);
+		: (!minWidth || attributes.imageWidth >= minWidth) &&
+		  (!minHeight || attributes.imageHeight >= minHeight);
 
 	// Get recommendation message based on which dimensions are specified
 	const getRecommendationMessage = () => {
@@ -107,7 +105,8 @@ export const InspectorImageUploader = ({
 			setAttributes({
 				imageUrl: '',
 				mediaId: null,
-				imageDimensions: null,
+				imageWidth: null,
+				imageHeight: null,
 			});
 			return;
 		}
@@ -121,10 +120,8 @@ export const InspectorImageUploader = ({
 		setAttributes({
 			imageUrl: details.url,
 			mediaId: media.id,
-			imageDimensions: {
-				width: details.width,
-				height: details.height,
-			},
+			imageWidth: details.width,
+			imageHeight: details.height,
 		});
 	};
 
@@ -134,14 +131,15 @@ export const InspectorImageUploader = ({
 		setAttributes({
 			imageUrl: '',
 			mediaId: null,
-			imageDimensions: null,
+			imageWidth: null,
+			imageHeight: null,
 		});
 	};
 
 	// Show warning if image exists and dimensions don't meet requirements
 	const showWarning = Boolean(
 		imageUrl && 
-		attributes?.imageDimensions &&
+		attributes?.imageWidth &&
 		!hasMinimumDimensions
 	);
 
@@ -153,7 +151,14 @@ export const InspectorImageUploader = ({
 	}, [imageUrl, attributes?.mediaId]);
 
 	return (
-		<div className="mbm-image-uploader">
+		<div 
+			className="mbm-image-uploader"
+			style={{
+				display: 'flex',
+				gap: '16px',
+				flexDirection: 'column'
+			}}
+		>
 			{/* Size Requirements Notice */}
 			{(minWidth || minHeight) && !imageUrl && (
 				<p className="mbm-size-notice">
@@ -171,8 +176,7 @@ export const InspectorImageUploader = ({
 					isDismissible={false}
 					className="mbm-image-warning"
 				>
-					Current image size ({attributes.imageDimensions.width}×
-					{attributes.imageDimensions.height}px) is smaller than recommended {getRecommendationMessage()}
+					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is smaller than recommended {getRecommendationMessage()}
 				</Notice>
 			)}
 

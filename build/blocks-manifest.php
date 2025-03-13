@@ -186,6 +186,18 @@ return array(
 				'type' => 'string',
 				'default' => null
 			),
+			'mediaId' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => null
+			),
 			'focalPoint' => array(
 				'type' => 'object',
 				'default' => array(
@@ -193,13 +205,13 @@ return array(
 					'y' => 0.5
 				)
 			),
-			'columnSpan' => array(
-				'type' => 'number',
-				'default' => 1
-			),
 			'columns' => array(
 				'type' => 'number',
 				'default' => 3
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',

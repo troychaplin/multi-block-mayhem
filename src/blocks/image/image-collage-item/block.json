@@ -18,6 +18,18 @@
 			"type": "string",
 			"default": null
 		},
+		"mediaId": {
+			"type": "number",
+			"default": null
+		},
+		"imageWidth": {
+			"type": "number",
+			"default": null
+		},
+		"imageHeight": {
+			"type": "number",
+			"default": null
+		},
 		"focalPoint": {
 			"type": "object",
 			"default": {
@@ -25,13 +37,13 @@
 				"y": 0.5
 			}
 		},
-		"columnSpan": {
-			"type": "number",
-			"default": 1
-		},
 		"columns": {
 			"type": "number",
 			"default": 3
+		},
+		"columnSpan": {
+			"type": "number",
+			"default": 1
 		}
 	},
 	"textdomain": "multi-block-mayhem",
