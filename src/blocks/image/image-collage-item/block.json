@@ -7,6 +7,7 @@
 	"category": "media",
 	"description": "An block that displays a collage of images in a css grid.",
 	"parent": ["multi-block-mayhem/image-collage"],
+	"usesContext": ["multi-block-mayhem/image-collage-columns"],
 	"supports": {
 		"align": ["full", "wide"],
 		"alignWide": true,
@@ -23,6 +24,14 @@
 				"x": 0.5,
 				"y": 0.5
 			}
+		},
+		"columnSpan": {
+			"type": "number",
+			"default": 1
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
 		}
 	},
 	"textdomain": "multi-block-mayhem",

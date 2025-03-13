@@ -81,6 +81,9 @@ return array(
 			'alignWide' => true,
 			'html' => false
 		),
+		'providesContext' => array(
+			'multi-block-mayhem/image-collage-columns' => 'columns'
+		),
 		'attributes' => array(
 			'columns' => array(
 				'type' => 'number',
@@ -167,6 +170,9 @@ return array(
 		'parent' => array(
 			'multi-block-mayhem/image-collage'
 		),
+		'usesContext' => array(
+			'multi-block-mayhem/image-collage-columns'
+		),
 		'supports' => array(
 			'align' => array(
 				'full',
@@ -186,6 +192,14 @@ return array(
 					'x' => 0.5,
 					'y' => 0.5
 				)
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',

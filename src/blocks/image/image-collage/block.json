@@ -11,6 +11,9 @@
 		"alignWide": true,
 		"html": false
 	},
+	"providesContext": {
+		"multi-block-mayhem/image-collage-columns": "columns"
+	},
 	"attributes": {
 		"columns": {
 			"type": "number",

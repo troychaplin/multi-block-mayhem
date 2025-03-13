@@ -2,12 +2,26 @@
  * Image Collage Single Item Editor Styles
  */
 
-.wp-block-multi-block-mayhem-image-collage-item {
+// Define a placeholder selector with the shared properties
+%shared-collage-styles {
+	border-radius: var(--mbm-image-collage-radius, 0);
+	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	grid-column: span var(--mbm-image-collage-col-span) / span
+		var(--mbm-image-collage-col-span);
+	grid-row: span var(--mbm-image-collage-col-span) / span
+		var(--mbm-image-collage-col-span);
+}
+
+.wp-block-multi-block-mayhem-image-collage-item.placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
-	background-color: darkolivegreen;
-	border-radius: var(--mbm-image-collage-radius, 0);
-	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	font-size: 1rem;
+	text-align: center;
+	background-color: #e5e5e5;
+	@extend %shared-collage-styles;
+}
+
+.wp-block-multi-block-mayhem-image-collage-item.multi-block-mayhem-editor {
+	@extend %shared-collage-styles;
 }
