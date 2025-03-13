@@ -79,6 +79,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						minWidth={columnSpan === 1 ? 600 : 1024}
 						minHeight={columnSpan === 1 ? 450 : 768}
 						attributes={attributes}
+						force
 					/>
 				</PanelBody>
 			</InspectorControls>

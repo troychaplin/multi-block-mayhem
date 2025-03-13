@@ -10,6 +10,7 @@ export const CustomImageUploader = ({
 	minWidth,
 	minHeight,
 	attributes,
+	force,
 }) => {
 	// Initialize mediaId from attributes if it exists
 	const [mediaId, setMediaId] = useState(attributes?.mediaId || null);
@@ -115,6 +116,14 @@ export const CustomImageUploader = ({
 		const details = getImageDetails(media);
 		if (!details) return;
 
+		// Check if image meets minimum dimensions when force is true
+		const meetsMinDimensions = (!minWidth || details.width >= minWidth) &&
+			(!minHeight || details.height >= minHeight);
+
+		if (force && !meetsMinDimensions) {
+			return;
+		}
+
 		// Update everything at once
 		setMediaId(media.id);
 		setAttributes({
@@ -159,25 +168,33 @@ export const CustomImageUploader = ({
 				flexDirection: 'column'
 			}}
 		>
-			{/* Size Requirements Notice */}
-			{(minWidth || minHeight) && !imageUrl && (
-				<p className="mbm-size-notice">
-					Recommended image size:{' '}
-					{minWidth && `${minWidth}px wide`}
-					{minWidth && minHeight && ' × '}
-					{minHeight && `${minHeight}px high`}
-				</p>
-			)}
-
 			{/* Warning Notice */}
 			{showWarning && (
 				<Notice 
-					status="warning" 
+					status="warning"
 					isDismissible={false}
 					className="mbm-image-warning"
 				>
 					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is smaller than recommended {getRecommendationMessage()}
 				</Notice>
+			)}
+
+			{/* Size Requirements Notice */}
+			{(minWidth || minHeight) && !imageUrl && (
+				<div 
+					className="mbm-size-notice"
+					style={{
+						backgroundColor: 'rgba(204, 24, 24, 0.05)',
+						borderLeft: '4px solid #cc1818',
+						padding: '8px 12px',
+						color: '#1e1e1e'
+					}}
+				>
+					{force ? 'Required' : 'Recommended'} image size:{' '}
+					{minWidth && `${minWidth}px wide`}
+					{minWidth && minHeight && ' × '}
+					{minHeight && `${minHeight}px high`}
+				</div>
 			)}
 
 			{/* Upload Controls */}
