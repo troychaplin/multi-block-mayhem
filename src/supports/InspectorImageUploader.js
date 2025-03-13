@@ -1,121 +1,144 @@
-import { useState, useEffect, useCallback } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { MediaUpload } from '@wordpress/block-editor';
-import { ButtonGroup, Button } from '@wordpress/components';
+import { ButtonGroup, Button, Notice } from '@wordpress/components';
 
-export const InspectorImageUploader = (props) => {
-	const {
-		imageUrl,
-		setAttributes,
-		minWidth,
-		minHeight,
-		imageName,
-		forceSize = false,
-		fallbackImageSize = 'medium',
-	} = props;
-	const [mediaId, setMediaId] = useState(null);
-	const [errorType, setErrorType] = useState(null); // Can be 'warning', 'error', or null
+export const InspectorImageUploader = ({
+	imageUrl,
+	setAttributes,
+	imageSize,
+	minWidth,
+	minHeight,
+	attributes,
+}) => {
+	// Initialize mediaId from attributes if it exists
+	const [mediaId, setMediaId] = useState(attributes?.mediaId || null);
 
-	// Construct full image size names based on props
-	const specificImageSize = `${imageName}`; // E.g., 'horizontal-card-lg'
-
-	// Use useSelect to fetch media details based on id and check image sizes
-	const uploadedImageDetails = useSelect(
+	// Define fallback sizes in order of preference
+	const fallbackSizes = ['large', 'medium', 'thumbnail'];
+	
+	// Get image details including available sizes
+	const imageDetails = useSelect(
 		(select) => {
-			if (!mediaId) return '';
+			if (!mediaId) return null;
+			
 			const media = select('core').getMedia(mediaId);
+			if (!media) return null;
 
-			// Fetch URLs based on constructed size names
-			const specificImageUrl =
-				media?.media_details?.sizes?.[specificImageSize]?.source_url;
-			const fallbackImageUrl =
-				media?.media_details?.sizes?.[fallbackImageSize]?.source_url ||
-				media?.source_url;
-			const fullImageUrl = media?.source_url;
-
-			// Check if the uploaded image matches the specific size dimensions
-			const isSpecificSize =
-				media?.media_details?.sizes?.[specificImageSize]?.width ===
-					media?.width &&
-				media?.media_details?.sizes?.[specificImageSize]?.height ===
-					media?.height;
-
-			// Determine which URL to use based on availability and size match
-			return isSpecificSize
-				? fullImageUrl
-				: specificImageUrl || fallbackImageUrl || fullImageUrl;
-		},
-		[mediaId, specificImageSize, fallbackImageSize]
-	);
-
-	// Handler when an image is uploaded or selected
-	const onImageUpload = useCallback(
-		(media) => {
-			if (!media || !media.url) {
-				setAttributes({ imageUrl: '', imageId: '' });
-				return;
+			// Try to get specified size first
+			if (imageSize && media.media_details?.sizes?.[imageSize]) {
+				return {
+					url: media.media_details.sizes[imageSize].source_url,
+					width: media.media_details.sizes[imageSize].width,
+					height: media.media_details.sizes[imageSize].height,
+					id: media.id,
+				};
 			}
 
-			// Check for image dimensions if minWidth or minHeight are set
-			let imageMeetsSize = true;
-			if (minWidth || minHeight) {
-				imageMeetsSize =
-					(!minWidth || media.width >= minWidth) &&
-					(!minHeight || media.height >= minHeight);
-
-				if (!imageMeetsSize) {
-					if (forceSize) {
-						// Force size is true, block the image and display an error message
-						setErrorType('error');
-						return; // Do not set the image
-					}
-					// Force size is false, display a warning but still set the image
-					setErrorType('warning');
-				}
-
-				// If the image meets the size, clear any previous warnings/errors
-				if (imageMeetsSize) {
-					setErrorType(null);
+			// Try fallback sizes in order
+			for (const size of fallbackSizes) {
+				if (media.media_details?.sizes?.[size]) {
+					return {
+						url: media.media_details.sizes[size].source_url,
+						width: media.media_details.sizes[size].width,
+						height: media.media_details.sizes[size].height,
+						id: media.id,
+					};
 				}
 			}
 
-			// Image meets requirements or forceSize is false, set the image
-			setMediaId(media.id);
-			setAttributes({ imageId: media.id, imageUrl: media.url });
+			// If no sizes available, use original
+			return {
+				url: media.source_url,
+				width: media.media_details?.width,
+				height: media.media_details?.height,
+				id: media.id,
+			};
 		},
-		[setAttributes, minWidth, minHeight, forceSize]
+		[mediaId, imageSize]
 	);
 
-	// Effect to update attributes when uploadedImageDetails changes
+	// Update image details when they change
 	useEffect(() => {
-		if (uploadedImageDetails) {
-			setAttributes({ imageUrl: uploadedImageDetails });
+		if (imageDetails) {
+			setAttributes({
+				imageUrl: imageDetails.url,
+				mediaId: imageDetails.id,
+				imageDimensions: {
+					width: imageDetails.width,
+					height: imageDetails.height,
+				},
+			});
 		}
-	}, [uploadedImageDetails, setAttributes]);
+	}, [imageDetails, setAttributes]);
 
-	// Handler to remove the selected image
-	const removeImage = useCallback(() => {
-		setAttributes({ imageUrl: '', imageId: '' });
+	// Check if image meets minimum dimensions
+	const hasMinimumDimensions = !attributes?.imageDimensions
+		? true
+		: (!minWidth || attributes.imageDimensions.width >= minWidth) &&
+		  (!minHeight || attributes.imageDimensions.height >= minHeight);
+
+	// Handle image selection
+	const onSelectImage = (media) => {
+		if (!media || !media.id) {
+			setMediaId(null);
+			setAttributes({
+				imageUrl: '',
+				mediaId: null,
+				imageDimensions: null,
+			});
+			return;
+		}
+		setMediaId(media.id);
+	};
+
+	// Handle image removal
+	const removeImage = () => {
 		setMediaId(null);
-		setErrorType(null); // Reset errors when image is removed
-	}, [setAttributes]);
+		setAttributes({
+			imageUrl: '',
+			mediaId: null,
+			imageDimensions: null,
+		});
+	};
+
+	// Show warning if image exists and dimensions don't meet requirements
+	const showWarning = imageUrl && 
+		attributes?.imageDimensions && 
+		!hasMinimumDimensions;
 
 	return (
-		<MediaUpload
-			onSelect={onImageUpload}
-			allowedTypes={['image']}
-			value={imageUrl}
-			render={({ open }) => (
-				<>
-					{(minWidth || minHeight) && (
-						<p>
-							The minimum recommended image size is{' '}
-							{minWidth && `${minWidth}px wide`}
-							{minWidth && minHeight && ' and '}
-							{minHeight && `${minHeight}px high`}.
-						</p>
-					)}
-					<ButtonGroup>
+		<div className="mbm-image-uploader">
+			{/* Size Requirements Notice */}
+			{(minWidth || minHeight) && !imageUrl && (
+				<p className="mbm-size-notice">
+					Recommended image size:{' '}
+					{minWidth && `${minWidth}px wide`}
+					{minWidth && minHeight && ' × '}
+					{minHeight && `${minHeight}px high`}
+				</p>
+			)}
+
+			{/* Warning Notice */}
+			{showWarning && (
+				<Notice 
+					status="warning" 
+					isDismissible={false}
+					className="mbm-image-warning"
+				>
+					Current image size ({attributes.imageDimensions.width}×
+					{attributes.imageDimensions.height}px) is smaller than recommended (
+					{minWidth || 'any'}×{minHeight || 'any'}px)
+				</Notice>
+			)}
+
+			{/* Upload Controls */}
+			<MediaUpload
+				onSelect={onSelectImage}
+				allowedTypes={['image']}
+				value={mediaId}
+				render={({ open }) => (
+					<ButtonGroup className="mbm-image-controls">
 						<Button onClick={open} variant="primary">
 							{imageUrl ? 'Replace Image' : 'Select Image'}
 						</Button>
@@ -123,48 +146,14 @@ export const InspectorImageUploader = (props) => {
 							<Button
 								onClick={removeImage}
 								variant="secondary"
-								style={{ marginLeft: '12px' }}
+								style={{ marginLeft: '8px' }}
 							>
-								Remove Image
+								Remove
 							</Button>
 						)}
 					</ButtonGroup>
-
-					{errorType === 'warning' && (
-						<p
-							style={{
-								color: '#bd4b00',
-								fontSize: '0.825rem',
-								marginTop: '1rem',
-								fontWeight: '600',
-							}}
-						>
-							⚠️ Warning: The selected image should have a minimum
-							size of {minWidth && `${minWidth}px wide`}
-							{minWidth && minHeight && ' and '}
-							{minHeight && `${minHeight}px high`} for best
-							quality.
-						</p>
-					)}
-
-					{errorType === 'error' && (
-						<p
-							style={{
-								color: '#E91C24',
-								fontSize: '0.825rem',
-								marginTop: '1rem',
-								fontWeight: '600',
-							}}
-						>
-							❌ Error: The image must be at least{' '}
-							{minWidth && `${minWidth}px wide`}
-							{minWidth && minHeight && ' and '}
-							{minHeight && `${minHeight}px high`}. Please select
-							a larger image.
-						</p>
-					)}
-				</>
-			)}
-		/>
+				)}
+			/>
+		</div>
 	);
 };

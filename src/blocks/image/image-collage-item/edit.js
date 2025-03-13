@@ -18,7 +18,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns } = attributes;
+	const { imageUrl, columnSpan, columns, imageDimensions } = attributes;
 
 	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
 
@@ -64,24 +64,21 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						}
 					/>
 					{imageUrl && (
-						<>
-							<FocalPointPicker
-								url={imageUrl}
-								value={focalPoint}
-								onDragStart={setFocalPoint}
-								onDrag={onFocalPointChange}
-								onChange={onFocalPointChange}
-							/>
-							<div style={bgImageStyles} />
-						</>
+						<FocalPointPicker
+							url={imageUrl}
+							value={focalPoint}
+							onDragStart={setFocalPoint}
+							onDrag={onFocalPointChange}
+							onChange={onFocalPointChange}
+						/>
 					)}
 					<InspectorImageUploader
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
-						useCallback={useCallback}
-						imageName="large"
-						minWidth="1024"
-						forceSize
+						imageSize="large"
+						minWidth={1024}
+						minHeight={768}
+						attributes={attributes}
 					/>
 				</PanelBody>
 			</InspectorControls>
