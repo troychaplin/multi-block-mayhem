@@ -12,7 +12,7 @@
 		var(--mbm-image-collage-col-span);
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.placeholder {
+.wp-block-multi-block-mayhem-image-collage-item.mbm-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -22,6 +22,6 @@
 	@extend %shared-collage-styles;
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.multi-block-mayhem-editor {
+.wp-block-multi-block-mayhem-image-collage-item.mbm-editor {
 	@extend %shared-collage-styles;
 }

@@ -20,7 +20,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 
 	const { imageUrl, columnSpan, columns } = attributes;
 
-	const blockClasses = imageUrl ? 'multi-block-mayhem-editor' : 'placeholder';
+	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
 
 	const blockProps = useBlockProps({
 		className: blockClasses,
