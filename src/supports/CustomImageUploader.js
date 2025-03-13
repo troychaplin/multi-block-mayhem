@@ -184,8 +184,8 @@ export const CustomImageUploader = ({
 				<div 
 					className="mbm-size-notice"
 					style={{
-						backgroundColor: 'rgba(204, 24, 24, 0.05)',
-						borderLeft: '4px solid #cc1818',
+						backgroundColor: '#fef8ee',
+						borderLeft: '4px solid #f0b849',
 						padding: '8px 12px',
 						color: '#1e1e1e'
 					}}
