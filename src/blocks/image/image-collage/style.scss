@@ -1,0 +1,12 @@
+.wp-block-multi-block-mayhem-image-collage:not(.mbm-editor) {
+	column-count: var(--mbm-image-collage-cols, 3);
+	column-gap: var(--mbm-image-collage-gap, 1rem);
+
+	.wp-block-image {
+		margin-bottom: var(--mbm-image-collage-gap, 1rem);
+
+		img {
+			border-radius: var(--mbm-image-collage-radius, 0);
+		}
+	}
+}

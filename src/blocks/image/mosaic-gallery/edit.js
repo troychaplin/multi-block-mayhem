@@ -13,12 +13,12 @@ export default function Edit({ attributes, setAttributes, style }) {
 	const { columns, gap, radius } = attributes;
 
 	const blockProps = useBlockProps({
-		className: 'multi-block-mayhem-editor',
+		className: 'mbm-editor',
 		style: {
 			...style,
-			'--mosaic-cols': String(columns),
-			'--mosaic-gap': `${gap}px`,
-			'--mosaic-radius': `${radius}px`,
+			'--mbm-mosaic-gallery-cols': String(columns),
+			'--mbm-mosaic-gallery-gap': `${gap}px`,
+			'--mbm-mosaic-gallery-radius': `${radius}px`,
 		},
 	});
 

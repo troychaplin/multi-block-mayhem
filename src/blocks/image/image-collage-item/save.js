@@ -5,9 +5,9 @@ export default function save({ attributes }) {
 
 	const blockProps = useBlockProps.save({
 		style: {
-			'--mbm-mosaic-gallery-cols': String(columns),
-			'--mbm-mosaic-gallery-gap': `${gap}px`,
-			'--mbm-mosaic-gallery-radius': `${radius}px`,
+			'--mbm-image-collage-cols': String(columns),
+			'--mbm-image-collage-gap': `${gap}px`,
+			'--mbm-image-collage-radius': `${radius}px`,
 		},
 	});
 

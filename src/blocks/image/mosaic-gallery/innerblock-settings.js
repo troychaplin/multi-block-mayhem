@@ -1,7 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
 import { select } from '@wordpress/data';
 
-function restrictImageBlockSettingsInMosaicGallery(
+function MosaicGalleryInnerblockImageSettings(
 	settingValue,
 	settingName,
 	clientId,
@@ -49,5 +49,5 @@ function restrictImageBlockSettingsInMosaicGallery(
 addFilter(
 	'blockEditor.useSetting.before',
 	'multi-block-mayhem/filter-mosaic-gallery-image-settings',
-	restrictImageBlockSettingsInMosaicGallery
+	MosaicGalleryInnerblockImageSettings
 );
