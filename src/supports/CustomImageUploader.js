@@ -3,7 +3,7 @@ import { useSelect } from '@wordpress/data';
 import { MediaUpload } from '@wordpress/block-editor';
 import { ButtonGroup, Button, Notice } from '@wordpress/components';
 
-export const InspectorImageUploader = ({
+export const CustomImageUploader = ({
 	imageUrl,
 	setAttributes,
 	imageSize,

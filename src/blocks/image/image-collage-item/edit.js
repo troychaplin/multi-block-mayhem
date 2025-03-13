@@ -6,7 +6,7 @@ import {
 	RangeControl,
 	FocalPointPicker,
 } from '@wordpress/components';
-import { InspectorImageUploader } from '../../../supports/InspectorImageUploader';
+import { CustomImageUploader } from '../../../supports/CustomImageUploader';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes, context, style }) {
@@ -18,7 +18,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns, imageDimensions } = attributes;
+	const { imageUrl, columnSpan, columns } = attributes;
 
 	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
 
@@ -72,7 +72,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 							onChange={onFocalPointChange}
 						/>
 					)}
-					<InspectorImageUploader
+					<CustomImageUploader
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
 						imageSize={columnSpan === 1 ? 'medium' : 'large'}
