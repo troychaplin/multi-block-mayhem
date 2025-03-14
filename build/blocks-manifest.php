@@ -99,7 +99,7 @@ return array(
 			),
 			'aspectRatio' => array(
 				'type' => 'string',
-				'default' => 'Standard - 4:3'
+				'default' => '4/3'
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
