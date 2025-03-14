@@ -212,6 +212,10 @@ return array(
 			'columnSpan' => array(
 				'type' => 'number',
 				'default' => 1
+			),
+			'zoom' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
