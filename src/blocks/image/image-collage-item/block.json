@@ -44,6 +44,10 @@
 		"columnSpan": {
 			"type": "number",
 			"default": 1
+		},
+		"zoom": {
+			"type": "number",
+			"default": 0
 		}
 	},
 	"textdomain": "multi-block-mayhem",

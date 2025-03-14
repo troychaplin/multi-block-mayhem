@@ -18,7 +18,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns } = attributes;
+	const { imageUrl, columnSpan, columns, zoom } = attributes;
 
 	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
 
@@ -48,6 +48,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		backgroundImage: `url(${imageUrl})`,
 		backgroundPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%`,
 		backgroundSize: 'cover',
+		transform: `scale(1.${String(zoom).padStart(2, '0')})`,
 	};
 
 	return (
@@ -64,13 +65,24 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						}
 					/>
 					{imageUrl && (
-						<FocalPointPicker
-							url={imageUrl}
-							value={focalPoint}
-							onDragStart={setFocalPoint}
-							onDrag={onFocalPointChange}
-							onChange={onFocalPointChange}
-						/>
+						<>
+							<FocalPointPicker
+								url={imageUrl}
+								value={focalPoint}
+								onDragStart={setFocalPoint}
+								onDrag={onFocalPointChange}
+								onChange={onFocalPointChange}
+							/>
+							<RangeControl
+								label={__('Image Zoom', 'multi-block-mayhem')}
+								min={0}
+								max={50}
+								value={zoom}
+								onChange={(value) =>
+									setAttributes({ zoom: value })
+								}
+							/>
+						</>
 					)}
 					<CustomImageUploader
 						imageUrl={imageUrl}
@@ -89,9 +101,14 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 					{...blockProps}
 					style={{
 						...blockProps.style,
-						...bgImageStyles,
 					}}
-				/>
+				>
+					<div
+						style={{
+							...bgImageStyles,
+						}}
+					/>
+				</div>
 			) : (
 				<div {...blockProps}>Add Image</div>
 			)}
