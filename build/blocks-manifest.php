@@ -106,6 +106,7 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
 		'example' => array(
 			'attributes' => array(
 				'columns' => 3,

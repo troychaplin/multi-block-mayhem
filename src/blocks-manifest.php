@@ -221,7 +221,8 @@ return array(
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
 	),
 	'mosaic-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
