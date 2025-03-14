@@ -1,4 +1,4 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useCallback, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { MediaUpload } from '@wordpress/block-editor';
 import { ButtonGroup, Button, Notice } from '@wordpress/components';
@@ -16,52 +16,55 @@ export const CustomImageUploader = ({
 	const [mediaId, setMediaId] = useState(attributes?.mediaId || null);
 
 	// Define fallback sizes in order of preference
-	const fallbackSizes = ['large', 'medium', 'thumbnail'];
+	const fallbackSizes = useMemo(() => ['large', 'medium', 'thumbnail'], []);
 
 	// Helper function to get image details from media object
-	const getImageDetails = (media) => {
-		if (!media) return null;
+	const getImageDetails = useCallback(
+		(media) => {
+			if (!media) return null;
 
-		// Try to get specified size first
-		if (imageSize && media.media_details?.sizes?.[imageSize]) {
-			return {
-				url: media.media_details.sizes[imageSize].source_url,
-				width: media.media_details.sizes[imageSize].width,
-				height: media.media_details.sizes[imageSize].height,
-			};
-		}
-
-		// Try fallback sizes in order
-		for (const size of fallbackSizes) {
-			if (media.media_details?.sizes?.[size]) {
+			// Try to get specified size first
+			if (imageSize && media.media_details?.sizes?.[imageSize]) {
 				return {
-					url: media.media_details.sizes[size].source_url,
-					width: media.media_details.sizes[size].width,
-					height: media.media_details.sizes[size].height,
+					url: media.media_details.sizes[imageSize].source_url,
+					width: media.media_details.sizes[imageSize].width,
+					height: media.media_details.sizes[imageSize].height,
 				};
 			}
-		}
 
-		// If no sizes available, use original
-		return {
-			url: media.source_url,
-			width: media.media_details?.width,
-			height: media.media_details?.height,
-		};
-	};
-	
+			// Try fallback sizes in order
+			for (const size of fallbackSizes) {
+				if (media.media_details?.sizes?.[size]) {
+					return {
+						url: media.media_details.sizes[size].source_url,
+						width: media.media_details.sizes[size].width,
+						height: media.media_details.sizes[size].height,
+					};
+				}
+			}
+
+			// If no sizes available, use original
+			return {
+				url: media.source_url,
+				width: media.media_details?.width,
+				height: media.media_details?.height,
+			};
+		},
+		[imageSize, fallbackSizes]
+	);
+
 	// Get image details including available sizes
 	const imageDetails = useSelect(
 		(select) => {
 			if (!mediaId) return null;
-			
+
 			const media = select('core').getMedia(mediaId);
 			if (!media) return null;
 
 			const details = getImageDetails(media);
 			return details ? { ...details, id: media.id } : null;
 		},
-		[mediaId, imageSize]
+		[mediaId, getImageDetails]
 	);
 
 	// Update image details when they change
@@ -117,7 +120,8 @@ export const CustomImageUploader = ({
 		if (!details) return;
 
 		// Check if image meets minimum dimensions when force is true
-		const meetsMinDimensions = (!minWidth || details.width >= minWidth) &&
+		const meetsMinDimensions =
+			(!minWidth || details.width >= minWidth) &&
 			(!minHeight || details.height >= minHeight);
 
 		if (force && !meetsMinDimensions) {
@@ -147,9 +151,7 @@ export const CustomImageUploader = ({
 
 	// Show warning if image exists and dimensions don't meet requirements
 	const showWarning = Boolean(
-		imageUrl && 
-		attributes?.imageWidth &&
-		!hasMinimumDimensions
+		imageUrl && attributes?.imageWidth && !hasMinimumDimensions
 	);
 
 	// Initialize mediaId from attributes when component mounts or imageUrl changes
@@ -160,34 +162,36 @@ export const CustomImageUploader = ({
 	}, [imageUrl, attributes?.mediaId]);
 
 	return (
-		<div 
+		<div
 			className="mbm-image-uploader"
 			style={{
 				display: 'flex',
 				gap: '16px',
-				flexDirection: 'column'
+				flexDirection: 'column',
 			}}
 		>
 			{/* Warning Notice */}
 			{showWarning && (
-				<Notice 
+				<Notice
 					status="warning"
 					isDismissible={false}
 					className="mbm-image-warning"
 				>
-					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is smaller than recommended {getRecommendationMessage()}
+					Current image size ({attributes.imageWidth}px ×{' '}
+					{attributes.imageHeight}px) is smaller than recommended{' '}
+					{getRecommendationMessage()}
 				</Notice>
 			)}
 
 			{/* Size Requirements Notice */}
 			{(minWidth || minHeight) && !imageUrl && (
-				<div 
+				<div
 					className="mbm-size-notice"
 					style={{
 						backgroundColor: '#fef8ee',
 						borderLeft: '4px solid #f0b849',
 						padding: '8px 12px',
-						color: '#1e1e1e'
+						color: '#1e1e1e',
 					}}
 				>
 					{force ? 'Required' : 'Recommended'} image size:{' '}
