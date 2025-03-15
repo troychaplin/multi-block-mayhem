@@ -7,7 +7,10 @@
 	"category": "media",
 	"description": "An block that displays a collage of images in a css grid.",
 	"parent": ["multi-block-mayhem/image-collage"],
-	"usesContext": ["multi-block-mayhem/image-collage-columns"],
+	"usesContext": [
+		"multi-block-mayhem/image-collage-columns",
+		"multi-block-mayhem/image-collage-aspect-ratio"
+	],
 	"supports": {
 		"align": ["full", "wide"],
 		"alignWide": true,
@@ -18,15 +21,7 @@
 			"type": "string",
 			"default": null
 		},
-		"mediaId": {
-			"type": "number",
-			"default": null
-		},
-		"imageWidth": {
-			"type": "number",
-			"default": null
-		},
-		"imageHeight": {
+		"imageId": {
 			"type": "number",
 			"default": null
 		},
@@ -37,9 +32,13 @@
 				"y": 0.5
 			}
 		},
-		"columns": {
+		"imageWidth": {
 			"type": "number",
-			"default": 3
+			"default": null
+		},
+		"imageHeight": {
+			"type": "number",
+			"default": null
 		},
 		"columnSpan": {
 			"type": "number",
@@ -48,10 +47,19 @@
 		"zoom": {
 			"type": "number",
 			"default": 0
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "4/3"
 		}
 	},
 	"textdomain": "multi-block-mayhem",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
 }

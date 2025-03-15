@@ -12,8 +12,8 @@ export const CustomImageUploader = ({
 	attributes,
 	force,
 }) => {
-	// Initialize mediaId from attributes if it exists
-	const [mediaId, setMediaId] = useState(attributes?.mediaId || null);
+	// Initialize imageId from attributes if it exists
+	const [imageId, setImageUrl] = useState(attributes?.imageId || null);
 
 	// Define fallback sizes in order of preference
 	const fallbackSizes = useMemo(() => ['large', 'medium', 'thumbnail'], []);
@@ -56,15 +56,15 @@ export const CustomImageUploader = ({
 	// Get image details including available sizes
 	const imageDetails = useSelect(
 		(select) => {
-			if (!mediaId) return null;
+			if (!imageId) return null;
 
-			const media = select('core').getMedia(mediaId);
+			const media = select('core').getMedia(imageId);
 			if (!media) return null;
 
 			const details = getImageDetails(media);
 			return details ? { ...details, id: media.id } : null;
 		},
-		[mediaId, getImageDetails]
+		[imageId, getImageDetails]
 	);
 
 	// Update image details when they change
@@ -74,7 +74,7 @@ export const CustomImageUploader = ({
 			if (!imageUrl || imageDetails.url === imageUrl) {
 				setAttributes({
 					imageUrl: imageDetails.url,
-					mediaId: imageDetails.id,
+					imageId: imageDetails.id,
 					imageWidth: imageDetails.width,
 					imageHeight: imageDetails.height,
 				});
@@ -105,10 +105,10 @@ export const CustomImageUploader = ({
 	// Handle image selection
 	const onSelectImage = (media) => {
 		if (!media || !media.id) {
-			setMediaId(null);
+			setImageUrl(null);
 			setAttributes({
 				imageUrl: '',
-				mediaId: null,
+				imageId: null,
 				imageWidth: null,
 				imageHeight: null,
 			});
@@ -129,10 +129,10 @@ export const CustomImageUploader = ({
 		}
 
 		// Update everything at once
-		setMediaId(media.id);
+		setImageUrl(media.id);
 		setAttributes({
 			imageUrl: details.url,
-			mediaId: media.id,
+			imageId: media.id,
 			imageWidth: details.width,
 			imageHeight: details.height,
 		});
@@ -140,10 +140,10 @@ export const CustomImageUploader = ({
 
 	// Handle image removal
 	const removeImage = () => {
-		setMediaId(null);
+		setImageUrl(null);
 		setAttributes({
 			imageUrl: '',
-			mediaId: null,
+			imageId: null,
 			imageWidth: null,
 			imageHeight: null,
 		});
@@ -154,12 +154,12 @@ export const CustomImageUploader = ({
 		imageUrl && attributes?.imageWidth && !hasMinimumDimensions
 	);
 
-	// Initialize mediaId from attributes when component mounts or imageUrl changes
+	// Initialize imageId from attributes when component mounts or imageUrl changes
 	useEffect(() => {
-		if (imageUrl && attributes?.mediaId) {
-			setMediaId(attributes.mediaId);
+		if (imageUrl && attributes?.imageId) {
+			setImageUrl(attributes.imageId);
 		}
-	}, [imageUrl, attributes?.mediaId]);
+	}, [imageUrl, attributes?.imageId]);
 
 	return (
 		<div
@@ -205,7 +205,7 @@ export const CustomImageUploader = ({
 			<MediaUpload
 				onSelect={onSelectImage}
 				allowedTypes={['image']}
-				value={mediaId}
+				value={imageId}
 				render={({ open }) => (
 					<ButtonGroup className="mbm-image-controls">
 						<Button onClick={open} variant="primary">

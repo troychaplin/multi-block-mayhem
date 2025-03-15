@@ -1,12 +1,12 @@
-// .wp-block-multi-block-mayhem-image-collage:not(.mbm-editor) {
-// 	column-count: var(--collage-cols, 3);
-// 	column-gap: var(--collage-gap, 1rem);
+.wp-block-multi-block-mayhem-image-collage-item:not(.mbm-editor) {
+	overflow: hidden;
+	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
 
-// 	.wp-block-image {
-// 		margin-bottom: var(--collage-gap, 1rem);
-
-// 		img {
-// 			border-radius: var(--collage-radius, 0);
-// 		}
-// 	}
-// }
+	div {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-color: #191919;
+	}
+}
