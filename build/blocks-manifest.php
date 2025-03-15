@@ -1,6 +1,48 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'promo-cards' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/promo-cards',
+		'version' => '0.1.0',
+		'title' => 'Promo Cards',
+		'category' => 'media',
+		'description' => 'A block that displays a series of promotional cards in a CSS grid.',
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'providesContext' => array(
+			'multi-block-mayhem/promo-cards-columns' => 'columns'
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'number',
+				'default' => 2
+			),
+			'gap' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'radius' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'dynamic' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

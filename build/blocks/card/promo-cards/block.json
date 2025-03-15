@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "multi-block-mayhem/promo-cards",
+  "version": "0.1.0",
+  "title": "Promo Cards",
+  "category": "media",
+  "description": "A block that displays a series of promotional cards in a CSS grid.",
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "alignWide": true,
+    "html": false
+  },
+  "providesContext": {
+    "multi-block-mayhem/promo-cards-columns": "columns"
+  },
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 2
+    },
+    "gap": {
+      "type": "number",
+      "default": 5
+    },
+    "radius": {
+      "type": "number",
+      "default": 5
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "4/3"
+    }
+  },
+  "textdomain": "multi-block-mayhem",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
