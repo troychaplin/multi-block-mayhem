@@ -3,24 +3,24 @@
  */
 
 // Define a placeholder selector with the shared properties
-%shared-image-collage-styles {
-	border-radius: var(--mbm-image-collage-radius);
-	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+%shared-promo-cards-styles {
+	border-radius: var(--mbm-promo-cards-radius);
+	aspect-ratio: var(--mbm-promo-cards-aspect-ratio);
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.mbm-placeholder {
+.wp-block-multi-block-mayhem-promo-cards-image.mbm-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1rem;
 	text-align: center;
 	background-color: #e0e0e0;
-	@extend %shared-image-collage-styles;
+	@extend %shared-promo-cards-styles;
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.mbm-editor {
+.wp-block-multi-block-mayhem-promo-cards-image.mbm-editor {
 	overflow: hidden;
-	@extend %shared-image-collage-styles;
+	@extend %shared-promo-cards-styles;
 
 	div {
 		width: 100%;

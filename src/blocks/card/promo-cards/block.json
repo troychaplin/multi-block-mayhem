@@ -4,7 +4,7 @@
 	"name": "multi-block-mayhem/promo-cards",
 	"version": "0.1.0",
 	"title": "Promo Cards",
-	"category": "media",
+	"category": "text",
 	"description": "A block that displays a series of promotional cards in a CSS grid.",
 	"supports": {
 		"align": ["full", "wide"],

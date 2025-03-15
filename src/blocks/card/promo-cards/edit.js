@@ -17,7 +17,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 			'--mbm-promo-cards-cols': String(columns),
 			'--mbm-promo-cards-gap': `${gap}px`,
 			'--mbm-promo-cards-radius': `${radius}px`,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mbm-promo-cards-aspect-ratio': aspectRatio,
 		},
 	});
 
@@ -27,9 +27,9 @@ export default function Edit({ attributes, setAttributes, style }) {
 	];
 
 	const blockTemplate = [
-		['multi-block-mayhem/promo-cards-content', {}],
 		['multi-block-mayhem/promo-cards-image', {}],
-		['multi-block-mayhem/promo-cards-content', {}],
+		['multi-block-mayhem/promo-cards-image', {}],
+		['multi-block-mayhem/promo-cards-image', {}],
 		['multi-block-mayhem/promo-cards-image', {}],
 	];
 
@@ -71,10 +71,6 @@ export default function Edit({ attributes, setAttributes, style }) {
 							{
 								label: 'Standard - 4:3',
 								value: '4/3',
-							},
-							{
-								label: 'Portrait - 3:4',
-								value: '3/4',
 							},
 							{
 								label: 'Classic - 3:2',

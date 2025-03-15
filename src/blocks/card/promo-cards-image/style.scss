@@ -1,0 +1,12 @@
+.wp-block-multi-block-mayhem-promo-cards-image:not(.mbm-editor) {
+	overflow: hidden;
+	aspect-ratio: var(--mbm-promo-cards-aspect-ratio);
+
+	div {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-color: #191919;
+	}
+}
