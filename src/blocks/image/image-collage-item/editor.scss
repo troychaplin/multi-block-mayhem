@@ -4,12 +4,8 @@
 
 // Define a placeholder selector with the shared properties
 %shared-collage-styles {
-	border-radius: var(--mbm-image-collage-radius, 0);
+	border-radius: var(--mbm-image-collage-radius);
 	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
-	grid-column: span var(--mbm-image-collage-col-span) / span
-		var(--mbm-image-collage-col-span);
-	grid-row: span var(--mbm-image-collage-col-span) / span
-		var(--mbm-image-collage-col-span);
 }
 
 .wp-block-multi-block-mayhem-image-collage-item.mbm-placeholder {
@@ -18,7 +14,7 @@
 	align-items: center;
 	font-size: 1rem;
 	text-align: center;
-	background-color: #e5e5e5;
+	background-color: #e0e0e0;
 	@extend %shared-collage-styles;
 }
 
@@ -29,5 +25,6 @@
 	div {
 		width: 100%;
 		height: 100%;
+		background-image: cover;
 	}
 }

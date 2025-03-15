@@ -91,11 +91,11 @@ return array(
 			),
 			'gap' => array(
 				'type' => 'number',
-				'default' => 10
+				'default' => 5
 			),
 			'radius' => array(
 				'type' => 'number',
-				'default' => 0
+				'default' => 5
 			),
 			'aspectRatio' => array(
 				'type' => 'string',
@@ -106,7 +106,6 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
 		'example' => array(
 			'attributes' => array(
 				'columns' => 3,
@@ -172,7 +171,8 @@ return array(
 			'multi-block-mayhem/image-collage'
 		),
 		'usesContext' => array(
-			'multi-block-mayhem/image-collage-columns'
+			'multi-block-mayhem/image-collage-columns',
+			'multi-block-mayhem/image-collage-aspect-ratio'
 		),
 		'supports' => array(
 			'align' => array(
@@ -187,15 +187,7 @@ return array(
 				'type' => 'string',
 				'default' => null
 			),
-			'mediaId' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'imageWidth' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'imageHeight' => array(
+			'imageId' => array(
 				'type' => 'number',
 				'default' => null
 			),
@@ -206,9 +198,13 @@ return array(
 					'y' => 0.5
 				)
 			),
-			'columns' => array(
+			'imageWidth' => array(
 				'type' => 'number',
-				'default' => 3
+				'default' => null
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => null
 			),
 			'columnSpan' => array(
 				'type' => 'number',
@@ -217,12 +213,21 @@ return array(
 			'zoom' => array(
 				'type' => 'number',
 				'default' => 0
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
 	),
 	'mosaic-gallery' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

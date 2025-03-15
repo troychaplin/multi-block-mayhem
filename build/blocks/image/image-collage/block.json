@@ -24,11 +24,11 @@
     },
     "gap": {
       "type": "number",
-      "default": 10
+      "default": 5
     },
     "radius": {
       "type": "number",
-      "default": 0
+      "default": 5
     },
     "aspectRatio": {
       "type": "string",

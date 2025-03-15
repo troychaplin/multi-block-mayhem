@@ -18,7 +18,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns, zoom } = attributes;
+	const { imageUrl, columnSpan, columns, zoom, aspectRatio } = attributes;
 
 	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
 
@@ -27,12 +27,14 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		style: {
 			...style,
 			'--mbm-image-collage-col-span': columnSpan,
+			'--mbm-image-collage-aspect-ratio': aspectRatio,
 		},
 	});
 
 	// Get attributes from context of parent block
 	setAttributes({
 		columns: context['multi-block-mayhem/image-collage-columns'],
+		aspectRatio: context['multi-block-mayhem/image-collage-aspect-ratio'],
 	});
 
 	const onFocalPointChange = useCallback(
@@ -47,7 +49,6 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 	const bgImageStyles = {
 		backgroundImage: `url(${imageUrl})`,
 		backgroundPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%`,
-		backgroundSize: 'cover',
 		transform: `scale(1.${String(zoom).padStart(2, '0')})`,
 	};
 
@@ -91,7 +92,6 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						minWidth={columnSpan === 1 ? 600 : 1024}
 						minHeight={columnSpan === 1 ? 450 : 768}
 						attributes={attributes}
-						// force
 					/>
 				</PanelBody>
 			</InspectorControls>
