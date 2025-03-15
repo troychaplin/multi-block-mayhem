@@ -24,6 +24,6 @@ $inline_styles = sprintf(
 );
 ?>
 
-<div class="wp-block-multi-block-mayhem-image-collage-item">
+<div class="wp-block-multi-block-mayhem-image-collage-image">
 	<div style="<?php echo esc_attr( $inline_styles ); ?>">abc</div>
 </div>

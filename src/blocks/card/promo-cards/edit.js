@@ -21,24 +21,18 @@ export default function Edit({ attributes, setAttributes, style }) {
 		},
 	});
 
-	const allowedBlocks = [
-		'multi-block-mayhem/promo-cards-content',
-		'multi-block-mayhem/promo-cards-image',
-	];
-
+	const allowedBlocks = ['multi-block-mayhem/promo-cards-image'];
 	const blockTemplate = [
+		['multi-block-mayhem/promo-cards-content', {}],
 		['multi-block-mayhem/promo-cards-image', {}],
 		['multi-block-mayhem/promo-cards-image', {}],
-		['multi-block-mayhem/promo-cards-image', {}],
-		['multi-block-mayhem/promo-cards-image', {}],
+		['multi-block-mayhem/promo-cards-content', {}],
 	];
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={__('Promo Card Settings', 'multi-block-mayhem')}
-				>
+				<PanelBody title={__('Collage Settings', 'multi-block-mayhem')}>
 					<RangeControl
 						label={__('Number of Columns', 'multi-block-mayhem')}
 						min={1}
@@ -47,7 +41,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 						onChange={(value) => setAttributes({ columns: value })}
 					/>
 					<RangeControl
-						label={__('Grid Gap', 'multi-block-mayhem')}
+						label={__('Gallery Gap', 'multi-block-mayhem')}
 						min={0}
 						max={50}
 						value={gap}
@@ -73,12 +67,24 @@ export default function Edit({ attributes, setAttributes, style }) {
 								value: '4/3',
 							},
 							{
+								label: 'Portrait - 3:4',
+								value: '3/4',
+							},
+							{
 								label: 'Classic - 3:2',
 								value: '3/2',
 							},
 							{
+								label: 'Classic Portrait - 2:3',
+								value: '2/3',
+							},
+							{
 								label: 'Wide - 16:9',
 								value: '16/9',
+							},
+							{
+								label: 'Tall - 9:16',
+								value: '9/16',
 							},
 						]}
 						onChange={(value) =>

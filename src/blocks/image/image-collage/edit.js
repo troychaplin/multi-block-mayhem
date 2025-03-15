@@ -21,9 +21,9 @@ export default function Edit({ attributes, setAttributes, style }) {
 		},
 	});
 
-	const allowedBlocks = ['multi-block-mayhem/image-collage-item'];
+	const allowedBlocks = ['multi-block-mayhem/image-collage-image'];
 	const blockTemplate = Array(6).fill([
-		'multi-block-mayhem/image-collage-item',
+		'multi-block-mayhem/image-collage-image',
 		{},
 	]);
 

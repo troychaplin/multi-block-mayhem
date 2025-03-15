@@ -1,15 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "multi-block-mayhem/image-collage-item",
+	"name": "multi-block-mayhem/promo-cards-content",
 	"version": "0.1.0",
-	"title": "Image Collage",
-	"category": "media",
-	"description": "An block that displays a collage of images in a css grid.",
-	"parent": ["multi-block-mayhem/image-collage"],
+	"title": "Promo Cards Content",
+	"category": "text",
+	"description": "The content block for the Promo Cards block.",
+	"parent": ["multi-block-mayhem/promo-cards"],
 	"usesContext": [
-		"multi-block-mayhem/image-collage-columns",
-		"multi-block-mayhem/image-collage-aspect-ratio"
+		"multi-block-mayhem/promo-cards-columns",
+		"multi-block-mayhem/promo-cards-aspect-ratio"
 	],
 	"supports": {
 		"align": ["full", "wide"],

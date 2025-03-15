@@ -1,6 +1,11 @@
 .wp-block-multi-block-mayhem-promo-cards-image:not(.mbm-editor) {
 	overflow: hidden;
+	border-radius: var(--mbm-promo-cards-radius);
 	aspect-ratio: var(--mbm-promo-cards-aspect-ratio);
+	grid-column: span var(--mbm-promo-cards-col-span) / span
+		var(--mbm-promo-cards-col-span);
+	grid-row: span var(--mbm-promo-cards-col-span) / span
+		var(--mbm-promo-cards-col-span);
 
 	div {
 		width: 100%;

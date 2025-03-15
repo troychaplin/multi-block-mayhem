@@ -23,7 +23,7 @@ return array(
 		'attributes' => array(
 			'columns' => array(
 				'type' => 'number',
-				'default' => 2
+				'default' => 3
 			),
 			'gap' => array(
 				'type' => 'number',
@@ -43,13 +43,83 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	),
+	'promo-cards-content' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/promo-cards-content',
+		'version' => '0.1.0',
+		'title' => 'Promo Cards Content',
+		'category' => 'text',
+		'description' => 'The content block for the Promo Cards block.',
+		'parent' => array(
+			'multi-block-mayhem/promo-cards'
+		),
+		'usesContext' => array(
+			'multi-block-mayhem/promo-cards-columns',
+			'multi-block-mayhem/promo-cards-aspect-ratio'
+		),
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => null
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'focalPoint' => array(
+				'type' => 'object',
+				'default' => array(
+					'x' => 0.5,
+					'y' => 0.5
+				)
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'zoom' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'promo-cards-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'multi-block-mayhem/promo-cards-image',
 		'version' => '0.1.0',
-		'title' => 'Promo Cards: Image',
-		'category' => 'media',
+		'title' => 'Promo Cards Image',
+		'category' => 'text',
 		'description' => 'The image block for the Promo Cards block.',
 		'parent' => array(
 			'multi-block-mayhem/promo-cards'
@@ -184,7 +254,7 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Image Collage',
 		'category' => 'media',
-		'description' => 'An block that displays a collage of images in a css grid.',
+		'description' => 'A block that displays a collage of images in a CSS grid.',
 		'supports' => array(
 			'align' => array(
 				'full',
@@ -271,14 +341,14 @@ return array(
 			)
 		)
 	),
-	'image-collage-item' => array(
+	'image-collage-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/image-collage-item',
+		'name' => 'multi-block-mayhem/image-collage-image',
 		'version' => '0.1.0',
-		'title' => 'Image Collage',
+		'title' => 'Image Collage: Single Image',
 		'category' => 'media',
-		'description' => 'An block that displays a collage of images in a css grid.',
+		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
 			'multi-block-mayhem/image-collage'
 		),

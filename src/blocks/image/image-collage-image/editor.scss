@@ -6,9 +6,13 @@
 %shared-image-collage-styles {
 	border-radius: var(--mbm-image-collage-radius);
 	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	grid-column: span var(--mbm-image-collage-col-span) / span
+		var(--mbm-image-collage-col-span);
+	grid-row: span var(--mbm-image-collage-col-span) / span
+		var(--mbm-image-collage-col-span);
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.mbm-placeholder {
+.wp-block-multi-block-mayhem-image-collage-image.mbm-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,13 +22,12 @@
 	@extend %shared-image-collage-styles;
 }
 
-.wp-block-multi-block-mayhem-image-collage-item.mbm-editor {
+.wp-block-multi-block-mayhem-image-collage-image.mbm-editor {
 	overflow: hidden;
 	@extend %shared-image-collage-styles;
 
 	div {
 		width: 100%;
 		height: 100%;
-		background-image: cover;
 	}
 }

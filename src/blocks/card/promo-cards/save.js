@@ -8,7 +8,7 @@ export default function save({ attributes }) {
 			'--mbm-promo-cards-cols': String(columns),
 			'--mbm-promo-cards-gap': `${gap}px`,
 			'--mbm-promo-cards-radius': `${radius}px`,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mbm-promo-cards-aspect-ratio': aspectRatio,
 		},
 	});
 

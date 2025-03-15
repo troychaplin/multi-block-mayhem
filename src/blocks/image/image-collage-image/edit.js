@@ -49,6 +49,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 	const bgImageStyles = {
 		backgroundImage: `url(${imageUrl})`,
 		backgroundPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%`,
+		backgroundSize: 'cover',
 		transform: `scale(1.${String(zoom).padStart(2, '0')})`,
 	};
 
