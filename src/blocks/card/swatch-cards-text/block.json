@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mbm/swatch-cards-text",
+	"version": "0.1.0",
+	"title": "Swatch Cards: Text",
+	"category": "media",
+	"description": "A single text block that supports the primary swatch card block.",
+	"parent": ["mbm/swatch-cards"],
+	"usesContext": [
+		"mbm/swatch-cards-columns",
+		"mbm/swatch-cards-aspect-ratio"
+	],
+	"supports": {
+		"align": ["full", "wide"],
+		"alignWide": true,
+		"html": false
+	},
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": null
+		},
+		"columnSpan": {
+			"type": "number",
+			"default": 1
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"aspectRatio": {
+			"type": "string",
+			"default": "4/3"
+		}
+	},
+	"textdomain": "multi-block-mayhem",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
