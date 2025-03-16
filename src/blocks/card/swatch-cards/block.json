@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "mbm/image-collage",
+	"name": "mbm/swatch-cards",
 	"version": "0.1.0",
-	"title": "Image Collage",
+	"title": "Swatch Cards",
 	"category": "media",
 	"description": "A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.",
 	"supports": {
@@ -12,7 +12,7 @@
 		"html": false
 	},
 	"providesContext": {
-		"mbm/image-collage-columns": "columns"
+		"mbm/swatch-cards-columns": "columns"
 	},
 	"attributes": {
 		"columns": {

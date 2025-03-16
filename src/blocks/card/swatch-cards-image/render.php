@@ -27,6 +27,6 @@ $inline_styles = sprintf(
 );
 ?>
 
-<div class="mbm-image-collage-image <?php echo esc_attr( $col_span ); ?>">
+<div class="mbm-swatch-cards-image <?php echo esc_attr( $col_span ); ?>">
 	<div style="<?php echo esc_attr( $inline_styles ); ?>"></div>
 </div>

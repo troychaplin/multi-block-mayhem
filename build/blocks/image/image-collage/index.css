@@ -1,1 +1,1 @@
-.wp-block-multi-block-mayhem-image-collage.mbm-editor .block-editor-inner-blocks .block-editor-block-list__layout{display:grid;grid-template-columns:repeat(var(--mbm-image-collage-cols),minmax(0,1fr));grid-gap:var(--mbm-image-collage-gap)}
+.wp-block.wp-block-mbm-image-collage .block-editor-inner-blocks .block-editor-block-list__layout{display:grid;grid-template-columns:repeat(var(--mbm-image-collage-cols),minmax(0,1fr));grid-gap:var(--mbm-image-collage-gap)}

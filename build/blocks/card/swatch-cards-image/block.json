@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "mbm/image-collage-image",
+  "name": "mbm/swatch-cards-image",
   "version": "0.1.0",
-  "title": "Image Collage: Single Image",
+  "title": "Swatch Cards: Image",
   "category": "media",
   "description": "A single image block that supports the primary image collage.",
   "parent": [

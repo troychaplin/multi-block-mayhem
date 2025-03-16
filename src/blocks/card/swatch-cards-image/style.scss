@@ -1,7 +1,7 @@
-.mbm-image-collage-image {
+.mbm-swatch-cards-image {
 	overflow: hidden;
-	border-radius: var(--mbm-image-collage-radius);
-	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	border-radius: var(--mbm-swatch-cards-radius);
+	aspect-ratio: var(--mbm-swatch-cards-aspect-ratio);
 
 	&.has-col-span-1 {
 		grid-column: span 1 / span 1;

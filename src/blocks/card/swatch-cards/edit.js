@@ -14,20 +14,20 @@ export default function Edit({ attributes, setAttributes, style }) {
 		className: 'mbm-editor',
 		style: {
 			...style,
-			'--mbm-image-collage-cols': String(columns),
-			'--mbm-image-collage-gap': `${gap}px`,
-			'--mbm-image-collage-radius': `${radius}px`,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mbm-swatch-cards-cols': String(columns),
+			'--mbm-swatch-cards-gap': `${gap}px`,
+			'--mbm-swatch-cards-radius': `${radius}px`,
+			'--mbm-swatch-cards-aspect-ratio': aspectRatio,
 		},
 	});
 
-	const allowedBlocks = ['mbm/image-collage-image'];
-	const blockTemplate = Array(6).fill(['mbm/image-collage-image', {}]);
+	const allowedBlocks = ['mbm/swatch-cards-image'];
+	const blockTemplate = Array(6).fill(['mbm/swatch-cards-image', {}]);
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Collage Settings', 'multi-block-mayhem')}>
+				<PanelBody title={__('Swatch Settings', 'multi-block-mayhem')}>
 					<RangeControl
 						label={__('Number of Columns', 'multi-block-mayhem')}
 						min={1}

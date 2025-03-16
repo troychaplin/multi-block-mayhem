@@ -4,12 +4,12 @@ export default function save({ attributes }) {
 	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps.save({
-		className: 'mbm-image-collage',
+		className: 'mbm-swatch-cards',
 		style: {
-			'--mbm-image-collage-cols': String(columns),
-			'--mbm-image-collage-gap': `${gap}px`,
-			'--mbm-image-collage-radius': `${radius}px`,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mbm-swatch-cards-cols': String(columns),
+			'--mbm-swatch-cards-gap': `${gap}px`,
+			'--mbm-swatch-cards-radius': `${radius}px`,
+			'--mbm-swatch-cards-aspect-ratio': aspectRatio,
 		},
 	});
 

@@ -1,14 +1,14 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'promo-cards' => array(
+	'swatch-cards' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/promo-cards',
+		'name' => 'mbm/swatch-cards',
 		'version' => '0.1.0',
-		'title' => 'Promo Cards',
-		'category' => 'text',
-		'description' => 'A block that displays a series of promotional cards in a CSS grid.',
+		'title' => 'Swatch Cards',
+		'category' => 'media',
+		'description' => 'A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.',
 		'supports' => array(
 			'align' => array(
 				'full',
@@ -18,7 +18,7 @@ return array(
 			'html' => false
 		),
 		'providesContext' => array(
-			'multi-block-mayhem/promo-cards-columns' => 'columns'
+			'mbm/swatch-cards-columns' => 'columns'
 		),
 		'attributes' => array(
 			'columns' => array(
@@ -41,92 +41,74 @@ return array(
 		'textdomain' => 'multi-block-mayhem',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css'
-	),
-	'promo-cards-content' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/promo-cards-content',
-		'version' => '0.1.0',
-		'title' => 'Promo Cards Content',
-		'category' => 'text',
-		'description' => 'The content block for the Promo Cards block.',
-		'parent' => array(
-			'multi-block-mayhem/promo-cards'
-		),
-		'usesContext' => array(
-			'multi-block-mayhem/promo-cards-columns',
-			'multi-block-mayhem/promo-cards-aspect-ratio'
-		),
-		'supports' => array(
-			'align' => array(
-				'full',
-				'wide'
-			),
-			'alignWide' => true,
-			'html' => false
-		),
-		'attributes' => array(
-			'imageUrl' => array(
-				'type' => 'string',
-				'default' => null
-			),
-			'imageId' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'focalPoint' => array(
-				'type' => 'object',
-				'default' => array(
-					'x' => 0.5,
-					'y' => 0.5
-				)
-			),
-			'imageWidth' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'imageHeight' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'columnSpan' => array(
-				'type' => 'number',
-				'default' => 1
-			),
-			'zoom' => array(
-				'type' => 'number',
-				'default' => 0
-			),
-			'columns' => array(
-				'type' => 'number',
-				'default' => 3
-			),
-			'aspectRatio' => array(
-				'type' => 'string',
-				'default' => '4/3'
-			)
-		),
-		'textdomain' => 'multi-block-mayhem',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php'
+		'example' => array(
+			'attributes' => array(
+				'columns' => 3,
+				'gap' => 5,
+				'borderRadius' => 0,
+				'aspectRatio' => '4/3'
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				)
+			)
+		)
 	),
-	'promo-cards-image' => array(
+	'swatch-cards-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/promo-cards-image',
+		'name' => 'mbm/swatch-cards-image',
 		'version' => '0.1.0',
-		'title' => 'Promo Cards Image',
-		'category' => 'text',
-		'description' => 'The image block for the Promo Cards block.',
+		'title' => 'Swatch Cards: Image',
+		'category' => 'media',
+		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
-			'multi-block-mayhem/promo-cards'
+			'mbm/image-collage'
 		),
 		'usesContext' => array(
-			'multi-block-mayhem/promo-cards-columns',
-			'multi-block-mayhem/promo-cards-aspect-ratio'
+			'mbm/image-collage-columns',
+			'mbm/image-collage-aspect-ratio'
 		),
 		'supports' => array(
 			'align' => array(
@@ -160,13 +142,13 @@ return array(
 				'type' => 'number',
 				'default' => null
 			),
-			'columnSpan' => array(
-				'type' => 'number',
-				'default' => 1
-			),
 			'zoom' => array(
 				'type' => 'number',
 				'default' => 0
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
 			),
 			'columns' => array(
 				'type' => 'number',
@@ -250,11 +232,11 @@ return array(
 	'image-collage' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/image-collage',
+		'name' => 'mbm/image-collage',
 		'version' => '0.1.0',
 		'title' => 'Image Collage',
 		'category' => 'media',
-		'description' => 'A block that displays a collage of images in a CSS grid.',
+		'description' => 'A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.',
 		'supports' => array(
 			'align' => array(
 				'full',
@@ -264,7 +246,7 @@ return array(
 			'html' => false
 		),
 		'providesContext' => array(
-			'multi-block-mayhem/image-collage-columns' => 'columns'
+			'mbm/image-collage-columns' => 'columns'
 		),
 		'attributes' => array(
 			'columns' => array(
@@ -344,17 +326,17 @@ return array(
 	'image-collage-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/image-collage-image',
+		'name' => 'mbm/image-collage-image',
 		'version' => '0.1.0',
 		'title' => 'Image Collage: Single Image',
 		'category' => 'media',
 		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
-			'multi-block-mayhem/image-collage'
+			'mbm/image-collage'
 		),
 		'usesContext' => array(
-			'multi-block-mayhem/image-collage-columns',
-			'multi-block-mayhem/image-collage-aspect-ratio'
+			'mbm/image-collage-columns',
+			'mbm/image-collage-aspect-ratio'
 		),
 		'supports' => array(
 			'align' => array(
@@ -388,13 +370,13 @@ return array(
 				'type' => 'number',
 				'default' => null
 			),
-			'columnSpan' => array(
-				'type' => 'number',
-				'default' => 1
-			),
 			'zoom' => array(
 				'type' => 'number',
 				'default' => 0
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
 			),
 			'columns' => array(
 				'type' => 'number',

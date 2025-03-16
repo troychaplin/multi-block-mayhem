@@ -8,7 +8,10 @@
  * @package MultiBlockMayhem
  */
 
-// Ensure attributes have default values.
+// Get block attributes.
+$col_span = isset( $attributes['columnSpan'] ) ? 'has-col-span-' . $attributes['columnSpan'] : '';
+
+// Get image attributes.
 $background_image = isset( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : '';
 $focal_point_x    = isset( $attributes['focalPoint']['x'] ) ? ( $attributes['focalPoint']['x'] * 100 ) . '%' : '50%';
 $focal_point_y    = isset( $attributes['focalPoint']['y'] ) ? ( $attributes['focalPoint']['y'] * 100 ) . '%' : '50%';
@@ -24,6 +27,6 @@ $inline_styles = sprintf(
 );
 ?>
 
-<div class="wp-block-multi-block-mayhem-image-collage-image">
-	<div style="<?php echo esc_attr( $inline_styles ); ?>">abc</div>
+<div class="mbm-image-collage-image <?php echo esc_attr( $col_span ); ?>">
+	<div style="<?php echo esc_attr( $inline_styles ); ?>"></div>
 </div>

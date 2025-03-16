@@ -26,15 +26,15 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		className: blockClasses,
 		style: {
 			...style,
-			'--mbm-image-collage-col-span': columnSpan,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mbm-swatch-cards-col-span': columnSpan,
+			'--mbm-swatch-cards-aspect-ratio': aspectRatio,
 		},
 	});
 
 	// Get attributes from context of parent block
 	setAttributes({
-		columns: context['mbm/image-collage-columns'],
-		aspectRatio: context['mbm/image-collage-aspect-ratio'],
+		columns: context['mbm/swatch-cards-columns'],
+		aspectRatio: context['mbm/swatch-cards-aspect-ratio'],
 	});
 
 	const onFocalPointChange = useCallback(

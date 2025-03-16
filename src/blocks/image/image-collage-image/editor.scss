@@ -12,7 +12,7 @@
 		var(--mbm-image-collage-col-span);
 }
 
-.wp-block-multi-block-mayhem-image-collage-image.mbm-placeholder {
+.wp-block.wp-block-mbm-image-collage-image.mbm-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -22,7 +22,7 @@
 	@extend %shared-image-collage-styles;
 }
 
-.wp-block-multi-block-mayhem-image-collage-image.mbm-editor {
+.wp-block.wp-block-mbm-image-collage-image.mbm-editor {
 	overflow: hidden;
 	@extend %shared-image-collage-styles;
 
