@@ -19,7 +19,7 @@
 	"attributes": {
 		"heading": {
 			"type": "string",
-			"default": null
+			"default": "Add a heading"
 		},
 		"columnSpan": {
 			"type": "number",

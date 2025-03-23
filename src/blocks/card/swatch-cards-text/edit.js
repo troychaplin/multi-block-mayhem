@@ -1,12 +1,6 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	RangeControl,
-	FocalPointPicker,
-} from '@wordpress/components';
-import { CustomImageUploader } from '../../../supports/CustomImageUploader';
+import { PanelBody, RangeControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit({ attributes, setAttributes, context, style }) {
@@ -49,7 +43,10 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 					...blockProps.style,
 				}}
 			>
-				<p>Content</p>
+				<div>
+					<h2>{heading}</h2>
+					<p>Content</p>
+				</div>
 			</div>
 		</>
 	);

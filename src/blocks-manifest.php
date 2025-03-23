@@ -165,6 +165,53 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'swatch-cards-text' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'mbm/swatch-cards-text',
+		'version' => '0.1.0',
+		'title' => 'Swatch Cards: Text',
+		'category' => 'media',
+		'description' => 'A single text block that supports the primary swatch card block.',
+		'parent' => array(
+			'mbm/swatch-cards'
+		),
+		'usesContext' => array(
+			'mbm/swatch-cards-columns',
+			'mbm/swatch-cards-aspect-ratio'
+		),
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Add a heading'
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'dynamic' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

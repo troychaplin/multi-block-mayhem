@@ -21,8 +21,13 @@ export default function Edit({ attributes, setAttributes, style }) {
 		},
 	});
 
-	const allowedBlocks = ['mbm/swatch-cards-image'];
-	const blockTemplate = Array(6).fill(['mbm/swatch-cards-image', {}]);
+	const allowedBlocks = ['mbm/swatch-cards-image', 'mbm/swatch-cards-text'];
+	const blockTemplate = [
+		['mbm/swatch-cards-text', {}],
+		['mbm/swatch-cards-image', {}],
+		['mbm/swatch-cards-image', {}],
+		['mbm/swatch-cards-text', {}],
+	];
 
 	return (
 		<>
