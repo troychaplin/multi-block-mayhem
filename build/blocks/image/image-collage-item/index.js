@@ -112,10 +112,10 @@
 												l && m
 													? `width of ${l}px and height of ${m}px`
 													: l
-														? `width of ${l}px`
-														: m
-															? `height of ${m}px`
-															: '',
+													? `width of ${l}px`
+													: m
+													? `height of ${m}px`
+													: '',
 											],
 										}),
 									(l || m) &&
@@ -272,7 +272,7 @@
 											...b,
 											style: { ...b.style },
 											children: (0, t.jsx)('div', { style: { ...f } }),
-										})
+									  })
 									: (0, t.jsx)('div', { ...b, children: 'Add Image' }),
 							],
 						});

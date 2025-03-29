@@ -3,52 +3,52 @@ import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-
 import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes, style }) {
+export default function Edit( { attributes, setAttributes, style } ) {
 	const { columns, gap, radius, aspectRatio } = attributes;
 
-	const blockProps = useBlockProps({
+	const blockProps = useBlockProps( {
 		className: 'mbm-editor',
 		style: {
 			...style,
-			'--mbm-image-collage-cols': String(columns),
-			'--mbm-image-collage-gap': `${gap}px`,
-			'--mbm-image-collage-radius': `${radius}px`,
+			'--mbm-image-collage-cols': String( columns ),
+			'--mbm-image-collage-gap': `${ gap }px`,
+			'--mbm-image-collage-radius': `${ radius }px`,
 			'--mbm-image-collage-aspect-ratio': aspectRatio,
 		},
-	});
+	} );
 
-	const allowedBlocks = ['multi-block-mayhem/image-collage-item'];
-	const blockTemplate = Array(6).fill(['multi-block-mayhem/image-collage-item', {}]);
+	const allowedBlocks = [ 'multi-block-mayhem/image-collage-item' ];
+	const blockTemplate = Array( 6 ).fill( [ 'multi-block-mayhem/image-collage-item', {} ] );
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Collage Settings', 'multi-block-mayhem')}>
+				<PanelBody title={ __( 'Collage Settings', 'multi-block-mayhem' ) }>
 					<RangeControl
-						label={__('Number of Columns', 'multi-block-mayhem')}
-						min={1}
-						max={6}
-						value={columns}
-						onChange={value => setAttributes({ columns: value })}
+						label={ __( 'Number of Columns', 'multi-block-mayhem' ) }
+						min={ 1 }
+						max={ 6 }
+						value={ columns }
+						onChange={ value => setAttributes( { columns: value } ) }
 					/>
 					<RangeControl
-						label={__('Gallery Gap', 'multi-block-mayhem')}
-						min={0}
-						max={50}
-						value={gap}
-						onChange={value => setAttributes({ gap: value })}
+						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
+						min={ 0 }
+						max={ 50 }
+						value={ gap }
+						onChange={ value => setAttributes( { gap: value } ) }
 					/>
 					<RangeControl
-						label={__('Border Radius', 'multi-block-mayhem')}
-						min={0}
-						max={50}
-						value={radius}
-						onChange={value => setAttributes({ radius: value })}
+						label={ __( 'Border Radius', 'multi-block-mayhem' ) }
+						min={ 0 }
+						max={ 50 }
+						value={ radius }
+						onChange={ value => setAttributes( { radius: value } ) }
 					/>
 					<SelectControl
 						label="Aspect Ratio"
-						value={aspectRatio}
-						options={[
+						value={ aspectRatio }
+						options={ [
 							{
 								label: 'Square - 1:1',
 								value: '1/1',
@@ -77,18 +77,18 @@ export default function Edit({ attributes, setAttributes, style }) {
 								label: 'Tall - 9:16',
 								value: '9/16',
 							},
-						]}
-						onChange={value => setAttributes({ aspectRatio: value })}
+						] }
+						onChange={ value => setAttributes( { aspectRatio: value } ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div {...blockProps}>
+			<div { ...blockProps }>
 				<InnerBlocks
-					allowedBlocks={allowedBlocks}
-					template={blockTemplate}
+					allowedBlocks={ allowedBlocks }
+					template={ blockTemplate }
 					orientation="horizontal"
-					templateLock={false}
+					templateLock={ false }
 				/>
 			</div>
 		</>

@@ -3,7 +3,7 @@ import { useSelect } from '@wordpress/data';
 import { MediaUpload } from '@wordpress/block-editor';
 import { ButtonGroup, Button, Notice } from '@wordpress/components';
 
-export const CustomImageUploader = ({
+export const CustomImageUploader = ( {
 	imageUrl,
 	setAttributes,
 	imageSize,
@@ -11,36 +11,36 @@ export const CustomImageUploader = ({
 	minHeight,
 	attributes,
 	force,
-}) => {
+} ) => {
 	// Initialize imageId from attributes if it exists
-	const [imageId, setImageUrl] = useState(attributes?.imageId || null);
+	const [ imageId, setImageUrl ] = useState( attributes?.imageId || null );
 
 	// Define fallback sizes in order of preference
-	const fallbackSizes = useMemo(() => ['large', 'medium', 'thumbnail'], []);
+	const fallbackSizes = useMemo( () => [ 'large', 'medium', 'thumbnail' ], [] );
 
 	// Helper function to get image details from media object
 	const getImageDetails = useCallback(
 		media => {
-			if (!media) {
+			if ( ! media ) {
 				return null;
 			}
 
 			// Try to get specified size first
-			if (imageSize && media.media_details?.sizes?.[imageSize]) {
+			if ( imageSize && media.media_details?.sizes?.[ imageSize ] ) {
 				return {
-					url: media.media_details.sizes[imageSize].source_url,
-					width: media.media_details.sizes[imageSize].width,
-					height: media.media_details.sizes[imageSize].height,
+					url: media.media_details.sizes[ imageSize ].source_url,
+					width: media.media_details.sizes[ imageSize ].width,
+					height: media.media_details.sizes[ imageSize ].height,
 				};
 			}
 
 			// Try fallback sizes in order
-			for (const size of fallbackSizes) {
-				if (media.media_details?.sizes?.[size]) {
+			for ( const size of fallbackSizes ) {
+				if ( media.media_details?.sizes?.[ size ] ) {
 					return {
-						url: media.media_details.sizes[size].source_url,
-						width: media.media_details.sizes[size].width,
-						height: media.media_details.sizes[size].height,
+						url: media.media_details.sizes[ size ].source_url,
+						width: media.media_details.sizes[ size ].width,
+						height: media.media_details.sizes[ size ].height,
 					};
 				}
 			}
@@ -52,176 +52,177 @@ export const CustomImageUploader = ({
 				height: media.media_details?.height,
 			};
 		},
-		[imageSize, fallbackSizes]
+		[ imageSize, fallbackSizes ]
 	);
 
 	// Get image details including available sizes
 	const imageDetails = useSelect(
 		select => {
-			if (!imageId) {
+			if ( ! imageId ) {
 				return null;
 			}
 
-			const media = select('core').getMedia(imageId);
-			if (!media) {
+			const media = select( 'core' ).getMedia( imageId );
+			if ( ! media ) {
 				return null;
 			}
 
-			const details = getImageDetails(media);
+			const details = getImageDetails( media );
 			return details ? { ...details, id: media.id } : null;
 		},
-		[imageId, getImageDetails]
+		[ imageId, getImageDetails ]
 	);
 
 	// Update image details when they change
-	useEffect(() => {
-		if (imageDetails) {
+	useEffect( () => {
+		if ( imageDetails ) {
 			// Only update if the URLs match to prevent cross-contamination
-			if (!imageUrl || imageDetails.url === imageUrl) {
-				setAttributes({
+			if ( ! imageUrl || imageDetails.url === imageUrl ) {
+				setAttributes( {
 					imageUrl: imageDetails.url,
 					imageId: imageDetails.id,
 					imageWidth: imageDetails.width,
 					imageHeight: imageDetails.height,
-				});
+				} );
 			}
 		}
-	}, [imageDetails, setAttributes, imageUrl]);
+	}, [ imageDetails, setAttributes, imageUrl ] );
 
 	// Check if image meets minimum dimensions
-	const hasMinimumDimensions = !attributes?.imageWidth
+	const hasMinimumDimensions = ! attributes?.imageWidth
 		? true
-		: (!minWidth || attributes.imageWidth >= minWidth) &&
-			(!minHeight || attributes.imageHeight >= minHeight);
+		: ( ! minWidth || attributes.imageWidth >= minWidth ) &&
+		  ( ! minHeight || attributes.imageHeight >= minHeight );
 
 	// Get recommendation message based on which dimensions are specified
 	const getRecommendationMessage = () => {
-		if (minWidth && minHeight) {
-			return `width of ${minWidth}px and height of ${minHeight}px`;
+		if ( minWidth && minHeight ) {
+			return `width of ${ minWidth }px and height of ${ minHeight }px`;
 		}
-		if (minWidth) {
-			return `width of ${minWidth}px`;
+		if ( minWidth ) {
+			return `width of ${ minWidth }px`;
 		}
-		if (minHeight) {
-			return `height of ${minHeight}px`;
+		if ( minHeight ) {
+			return `height of ${ minHeight }px`;
 		}
 		return '';
 	};
 
 	// Handle image selection
 	const onSelectImage = media => {
-		if (!media || !media.id) {
-			setImageUrl(null);
-			setAttributes({
+		if ( ! media || ! media.id ) {
+			setImageUrl( null );
+			setAttributes( {
 				imageUrl: '',
 				imageId: null,
 				imageWidth: null,
 				imageHeight: null,
-			});
+			} );
 			return;
 		}
 
 		// Get image details immediately
-		const details = getImageDetails(media);
-		if (!details) {
+		const details = getImageDetails( media );
+		if ( ! details ) {
 			return;
 		}
 
 		// Check if image meets minimum dimensions when force is true
 		const meetsMinDimensions =
-			(!minWidth || details.width >= minWidth) && (!minHeight || details.height >= minHeight);
+			( ! minWidth || details.width >= minWidth ) &&
+			( ! minHeight || details.height >= minHeight );
 
-		if (force && !meetsMinDimensions) {
+		if ( force && ! meetsMinDimensions ) {
 			return;
 		}
 
 		// Update everything at once
-		setImageUrl(media.id);
-		setAttributes({
+		setImageUrl( media.id );
+		setAttributes( {
 			imageUrl: details.url,
 			imageId: media.id,
 			imageWidth: details.width,
 			imageHeight: details.height,
-		});
+		} );
 	};
 
 	// Handle image removal
 	const removeImage = () => {
-		setImageUrl(null);
-		setAttributes({
+		setImageUrl( null );
+		setAttributes( {
 			imageUrl: '',
 			imageId: null,
 			imageWidth: null,
 			imageHeight: null,
-		});
+		} );
 	};
 
 	// Show warning if image exists and dimensions don't meet requirements
-	const showWarning = Boolean(imageUrl && attributes?.imageWidth && !hasMinimumDimensions);
+	const showWarning = Boolean( imageUrl && attributes?.imageWidth && ! hasMinimumDimensions );
 
 	// Initialize imageId from attributes when component mounts or imageUrl changes
-	useEffect(() => {
-		if (imageUrl && attributes?.imageId) {
-			setImageUrl(attributes.imageId);
+	useEffect( () => {
+		if ( imageUrl && attributes?.imageId ) {
+			setImageUrl( attributes.imageId );
 		}
-	}, [imageUrl, attributes?.imageId]);
+	}, [ imageUrl, attributes?.imageId ] );
 
 	return (
 		<div
 			className="mbm-image-uploader"
-			style={{
+			style={ {
 				display: 'flex',
 				gap: '16px',
 				flexDirection: 'column',
-			}}
+			} }
 		>
-			{/* Warning Notice */}
-			{showWarning && (
-				<Notice status="warning" isDismissible={false} className="mbm-image-warning">
-					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is
-					smaller than recommended {getRecommendationMessage()}
+			{ /* Warning Notice */ }
+			{ showWarning && (
+				<Notice status="warning" isDismissible={ false } className="mbm-image-warning">
+					Current image size ({ attributes.imageWidth }px × { attributes.imageHeight }px)
+					is smaller than recommended { getRecommendationMessage() }
 				</Notice>
-			)}
+			) }
 
-			{/* Size Requirements Notice */}
-			{(minWidth || minHeight) && !imageUrl && (
+			{ /* Size Requirements Notice */ }
+			{ ( minWidth || minHeight ) && ! imageUrl && (
 				<div
 					className="mbm-size-notice"
-					style={{
+					style={ {
 						backgroundColor: '#fef8ee',
 						borderLeft: '4px solid #f0b849',
 						padding: '8px 12px',
 						color: '#1e1e1e',
-					}}
+					} }
 				>
-					{force ? 'Required' : 'Recommended'} image size:{' '}
-					{minWidth && `${minWidth}px wide`}
-					{minWidth && minHeight && ' × '}
-					{minHeight && `${minHeight}px high`}
+					{ force ? 'Required' : 'Recommended' } image size:{ ' ' }
+					{ minWidth && `${ minWidth }px wide` }
+					{ minWidth && minHeight && ' × ' }
+					{ minHeight && `${ minHeight }px high` }
 				</div>
-			)}
+			) }
 
-			{/* Upload Controls */}
+			{ /* Upload Controls */ }
 			<MediaUpload
-				onSelect={onSelectImage}
-				allowedTypes={['image']}
-				value={imageId}
-				render={({ open }) => (
+				onSelect={ onSelectImage }
+				allowedTypes={ [ 'image' ] }
+				value={ imageId }
+				render={ ( { open } ) => (
 					<ButtonGroup className="mbm-image-controls">
-						<Button onClick={open} variant="primary">
-							{imageUrl ? 'Replace Image' : 'Select Image'}
+						<Button onClick={ open } variant="primary">
+							{ imageUrl ? 'Replace Image' : 'Select Image' }
 						</Button>
-						{imageUrl && (
+						{ imageUrl && (
 							<Button
-								onClick={removeImage}
+								onClick={ removeImage }
 								variant="secondary"
-								style={{ marginLeft: '8px' }}
+								style={ { marginLeft: '8px' } }
 							>
 								Remove
 							</Button>
-						)}
+						) }
 					</ButtonGroup>
-				)}
+				) }
 			/>
 		</div>
 	);
