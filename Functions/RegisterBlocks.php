@@ -1,8 +1,8 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace MultiBlockMayhem;
+namespace Multi_Block_Mayhem;
 
-use MultiBlockMayhem\PluginPaths;
+use Multi_Block_Mayhem\PluginPaths;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class is responsible for registering custom Gutenberg blocks for the plugin.
  *
- * @package MultiBlockMayhem
+ * @package Multi_Block_Mayhem
  */
 class RegisterBlocks {
 

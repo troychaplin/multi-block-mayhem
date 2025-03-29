@@ -1,7 +1,7 @@
 /**
  * Dependencies
  */
-const { join } = require( 'path' );
+const { join } = require('path');
 
 module.exports = {
 	defaultValues: {
@@ -40,5 +40,5 @@ module.exports = {
 			},
 		},
 	},
-	blockTemplatesPath: join( __dirname, 'files' ),
+	blockTemplatesPath: join(__dirname, 'files'),
 };
