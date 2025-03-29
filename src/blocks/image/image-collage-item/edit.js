@@ -1,11 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useCallback } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	RangeControl,
-	FocalPointPicker,
-} from '@wordpress/components';
+import { PanelBody, RangeControl, FocalPointPicker } from '@wordpress/components';
 import { CustomImageUploader } from '../../../supports/CustomImageUploader';
 import './editor.scss';
 
@@ -38,7 +34,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 	});
 
 	const onFocalPointChange = useCallback(
-		(newFocalPoint) => {
+		newFocalPoint => {
 			setFocalPoint(newFocalPoint);
 			setAttributes({ focalPoint: newFocalPoint });
 		},
@@ -61,9 +57,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						min={1}
 						max={columns}
 						value={columnSpan}
-						onChange={(value) =>
-							setAttributes({ columnSpan: value })
-						}
+						onChange={value => setAttributes({ columnSpan: value })}
 					/>
 					{imageUrl && (
 						<>
@@ -79,9 +73,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 								min={0}
 								max={50}
 								value={zoom}
-								onChange={(value) =>
-									setAttributes({ zoom: value })
-								}
+								onChange={value => setAttributes({ zoom: value })}
 							/>
 						</>
 					)}

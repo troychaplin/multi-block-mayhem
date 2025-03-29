@@ -1,9 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import {
-	InnerBlocks,
-	useBlockProps,
-	InspectorControls,
-} from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
 
@@ -22,10 +18,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 	});
 
 	const allowedBlocks = ['multi-block-mayhem/image-collage-item'];
-	const blockTemplate = Array(6).fill([
-		'multi-block-mayhem/image-collage-item',
-		{},
-	]);
+	const blockTemplate = Array(6).fill(['multi-block-mayhem/image-collage-item', {}]);
 
 	return (
 		<>
@@ -36,21 +29,21 @@ export default function Edit({ attributes, setAttributes, style }) {
 						min={1}
 						max={6}
 						value={columns}
-						onChange={(value) => setAttributes({ columns: value })}
+						onChange={value => setAttributes({ columns: value })}
 					/>
 					<RangeControl
 						label={__('Gallery Gap', 'multi-block-mayhem')}
 						min={0}
 						max={50}
 						value={gap}
-						onChange={(value) => setAttributes({ gap: value })}
+						onChange={value => setAttributes({ gap: value })}
 					/>
 					<RangeControl
 						label={__('Border Radius', 'multi-block-mayhem')}
 						min={0}
 						max={50}
 						value={radius}
-						onChange={(value) => setAttributes({ radius: value })}
+						onChange={value => setAttributes({ radius: value })}
 					/>
 					<SelectControl
 						label="Aspect Ratio"
@@ -85,9 +78,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 								value: '9/16',
 							},
 						]}
-						onChange={(value) =>
-							setAttributes({ aspectRatio: value })
-						}
+						onChange={value => setAttributes({ aspectRatio: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>
