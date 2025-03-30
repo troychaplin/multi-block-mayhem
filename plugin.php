@@ -8,9 +8,9 @@
  * Author:            Troy Chaplin
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       multi-block-of-madness
+ * Text Domain:       multi-block-mayhem
  *
- * @package MultiBlockMayhem
+ * @package Multi_Block_Mayhem
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,19 +18,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'MAYHEM_PATH', plugin_dir_path( __FILE__ ) );
-define( 'MAYHEM_URL', plugin_dir_url( __FILE__ ) );
+define( 'MULTI_BLOCK_MAYHEM_VERSION', '0.1.0' );
+define( 'MULTI_BLOCK_MAYHEM_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MULTI_BLOCK_MAYHEM_URL', plugin_dir_url( __FILE__ ) );
 
 // Include Composer's autoload file.
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-// Instantiate the classes.
-$madness_classes = array(
-	\MultiBlockMayhem\Enqueues::class,
-	\MultiBlockMayhem\PluginPaths::class,
-	\MultiBlockMayhem\RegisterBlocks::class,
-);
+/**
+ * Initialize the plugin.
+ */
+function multi_block_mayhem_init() {
+	// Define core classes that are always needed.
+	$core_classes = array(
+		\Multi_Block_Mayhem\PluginPaths::class,
+		\Multi_Block_Mayhem\Enqueues::class,
+		\Multi_Block_Mayhem\RegisterBlocks::class,
+	);
 
-foreach ( $madness_classes as $madness_class ) {
-	new $madness_class();
+	// Instantiate all classes.
+	foreach ( $core_classes as $class ) {
+		new $class();
+	}
 }
+add_action( 'plugins_loaded', 'multi_block_mayhem_init' );

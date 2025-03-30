@@ -1,17 +1,25 @@
 {
+	"name": "troychaplin/multi-block-starter",
+	"description": "A plugin that brings a collection of blocks and related functionality to the WordPress block editor.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
 	"autoload": {
 		"psr-4": {
-			"MultiBlockMayhem\\": "Functions/"
+			"Multi_Block_Mayhem\\": "Functions/"
 		}
 	},
 	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
 		"squizlabs/php_codesniffer": "^3.11",
-		"wp-coding-standards/wpcs": "^3.1",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+		"wp-coding-standards/wpcs": "^3.1"
 	},
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
+	},
+	"scripts": {
+		"format": "./vendor/bin/phpcbf --standard=phpcs.xml.dist --report-summary --report-source || true",
+		"lint": "phpcs --standard=phpcs.xml.dist"
 	}
 }

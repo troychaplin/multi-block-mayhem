@@ -5,7 +5,7 @@ const { join } = require('path');
 
 module.exports = {
 	defaultValues: {
-		transformer: (view) => {
+		transformer: view => {
 			const {
 				variantVars: { isInteractiveVariant },
 			} = view;

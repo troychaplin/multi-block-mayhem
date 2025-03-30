@@ -1,0 +1,32 @@
+/**
+ * Image Collage Single Item Editor Styles
+ */
+
+// Define a placeholder selector with the shared properties
+%shared-collage-styles {
+	border-radius: var(--mbm-image-collage-radius);
+	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+}
+
+.wp-block-multi-block-mayhem-image-collage-item.mbm-placeholder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	text-align: center;
+	background-color: #e0e0e0;
+
+	@extend %shared-collage-styles;
+}
+
+.wp-block-multi-block-mayhem-image-collage-item.mbm-editor {
+	overflow: hidden;
+
+	@extend %shared-collage-styles;
+
+	div {
+		width: 100%;
+		height: 100%;
+		background-image: cover;
+	}
+}
