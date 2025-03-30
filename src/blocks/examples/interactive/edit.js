@@ -5,11 +5,6 @@ export default function Edit({ attributes, setAttributes }) {
 	const blockProps = useBlockProps();
 
 	return (
-		<p {...blockProps}>
-			{__(
-				'Example Interactive – hello from the editor!',
-				'interactivity'
-			)}
-		</p>
+		<p {...blockProps}>{__('Example Interactive – hello from the editor!', 'interactivity')}</p>
 	);
 }

@@ -20,8 +20,10 @@ export const CustomImageUploader = ({
 
 	// Helper function to get image details from media object
 	const getImageDetails = useCallback(
-		(media) => {
-			if (!media) return null;
+		media => {
+			if (!media) {
+				return null;
+			}
 
 			// Try to get specified size first
 			if (imageSize && media.media_details?.sizes?.[imageSize]) {
@@ -55,11 +57,15 @@ export const CustomImageUploader = ({
 
 	// Get image details including available sizes
 	const imageDetails = useSelect(
-		(select) => {
-			if (!imageId) return null;
+		select => {
+			if (!imageId) {
+				return null;
+			}
 
 			const media = select('core').getMedia(imageId);
-			if (!media) return null;
+			if (!media) {
+				return null;
+			}
 
 			const details = getImageDetails(media);
 			return details ? { ...details, id: media.id } : null;
@@ -86,7 +92,7 @@ export const CustomImageUploader = ({
 	const hasMinimumDimensions = !attributes?.imageWidth
 		? true
 		: (!minWidth || attributes.imageWidth >= minWidth) &&
-		  (!minHeight || attributes.imageHeight >= minHeight);
+			(!minHeight || attributes.imageHeight >= minHeight);
 
 	// Get recommendation message based on which dimensions are specified
 	const getRecommendationMessage = () => {
@@ -103,7 +109,7 @@ export const CustomImageUploader = ({
 	};
 
 	// Handle image selection
-	const onSelectImage = (media) => {
+	const onSelectImage = media => {
 		if (!media || !media.id) {
 			setImageUrl(null);
 			setAttributes({
@@ -117,12 +123,13 @@ export const CustomImageUploader = ({
 
 		// Get image details immediately
 		const details = getImageDetails(media);
-		if (!details) return;
+		if (!details) {
+			return;
+		}
 
 		// Check if image meets minimum dimensions when force is true
 		const meetsMinDimensions =
-			(!minWidth || details.width >= minWidth) &&
-			(!minHeight || details.height >= minHeight);
+			(!minWidth || details.width >= minWidth) && (!minHeight || details.height >= minHeight);
 
 		if (force && !meetsMinDimensions) {
 			return;
@@ -150,9 +157,7 @@ export const CustomImageUploader = ({
 	};
 
 	// Show warning if image exists and dimensions don't meet requirements
-	const showWarning = Boolean(
-		imageUrl && attributes?.imageWidth && !hasMinimumDimensions
-	);
+	const showWarning = Boolean(imageUrl && attributes?.imageWidth && !hasMinimumDimensions);
 
 	// Initialize imageId from attributes when component mounts or imageUrl changes
 	useEffect(() => {
@@ -172,14 +177,9 @@ export const CustomImageUploader = ({
 		>
 			{/* Warning Notice */}
 			{showWarning && (
-				<Notice
-					status="warning"
-					isDismissible={false}
-					className="mbm-image-warning"
-				>
-					Current image size ({attributes.imageWidth}px ×{' '}
-					{attributes.imageHeight}px) is smaller than recommended{' '}
-					{getRecommendationMessage()}
+				<Notice status="warning" isDismissible={false} className="mbm-image-warning">
+					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is
+					smaller than recommended {getRecommendationMessage()}
 				</Notice>
 			)}
 

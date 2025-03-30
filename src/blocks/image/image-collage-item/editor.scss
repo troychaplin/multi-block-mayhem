@@ -15,11 +15,13 @@
 	font-size: 1rem;
 	text-align: center;
 	background-color: #e0e0e0;
+
 	@extend %shared-collage-styles;
 }
 
 .wp-block-multi-block-mayhem-image-collage-item.mbm-editor {
 	overflow: hidden;
+
 	@extend %shared-collage-styles;
 
 	div {

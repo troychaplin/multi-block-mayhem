@@ -1,6 +1,6 @@
 <?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 
-namespace MultiBlockMayhem;
+namespace Multi_Block_Mayhem;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * This class provides methods to handle and retrieve various paths related to the plugin.
  *
- * @package MultiBlockMayhem
+ * @package Multi_Block_Mayhem
  */
 class PluginPaths {
 
@@ -22,10 +22,10 @@ class PluginPaths {
 	 */
 	public static function plugin_url() {
 		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MAYHEM_URL' ) ) {
+		if ( ! defined( 'MULTI_BLOCK_MAYHEM_URL' ) ) {
 			return '';
 		}
-		return MAYHEM_URL;
+		return MULTI_BLOCK_MAYHEM_URL;
 	}
 
 	/**
@@ -35,9 +35,9 @@ class PluginPaths {
 	 */
 	public static function plugin_path() {
 		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MAYHEM_PATH' ) ) {
+		if ( ! defined( 'MULTI_BLOCK_MAYHEM_PATH' ) ) {
 			return '';
 		}
-		return MAYHEM_PATH;
+		return MULTI_BLOCK_MAYHEM_PATH;
 	}
 }

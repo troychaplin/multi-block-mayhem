@@ -1,9 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import {
-	InnerBlocks,
-	useBlockProps,
-	InspectorControls,
-} from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl } from '@wordpress/components';
 import './editor.scss';
 import './innerblock-settings';
@@ -34,21 +30,21 @@ export default function Edit({ attributes, setAttributes, style }) {
 						min={1}
 						max={6}
 						value={columns}
-						onChange={(value) => setAttributes({ columns: value })}
+						onChange={value => setAttributes({ columns: value })}
 					/>
 					<RangeControl
 						label={__('Gallery Gap', 'multi-block-mayhem')}
 						min={0}
 						max={50}
 						value={gap}
-						onChange={(value) => setAttributes({ gap: value })}
+						onChange={value => setAttributes({ gap: value })}
 					/>
 					<RangeControl
 						label={__('Border Radius', 'multi-block-mayhem')}
 						min={0}
 						max={50}
 						value={radius}
-						onChange={(value) => setAttributes({ radius: value })}
+						onChange={value => setAttributes({ radius: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>
