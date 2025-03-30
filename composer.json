@@ -1,5 +1,5 @@
 {
-	"name": "troychaplin/multi-block-mayhem",
+	"name": "troychaplin/multi-block-starter",
 	"description": "A plugin that brings a collection of blocks and related functionality to the WordPress block editor.",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",

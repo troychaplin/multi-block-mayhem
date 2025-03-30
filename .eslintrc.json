@@ -1,4 +1,3 @@
-// filepath: /Users/troychaplin/Develop/idc.wordpress/wp-content/plugins/idc-block-plugin/.eslintrc.json
 {
 	"extends": ["plugin:@wordpress/eslint-plugin/recommended"],
 	"env": {
