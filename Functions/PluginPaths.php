@@ -21,10 +21,6 @@ class PluginPaths {
 	 * @return string The URL to the plugin directory.
 	 */
 	public static function plugin_url() {
-		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MULTI_BLOCK_MAYHEM_URL' ) ) {
-			return '';
-		}
 		return MULTI_BLOCK_MAYHEM_URL;
 	}
 
@@ -34,10 +30,15 @@ class PluginPaths {
 	 * @return string The path to the plugin directory.
 	 */
 	public static function plugin_path() {
-		// Ensure the constant is defined before using it.
-		if ( ! defined( 'MULTI_BLOCK_MAYHEM_PATH' ) ) {
-			return '';
-		}
 		return MULTI_BLOCK_MAYHEM_PATH;
+	}
+
+	/**
+	 * Get the version of the plugin.
+	 *
+	 * @return string The version of the plugin.
+	 */
+	public static function plugin_version() {
+		return MULTI_BLOCK_MAYHEM_VERSION;
 	}
 }
