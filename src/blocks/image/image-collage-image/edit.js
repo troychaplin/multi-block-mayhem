@@ -16,7 +16,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 
 	const { imageUrl, columnSpan, columns, zoom, aspectRatio } = attributes;
 
-	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
+	const blockClasses = imageUrl ? 'multi-block-mayhem-editor' : 'multi-block-mayhem-placeholder';
 
 	const blockProps = useBlockProps({
 		className: blockClasses,
@@ -29,8 +29,8 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 
 	// Get attributes from context of parent block
 	setAttributes({
-		columns: context['mbm/image-collage-columns'],
-		aspectRatio: context['mbm/image-collage-aspect-ratio'],
+		columns: context['multi-block-mayhem/image-collage-columns'],
+		aspectRatio: context['multi-block-mayhem/image-collage-aspect-ratio'],
 	});
 
 	const onFocalPointChange = useCallback(

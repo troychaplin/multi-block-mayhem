@@ -7,7 +7,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 	const { heading, columnSpan, columns, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps({
-		className: 'mbm-editor',
+		className: 'multi-block-mayhem-editor',
 		style: {
 			...style,
 			'--mbm-swatch-cards-col-span': columnSpan,
@@ -30,9 +30,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						min={1}
 						max={columns}
 						value={columnSpan}
-						onChange={(value) =>
-							setAttributes({ columnSpan: value })
-						}
+						onChange={value => setAttributes({ columnSpan: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>

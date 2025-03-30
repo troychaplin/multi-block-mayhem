@@ -12,18 +12,20 @@
 		var(--mbm-image-collage-col-span);
 }
 
-.wp-block.wp-block-mbm-image-collage-image.mbm-placeholder {
+.wp-block.wp-block-multi-block-mayhem-image-collage-image.multi-block-mayhem-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1rem;
 	text-align: center;
 	background-color: #e0e0e0;
+
 	@extend %shared-image-collage-styles;
 }
 
-.wp-block.wp-block-mbm-image-collage-image.mbm-editor {
+.wp-block.wp-block-multi-block-mayhem-image-collage-image.multi-block-mayhem-editor {
 	overflow: hidden;
+
 	@extend %shared-image-collage-styles;
 
 	div {

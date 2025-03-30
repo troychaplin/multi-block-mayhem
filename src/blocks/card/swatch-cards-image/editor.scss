@@ -12,18 +12,20 @@
 		var(--mbm-swatch-cards-col-span);
 }
 
-.wp-block.wp-block-mbm-swatch-cards-image.mbm-placeholder {
+.wp-block.wp-block-multi-block-mayhem-swatch-cards-image.multi-block-mayhem-placeholder {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 1rem;
 	text-align: center;
 	background-color: #e0e0e0;
+
 	@extend %shared-swatch-cards-styles;
 }
 
-.wp-block.wp-block-mbm-swatch-cards-image.mbm-editor {
+.wp-block.wp-block-multi-block-mayhem-swatch-cards-image.multi-block-mayhem-editor {
 	overflow: hidden;
+
 	@extend %shared-swatch-cards-styles;
 
 	div {
