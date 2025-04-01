@@ -1,1 +1,10 @@
-console.log("Script loaded for custom embed block.");
+/******/ (() => { // webpackBootstrap
+/*!********************************************!*\
+  !*** ./src/blocks/examples/static/view.js ***!
+  \********************************************/
+/* eslint-disable no-console */
+console.log('Script loaded for custom embed block.');
+/* eslint-enable no-console */
+/******/ })()
+;
+//# sourceMappingURL=view.js.map

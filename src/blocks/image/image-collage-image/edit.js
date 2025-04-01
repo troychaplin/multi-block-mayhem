@@ -82,8 +82,8 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
 						imageSize={columnSpan === 1 ? 'medium' : 'large'}
-						minWidth={columnSpan === 1 ? 600 : 1024}
-						minHeight={columnSpan === 1 ? 450 : 768}
+						// minWidth={columnSpan === 1 ? 600 : 1024}
+						// minHeight={columnSpan === 1 ? 450 : 768}
 						attributes={attributes}
 					/>
 				</PanelBody>
