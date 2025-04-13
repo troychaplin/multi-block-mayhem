@@ -38,6 +38,7 @@
 		"lint:php": "composer run lint",
 		"lint": "npm run lint:js && npm run lint:php && npm run lint:css",
 		"size": "size-limit",
+		"clean": "rm -rf node_modules && rm package-lock.json && npm install",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
@@ -45,8 +46,8 @@
 		"[^.]*"
 	],
 	"devDependencies": {
-		"@commitlint/cli": "^19.7.1",
-		"@commitlint/config-conventional": "^19.7.1",
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
 		"@size-limit/preset-small-lib": "^11.2.0",
 		"@wordpress/blocks": "^14.10.0",
 		"@wordpress/data": "^10.21.0",
@@ -65,8 +66,8 @@
 		"husky": "^9.1.7",
 		"prop-types": "^15.8.1",
 		"size-limit": "^11.2.0",
-		"stylelint": "^16.8.2",
-		"stylelint-scss": "^6.1.0",
+		"stylelint": "^16.17.0",
+		"stylelint-scss": "^6.11.1",
 		"webpack": "^5.98.0",
 		"webpack-cli": "^6.0.1"
 	}

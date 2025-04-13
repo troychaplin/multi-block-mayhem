@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback } from '@wordpress/element';
+import { useState, useCallback, useMemo } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, FocalPointPicker } from '@wordpress/components';
 import { CustomImageUploader } from '../../../supports/CustomImageUploader';
@@ -49,6 +49,19 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		transform: `scale(1.${String(zoom).padStart(2, '0')})`,
 	};
 
+	// Memoize the image size based on column span
+	const imageSize = useMemo(() => {
+		return columnSpan === 1 ? 'medium' : 'large';
+	}, [columnSpan]);
+
+	// Memoize the minimum dimensions based on column span
+	const minDimensions = useMemo(() => {
+		return {
+			minWidth: columnSpan === 1 ? 600 : 1024,
+			minHeight: columnSpan === 1 ? 450 : 768,
+		};
+	}, [columnSpan]);
+
 	return (
 		<>
 			<InspectorControls>
@@ -81,9 +94,9 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 					<CustomImageUploader
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
-						imageSize={columnSpan === 1 ? 'medium' : 'large'}
-						// minWidth={columnSpan === 1 ? 600 : 1024}
-						// minHeight={columnSpan === 1 ? 450 : 768}
+						imageSize={imageSize}
+						minWidth={minDimensions.minWidth}
+						minHeight={minDimensions.minHeight}
 						attributes={attributes}
 					/>
 				</PanelBody>
