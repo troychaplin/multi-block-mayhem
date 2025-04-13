@@ -16,14 +16,14 @@ $multi_block_mayhem_image_collage_zoom_level       = isset( $attributes['zoomLev
 
 // Build inline styles.
 $multi_block_mayhem_image_collage_inline_styles = sprintf(
-	'background-image: url(%s); background-position: %s %s; transform: scale(1.%s);',
-	esc_url( $multi_block_mayhem_image_collage_background_image ),
-	esc_attr( $multi_block_mayhem_image_collage_focal_point_x ),
-	esc_attr( $multi_block_mayhem_image_collage_focal_point_y ),
-	esc_attr( $multi_block_mayhem_image_collage_zoom_level )
+    'background-image: url(%s); background-position: %s %s; transform: scale(1.%s);',
+    esc_url( $multi_block_mayhem_image_collage_background_image ),
+    esc_attr( $multi_block_mayhem_image_collage_focal_point_x ),
+    esc_attr( $multi_block_mayhem_image_collage_focal_point_y ),
+    esc_attr( $multi_block_mayhem_image_collage_zoom_level )
 );
 ?>
 
 <div class="wp-block-multi-block-mayhem-image-collage-item">
-	<div style="<?php echo esc_attr( $multi_block_mayhem_image_collage_inline_styles ); ?>">abc</div>
+    <div style="<?php echo esc_attr( $multi_block_mayhem_image_collage_inline_styles ); ?>">abc</div>
 </div>

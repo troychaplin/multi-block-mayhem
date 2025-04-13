@@ -30,9 +30,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 						min={1}
 						max={columns}
 						value={columnSpan}
-						onChange={(value) =>
-							setAttributes({ columnSpan: value })
-						}
+						onChange={value => setAttributes({ columnSpan: value })}
 					/>
 				</PanelBody>
 			</InspectorControls>

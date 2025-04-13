@@ -14,7 +14,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+    exit; // Exit if accessed directly.
 }
 
 // Define plugin constants.
@@ -29,16 +29,16 @@ require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
  * Initialize the plugin.
  */
 function multi_block_mayhem_init() {
-	// Define core classes that are always needed.
-	$core_classes = array(
-		\Multi_Block_Mayhem\PluginPaths::class,
-		\Multi_Block_Mayhem\Enqueues::class,
-		\Multi_Block_Mayhem\RegisterBlocks::class,
-	);
+    // Define core classes that are always needed.
+    $core_classes = array(
+        \Multi_Block_Mayhem\PluginPaths::class,
+        \Multi_Block_Mayhem\Enqueues::class,
+        \Multi_Block_Mayhem\RegisterBlocks::class,
+    );
 
-	// Instantiate all classes.
-	foreach ( $core_classes as $class ) {
-		new $class();
-	}
+    // Instantiate all classes.
+    foreach ( $core_classes as $class ) {
+        new $class();
+    }
 }
 add_action( 'plugins_loaded', 'multi_block_mayhem_init' );

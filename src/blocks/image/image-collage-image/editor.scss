@@ -19,11 +19,13 @@
 	font-size: 1rem;
 	text-align: center;
 	background-color: #e0e0e0;
+
 	@extend %shared-image-collage-styles;
 }
 
 .wp-block.wp-block-mbm-image-collage-image.mbm-editor {
 	overflow: hidden;
+
 	@extend %shared-image-collage-styles;
 
 	div {

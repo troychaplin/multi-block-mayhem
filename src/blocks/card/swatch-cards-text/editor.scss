@@ -15,6 +15,7 @@
 .wp-block.wp-block-mbm-swatch-cards-text {
 	overflow: hidden;
 	background-color: #efefef;
+
 	@extend %shared-swatch-cards-styles;
 
 	div {
