@@ -7,14 +7,14 @@ import PropTypes from 'prop-types';
 /**
  * Custom Image Uploader component for handling image selection and validation.
  *
- * @param {Object} props Component props
- * @param {string} props.imageUrl The current image URL
+ * @param {Object}   props               Component props
+ * @param {string}   props.imageUrl      The current image URL
  * @param {Function} props.setAttributes Function to update block attributes
- * @param {string} props.imageSize Preferred image size to use
- * @param {number} props.minWidth Minimum required width for the image
- * @param {number} props.minHeight Minimum required height for the image
- * @param {Object} props.attributes Block attributes
- * @param {boolean} props.force Whether to enforce minimum dimensions
+ * @param {string}   props.imageSize     Preferred image size to use
+ * @param {number}   props.minWidth      Minimum required width for the image
+ * @param {number}   props.minHeight     Minimum required height for the image
+ * @param {Object}   props.attributes    Block attributes
+ * @param {boolean}  props.force         Whether to enforce minimum dimensions
  * @return {JSX.Element} The CustomImageUploader component
  */
 export const CustomImageUploader = ({
@@ -37,8 +37,10 @@ export const CustomImageUploader = ({
 		if (!attributes?.imageWidth) {
 			return true;
 		}
-		return (!minWidth || attributes.imageWidth >= minWidth) &&
-			(!minHeight || attributes.imageHeight >= minHeight);
+		return (
+			(!minWidth || attributes.imageWidth >= minWidth) &&
+			(!minHeight || attributes.imageHeight >= minHeight)
+		);
 	}, [attributes?.imageWidth, attributes?.imageHeight, minWidth, minHeight]);
 
 	// Memoize the recommendation message
@@ -135,41 +137,45 @@ export const CustomImageUploader = ({
 	 *
 	 * @param {Object} media The selected media object
 	 */
-	const onSelectImage = useCallback(media => {
-		if (!media || !media.id) {
-			setImageUrl(null);
+	const onSelectImage = useCallback(
+		media => {
+			if (!media || !media.id) {
+				setImageUrl(null);
+				setAttributes({
+					imageUrl: '',
+					imageId: null,
+					imageWidth: null,
+					imageHeight: null,
+				});
+				return;
+			}
+
+			// Get image details immediately
+			const details = getImageDetails(media);
+			if (!details) {
+				return;
+			}
+
+			// Check if image meets minimum dimensions when force is true
+			const meetsMinDimensions =
+				(!minWidth || details.width >= minWidth) &&
+				(!minHeight || details.height >= minHeight);
+
+			if (force && !meetsMinDimensions) {
+				return;
+			}
+
+			// Update everything at once
+			setImageUrl(media.id);
 			setAttributes({
-				imageUrl: '',
-				imageId: null,
-				imageWidth: null,
-				imageHeight: null,
+				imageUrl: details.url,
+				imageId: media.id,
+				imageWidth: details.width,
+				imageHeight: details.height,
 			});
-			return;
-		}
-
-		// Get image details immediately
-		const details = getImageDetails(media);
-		if (!details) {
-			return;
-		}
-
-		// Check if image meets minimum dimensions when force is true
-		const meetsMinDimensions =
-			(!minWidth || details.width >= minWidth) && (!minHeight || details.height >= minHeight);
-
-		if (force && !meetsMinDimensions) {
-			return;
-		}
-
-		// Update everything at once
-		setImageUrl(media.id);
-		setAttributes({
-			imageUrl: details.url,
-			imageId: media.id,
-			imageWidth: details.width,
-			imageHeight: details.height,
-		});
-	}, [getImageDetails, minWidth, minHeight, force, setAttributes]);
+		},
+		[getImageDetails, minWidth, minHeight, force, setAttributes]
+	);
 
 	/**
 	 * Handle image removal.
@@ -195,29 +201,32 @@ export const CustomImageUploader = ({
 	}, [imageUrl, attributes?.imageId]);
 
 	// Memoize the uploader controls
-	const uploaderControls = useMemo(() => (
-		<MediaUpload
-			onSelect={onSelectImage}
-			allowedTypes={['image']}
-			value={imageId}
-			render={({ open }) => (
-				<ButtonGroup className="mbm-image-controls">
-					<Button onClick={open} variant="primary">
-						{imageUrl ? 'Replace Image' : 'Select Image'}
-					</Button>
-					{imageUrl && (
-						<Button
-							onClick={removeImage}
-							variant="secondary"
-							style={{ marginLeft: '8px' }}
-						>
-							Remove
+	const uploaderControls = useMemo(
+		() => (
+			<MediaUpload
+				onSelect={onSelectImage}
+				allowedTypes={['image']}
+				value={imageId}
+				render={({ open }) => (
+					<ButtonGroup className="mbm-image-controls">
+						<Button onClick={open} variant="primary">
+							{imageUrl ? 'Replace Image' : 'Select Image'}
 						</Button>
-					)}
-				</ButtonGroup>
-			)}
-		/>
-	), [imageUrl, imageId, onSelectImage, removeImage]);
+						{imageUrl && (
+							<Button
+								onClick={removeImage}
+								variant="secondary"
+								style={{ marginLeft: '8px' }}
+							>
+								Remove
+							</Button>
+						)}
+					</ButtonGroup>
+				)}
+			/>
+		),
+		[imageUrl, imageId, onSelectImage, removeImage]
+	);
 
 	return (
 		<div
