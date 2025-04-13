@@ -4,7 +4,7 @@ return array(
 	'swatch-cards' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'mbm/swatch-cards',
+		'name' => 'multi-block-mayhem/swatch-cards',
 		'version' => '0.1.0',
 		'title' => 'Swatch Cards',
 		'category' => 'media',
@@ -18,7 +18,7 @@ return array(
 			'html' => false
 		),
 		'providesContext' => array(
-			'mbm/swatch-cards-columns' => 'columns'
+			'multi-block-mayhem/swatch-cards-columns' => 'columns'
 		),
 		'attributes' => array(
 			'columns' => array(
@@ -98,17 +98,17 @@ return array(
 	'swatch-cards-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'mbm/swatch-cards-image',
+		'name' => 'multi-block-mayhem/swatch-cards-image',
 		'version' => '0.1.0',
 		'title' => 'Swatch Cards: Image',
 		'category' => 'media',
 		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
-			'mbm/image-collage'
+			'multi-block-mayhem/image-collage'
 		),
 		'usesContext' => array(
-			'mbm/image-collage-columns',
-			'mbm/image-collage-aspect-ratio'
+			'multi-block-mayhem/image-collage-columns',
+			'multi-block-mayhem/image-collage-aspect-ratio'
 		),
 		'supports' => array(
 			'align' => array(
@@ -279,7 +279,7 @@ return array(
 	'image-collage' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'mbm/image-collage',
+		'name' => 'multi-block-mayhem/image-collage',
 		'version' => '0.1.0',
 		'title' => 'Image Collage',
 		'category' => 'media',
@@ -293,7 +293,7 @@ return array(
 			'html' => false
 		),
 		'providesContext' => array(
-			'mbm/image-collage-columns' => 'columns'
+			'multi-block-mayhem/image-collage-columns' => 'columns'
 		),
 		'attributes' => array(
 			'columns' => array(
@@ -373,17 +373,17 @@ return array(
 	'image-collage-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'mbm/image-collage-image',
+		'name' => 'multi-block-mayhem/image-collage-image',
 		'version' => '0.1.0',
 		'title' => 'Image Collage: Single Image',
 		'category' => 'media',
 		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
-			'mbm/image-collage'
+			'multi-block-mayhem/image-collage'
 		),
 		'usesContext' => array(
-			'mbm/image-collage-columns',
-			'mbm/image-collage-aspect-ratio'
+			'multi-block-mayhem/image-collage-columns',
+			'multi-block-mayhem/image-collage-aspect-ratio'
 		),
 		'supports' => array(
 			'align' => array(

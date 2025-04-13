@@ -7,7 +7,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps({
-		className: 'mbm-editor',
+		className: 'multi-block-mayhem-editor',
 		style: {
 			...style,
 			'--mbm-swatch-cards-cols': String(columns),
@@ -17,12 +17,15 @@ export default function Edit({ attributes, setAttributes, style }) {
 		},
 	});
 
-	const allowedBlocks = ['mbm/swatch-cards-image', 'mbm/swatch-cards-text'];
+	const allowedBlocks = [
+		'multi-block-mayhem/swatch-cards-image',
+		'multi-block-mayhem/swatch-cards-text',
+	];
 	const blockTemplate = [
-		['mbm/swatch-cards-text', {}],
-		['mbm/swatch-cards-image', {}],
-		['mbm/swatch-cards-image', {}],
-		['mbm/swatch-cards-text', {}],
+		['multi-block-mayhem/swatch-cards-text', {}],
+		['multi-block-mayhem/swatch-cards-image', {}],
+		['multi-block-mayhem/swatch-cards-image', {}],
+		['multi-block-mayhem/swatch-cards-text', {}],
 	];
 
 	return (

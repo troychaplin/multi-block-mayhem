@@ -2,7 +2,21 @@ import { useState, useEffect, useCallback, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { MediaUpload } from '@wordpress/block-editor';
 import { ButtonGroup, Button, Notice } from '@wordpress/components';
+import PropTypes from 'prop-types';
 
+/**
+ * Custom Image Uploader component for handling image selection and validation.
+ *
+ * @param {Object} props Component props
+ * @param {string} props.imageUrl The current image URL
+ * @param {Function} props.setAttributes Function to update block attributes
+ * @param {string} props.imageSize Preferred image size to use
+ * @param {number} props.minWidth Minimum required width for the image
+ * @param {number} props.minHeight Minimum required height for the image
+ * @param {Object} props.attributes Block attributes
+ * @param {boolean} props.force Whether to enforce minimum dimensions
+ * @return {JSX.Element} The CustomImageUploader component
+ */
 export const CustomImageUploader = ({
 	imageUrl,
 	setAttributes,
@@ -18,7 +32,35 @@ export const CustomImageUploader = ({
 	// Define fallback sizes in order of preference
 	const fallbackSizes = useMemo(() => ['large', 'medium', 'thumbnail'], []);
 
-	// Helper function to get image details from media object
+	// Memoize the minimum dimensions check
+	const hasMinimumDimensions = useMemo(() => {
+		if (!attributes?.imageWidth) {
+			return true;
+		}
+		return (!minWidth || attributes.imageWidth >= minWidth) &&
+			(!minHeight || attributes.imageHeight >= minHeight);
+	}, [attributes?.imageWidth, attributes?.imageHeight, minWidth, minHeight]);
+
+	// Memoize the recommendation message
+	const recommendationMessage = useMemo(() => {
+		if (minWidth && minHeight) {
+			return `width of ${minWidth}px and height of ${minHeight}px`;
+		}
+		if (minWidth) {
+			return `width of ${minWidth}px`;
+		}
+		if (minHeight) {
+			return `height of ${minHeight}px`;
+		}
+		return '';
+	}, [minWidth, minHeight]);
+
+	/**
+	 * Helper function to get image details from media object.
+	 *
+	 * @param {Object} media The media object from WordPress
+	 * @return {Object|null} The image details or null if invalid
+	 */
 	const getImageDetails = useCallback(
 		media => {
 			if (!media) {
@@ -73,7 +115,7 @@ export const CustomImageUploader = ({
 		[imageId, getImageDetails]
 	);
 
-	// Update image details when they change
+	// Update image details when they change or when imageSize changes
 	useEffect(() => {
 		if (imageDetails) {
 			// Only update if the URLs match to prevent cross-contamination
@@ -86,30 +128,14 @@ export const CustomImageUploader = ({
 				});
 			}
 		}
-	}, [imageDetails, setAttributes, imageUrl]);
+	}, [imageDetails, setAttributes, imageUrl, imageSize]); // Added imageSize to dependencies
 
-	// Check if image meets minimum dimensions
-	const hasMinimumDimensions = !attributes?.imageWidth
-		? true
-		: (!minWidth || attributes.imageWidth >= minWidth) &&
-			(!minHeight || attributes.imageHeight >= minHeight);
-
-	// Get recommendation message based on which dimensions are specified
-	const getRecommendationMessage = () => {
-		if (minWidth && minHeight) {
-			return `width of ${minWidth}px and height of ${minHeight}px`;
-		}
-		if (minWidth) {
-			return `width of ${minWidth}px`;
-		}
-		if (minHeight) {
-			return `height of ${minHeight}px`;
-		}
-		return '';
-	};
-
-	// Handle image selection
-	const onSelectImage = media => {
+	/**
+	 * Handle image selection from the media library.
+	 *
+	 * @param {Object} media The selected media object
+	 */
+	const onSelectImage = useCallback(media => {
 		if (!media || !media.id) {
 			setImageUrl(null);
 			setAttributes({
@@ -143,10 +169,12 @@ export const CustomImageUploader = ({
 			imageWidth: details.width,
 			imageHeight: details.height,
 		});
-	};
+	}, [getImageDetails, minWidth, minHeight, force, setAttributes]);
 
-	// Handle image removal
-	const removeImage = () => {
+	/**
+	 * Handle image removal.
+	 */
+	const removeImage = useCallback(() => {
 		setImageUrl(null);
 		setAttributes({
 			imageUrl: '',
@@ -154,7 +182,7 @@ export const CustomImageUploader = ({
 			imageWidth: null,
 			imageHeight: null,
 		});
-	};
+	}, [setAttributes]);
 
 	// Show warning if image exists and dimensions don't meet requirements
 	const showWarning = Boolean(imageUrl && attributes?.imageWidth && !hasMinimumDimensions);
@@ -165,6 +193,31 @@ export const CustomImageUploader = ({
 			setImageUrl(attributes.imageId);
 		}
 	}, [imageUrl, attributes?.imageId]);
+
+	// Memoize the uploader controls
+	const uploaderControls = useMemo(() => (
+		<MediaUpload
+			onSelect={onSelectImage}
+			allowedTypes={['image']}
+			value={imageId}
+			render={({ open }) => (
+				<ButtonGroup className="mbm-image-controls">
+					<Button onClick={open} variant="primary">
+						{imageUrl ? 'Replace Image' : 'Select Image'}
+					</Button>
+					{imageUrl && (
+						<Button
+							onClick={removeImage}
+							variant="secondary"
+							style={{ marginLeft: '8px' }}
+						>
+							Remove
+						</Button>
+					)}
+				</ButtonGroup>
+			)}
+		/>
+	), [imageUrl, imageId, onSelectImage, removeImage]);
 
 	return (
 		<div
@@ -179,7 +232,7 @@ export const CustomImageUploader = ({
 			{showWarning && (
 				<Notice status="warning" isDismissible={false} className="mbm-image-warning">
 					Current image size ({attributes.imageWidth}px × {attributes.imageHeight}px) is
-					smaller than recommended {getRecommendationMessage()}
+					smaller than recommended {recommendationMessage}
 				</Notice>
 			)}
 
@@ -202,27 +255,30 @@ export const CustomImageUploader = ({
 			)}
 
 			{/* Upload Controls */}
-			<MediaUpload
-				onSelect={onSelectImage}
-				allowedTypes={['image']}
-				value={imageId}
-				render={({ open }) => (
-					<ButtonGroup className="mbm-image-controls">
-						<Button onClick={open} variant="primary">
-							{imageUrl ? 'Replace Image' : 'Select Image'}
-						</Button>
-						{imageUrl && (
-							<Button
-								onClick={removeImage}
-								variant="secondary"
-								style={{ marginLeft: '8px' }}
-							>
-								Remove
-							</Button>
-						)}
-					</ButtonGroup>
-				)}
-			/>
+			{uploaderControls}
 		</div>
 	);
+};
+
+CustomImageUploader.propTypes = {
+	imageUrl: PropTypes.string,
+	setAttributes: PropTypes.func.isRequired,
+	imageSize: PropTypes.string,
+	minWidth: PropTypes.number,
+	minHeight: PropTypes.number,
+	attributes: PropTypes.shape({
+		imageId: PropTypes.number,
+		imageWidth: PropTypes.number,
+		imageHeight: PropTypes.number,
+	}),
+	force: PropTypes.bool,
+};
+
+CustomImageUploader.defaultProps = {
+	imageUrl: '',
+	imageSize: 'large',
+	minWidth: 0,
+	minHeight: 0,
+	attributes: {},
+	force: false,
 };

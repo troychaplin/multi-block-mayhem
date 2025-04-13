@@ -1,4 +1,4 @@
-.mbm-swatch-cards {
+.multi-block-mayhem-swatch-cards {
 	display: grid;
 	grid-template-columns: repeat(var(--mbm-swatch-cards-cols), minmax(0, 1fr));
 	grid-gap: var(--mbm-swatch-cards-gap);

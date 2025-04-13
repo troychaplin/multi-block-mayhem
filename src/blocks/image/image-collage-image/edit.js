@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback } from '@wordpress/element';
+import { useState, useCallback, useMemo } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, FocalPointPicker } from '@wordpress/components';
 import { CustomImageUploader } from '../../../supports/CustomImageUploader';
@@ -16,7 +16,7 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 
 	const { imageUrl, columnSpan, columns, zoom, aspectRatio } = attributes;
 
-	const blockClasses = imageUrl ? 'mbm-editor' : 'mbm-placeholder';
+	const blockClasses = imageUrl ? 'multi-block-mayhem-editor' : 'multi-block-mayhem-placeholder';
 
 	const blockProps = useBlockProps({
 		className: blockClasses,
@@ -29,8 +29,8 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 
 	// Get attributes from context of parent block
 	setAttributes({
-		columns: context['mbm/image-collage-columns'],
-		aspectRatio: context['mbm/image-collage-aspect-ratio'],
+		columns: context['multi-block-mayhem/image-collage-columns'],
+		aspectRatio: context['multi-block-mayhem/image-collage-aspect-ratio'],
 	});
 
 	const onFocalPointChange = useCallback(
@@ -48,6 +48,19 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 		backgroundSize: 'cover',
 		transform: `scale(1.${String(zoom).padStart(2, '0')})`,
 	};
+
+	// Memoize the image size based on column span
+	const imageSize = useMemo(() => {
+		return columnSpan === 1 ? 'medium' : 'large';
+	}, [columnSpan]);
+
+	// Memoize the minimum dimensions based on column span
+	const minDimensions = useMemo(() => {
+		return {
+			minWidth: columnSpan === 1 ? 600 : 1024,
+			minHeight: columnSpan === 1 ? 450 : 768,
+		};
+	}, [columnSpan]);
 
 	return (
 		<>
@@ -81,9 +94,9 @@ export default function Edit({ attributes, setAttributes, context, style }) {
 					<CustomImageUploader
 						imageUrl={imageUrl}
 						setAttributes={setAttributes}
-						imageSize={columnSpan === 1 ? 'medium' : 'large'}
-						minWidth={columnSpan === 1 ? 600 : 1024}
-						minHeight={columnSpan === 1 ? 450 : 768}
+						imageSize={imageSize}
+						minWidth={minDimensions.minWidth}
+						minHeight={minDimensions.minHeight}
 						attributes={attributes}
 					/>
 				</PanelBody>

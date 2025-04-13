@@ -1,15 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "mbm/swatch-cards-image",
+	"name": "multi-block-mayhem/swatch-cards-image",
 	"version": "0.1.0",
 	"title": "Swatch Cards: Image",
 	"category": "media",
 	"description": "A single image block that supports the primary image collage.",
-	"parent": ["mbm/image-collage"],
+	"parent": ["multi-block-mayhem/image-collage"],
 	"usesContext": [
-		"mbm/image-collage-columns",
-		"mbm/image-collage-aspect-ratio"
+		"multi-block-mayhem/image-collage-columns",
+		"multi-block-mayhem/image-collage-aspect-ratio"
 	],
 	"supports": {
 		"align": ["full", "wide"],

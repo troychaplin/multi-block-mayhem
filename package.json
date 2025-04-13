@@ -38,6 +38,7 @@
 		"lint:php": "composer run lint",
 		"lint:js": "wp-scripts lint-js",
 		"size": "size-limit",
+		"clean": "rm -rf node_modules && rm package-lock.json && npm install",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip"
 	},
@@ -45,6 +46,8 @@
 		"[^.]*"
 	],
 	"devDependencies": {
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
 		"@commitlint/cli": "^19.8.0",
 		"@commitlint/config-conventional": "^19.8.0",
 		"@size-limit/preset-small-lib": "^11.2.0",

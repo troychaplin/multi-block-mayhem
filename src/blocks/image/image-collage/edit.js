@@ -7,7 +7,7 @@ export default function Edit({ attributes, setAttributes, style }) {
 	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps({
-		className: 'mbm-editor',
+		className: 'multi-block-mayhem-editor',
 		style: {
 			...style,
 			'--mbm-image-collage-cols': String(columns),
@@ -17,8 +17,8 @@ export default function Edit({ attributes, setAttributes, style }) {
 		},
 	});
 
-	const allowedBlocks = ['multi-block-mayhem/image-collage-item'];
-	const blockTemplate = Array(6).fill(['multi-block-mayhem/image-collage-item', {}]);
+	const allowedBlocks = ['multi-block-mayhem/image-collage-image'];
+	const blockTemplate = Array(6).fill(['multi-block-mayhem/image-collage-image', {}]);
 
 	return (
 		<>
