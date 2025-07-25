@@ -13,8 +13,8 @@ $mb_mayhem_col_span = isset( $attributes['columnSpan'] ) ? 'has-col-span-' . $at
 ?>
 
 <div class="mbm-swatch-cards-text <?php echo esc_attr( $mb_mayhem_col_span ); ?>">
-    <div>
-        <h2>Swatch Cards Text</h2>
-        <p>Content goes here.</p>
-    </div>
+	<div>
+		<h2>Swatch Cards Text</h2>
+		<p>Content goes here.</p>
+	</div>
 </div>

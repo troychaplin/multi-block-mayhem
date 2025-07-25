@@ -42,9 +42,9 @@ class Register_Blocks {
 		}
 
 		$blocks_dirs = array(
-            Plugin_Paths::plugin_path() . 'build/blocks/card/',
-            Plugin_Paths::plugin_path() . 'build/blocks/image/',
-            Plugin_Paths::plugin_path() . 'build/blocks/interactive/',
+			Plugin_Paths::plugin_path() . 'build/blocks/card/',
+			Plugin_Paths::plugin_path() . 'build/blocks/image/',
+			Plugin_Paths::plugin_path() . 'build/blocks/interactive/',
 			// Plugin_Paths::plugin_path() . 'build/blocks/dynamic/',
 			// Plugin_Paths::plugin_path() . 'build/blocks/static/',
 		);
