@@ -8,36 +8,39 @@
     <exclude-pattern>/node_modules/</exclude-pattern>
     <exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>src/blocks-manifest.php</exclude-pattern>
-	<exclude-pattern>src/blocks/examples/</exclude-pattern>
 
     <!-- How to scan -->
     <arg value="sp"/>
     <arg name="basepath" value="."/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
-    <arg name="parallel" value="8"/>
+    <arg name="parallel" value="4"/>
 
     <!-- Rules: WordPress Coding Standards -->
     <config name="minimum_supported_wp_version" value="6.6"/>
-    <config name="text_domain" value="multi-block-mayhem"/>
+    <config name="text_domain" value="multi-block-starter"/>
     
-    <rule ref="WordPress">
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
-        <exclude name="WordPress.Files.FileName"/>
+    <rule ref="WordPress" />
+
+    <rule ref="WordPress-Core">
+        <!-- Allow short array syntax for modern PHP -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+		<!-- Exclude call-time pass by reference warnings -->
+		<exclude name="Generic.Functions.CallTimePassByReference"/>
+	</rule>
+	
+    <rule ref="WordPress-Docs"/>
+
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+        <properties>
+            <property name="maxColumn" value="80"/>
+        </properties>
     </rule>
-
-    <!-- WordPress Functions -->
-    <rule ref="WordPress.WP.DeprecatedFunctions"/>
-
-    <!-- Security rules -->
-    <rule ref="WordPress.Security.EscapeOutput"/>
-    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
-                <element value="Multi_Block_Mayhem"/>
-                <element value="mb_mayhem"/>
+                <element value="Multi_Block_Starter"/>
             </property>
         </properties>
     </rule>
@@ -45,28 +48,8 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="multi-block-mayhem"/>
+                <element value="multi-block-starter"/>
             </property>
-        </properties>
-    </rule>
-
-    <!-- Additional rules -->
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
-    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
-	<rule ref="Generic.Commenting.DocComment.MissingShort"/>
-    <rule ref="Generic.Commenting.Todo"/>
-    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
-    <rule ref="Generic.Files.LineLength">
-        <properties>
-            <property name="lineLimit" value="250"/>
-            <property name="absoluteLineLimit" value="0"/>
-        </properties>
-    </rule>
-    <rule ref="Generic.Formatting.SpaceAfterNot"/>
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <properties>
-            <property name="indent" value="4"/>
-            <property name="tabIndent" value="false"/>
         </properties>
     </rule>
 </ruleset> 

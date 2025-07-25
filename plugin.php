@@ -1,44 +1,40 @@
 <?php
 /**
  * Plugin Name:       Multi Block Mayhem
- * Description:       A plugin that brings a collection of blocks and related functionality to the WordPress block editor.
+ * Description:       A starter configuration for creating a WordPress plugin with multiple blocks.
  * Requires at least: 6.6
  * Requires PHP:      7.0
  * Version:           0.1.0
  * Author:            Troy Chaplin
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       multi-block-mayhem
+ * Text Domain:       multi-block-starter
  *
- * @package Multi_Block_Mayhem
+ * @package Multi_Block_Starter
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly.
 }
 
 // Define plugin constants.
-define( 'MULTI_BLOCK_MAYHEM_VERSION', '0.1.0' );
-define( 'MULTI_BLOCK_MAYHEM_PATH', plugin_dir_path( __FILE__ ) );
-define( 'MULTI_BLOCK_MAYHEM_URL', plugin_dir_url( __FILE__ ) );
+define( 'MULTI_BLOCK_STARTER_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MULTI_BLOCK_STARTER_URL', plugin_dir_url( __FILE__ ) );
 
 // Include Composer's autoload file.
-require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
-
-/**
- * Initialize the plugin.
- */
-function multi_block_mayhem_init() {
-    // Define core classes that are always needed.
-    $core_classes = array(
-        \Multi_Block_Mayhem\PluginPaths::class,
-        \Multi_Block_Mayhem\Enqueues::class,
-        \Multi_Block_Mayhem\RegisterBlocks::class,
-    );
-
-    // Instantiate all classes.
-    foreach ( $core_classes as $class ) {
-        new $class();
-    }
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
+	require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+} else {
+	wp_trigger_error( ' Multi Block Starter Plugin: Composer autoload file not found. Please run `composer install` to install the dependencies.', E_USER_ERROR );
+	return;
 }
-add_action( 'plugins_loaded', 'multi_block_mayhem_init' );
+// Instantiate the classes.
+$multi_block_starter_classes = array(
+	\Multi_Block_Starter\Enqueues::class,
+	\Multi_Block_Starter\Plugin_Paths::class,
+	\Multi_Block_Starter\Register_Blocks::class,
+);
+
+foreach ( $multi_block_starter_classes as $multi_block_starter_class ) {
+	new $multi_block_starter_class();
+}

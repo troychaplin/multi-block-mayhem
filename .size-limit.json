@@ -1,10 +1,10 @@
 [
 	{
-		"path": "build/mayhem-editor.js",
+		"path": "build/multi-block-editor.js",
 		"limit": "50 kB"
 	},
 	{
-		"path": "build/mayhem-frontend.js",
+		"path": "build/multi-block-frontend.js",
 		"limit": "50 kB"
 	}
 ]
