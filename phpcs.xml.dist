@@ -22,26 +22,22 @@
     <config name="text_domain" value="multi-block-mayhem"/>
     
     <rule ref="WordPress">
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
         <exclude name="WordPress.Files.FileName"/>
     </rule>
 
-    <rule ref="WordPress-Core">
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
-		<exclude name="WordPress.Files.FileName" />
-	</rule>
-	
-    <rule ref="WordPress-Docs"/>
+    <!-- WordPress Functions -->
+    <rule ref="WordPress.WP.DeprecatedFunctions"/>
 
-	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
-        <properties>
-            <property name="maxColumn" value="80"/>
-        </properties>
-    </rule>
+    <!-- Security rules -->
+    <rule ref="WordPress.Security.EscapeOutput"/>
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
                 <element value="Multi_Block_Mayhem"/>
+                <element value="mb_mayhem"/>
             </property>
         </properties>
     </rule>
@@ -53,8 +49,24 @@
             </property>
         </properties>
     </rule>
-    
-	<rule ref="Generic.Commenting">
-        <exclude name="Generic.Commenting.DocComment.MissingShort" />
+
+    <!-- Additional rules -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+	<rule ref="Generic.Commenting.DocComment.MissingShort"/>
+    <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="250"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+    <rule ref="Generic.Formatting.SpaceAfterNot"/>
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="indent" value="4"/>
+            <property name="tabIndent" value="false"/>
+        </properties>
     </rule>
 </ruleset> 

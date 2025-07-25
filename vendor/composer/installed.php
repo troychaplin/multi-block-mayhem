@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'troychaplin/multi-block-mayhem',
+        'name' => 'troychaplin/multi-block-starter',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3e581a2ff1f02cf8f0089eca3ca40c4388ec670b',
+        'reference' => '3fae70cc8e7bc170d2afce4cd7211b0795297a66',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -38,18 +38,18 @@
             'dev_requirement' => true,
         ),
         'squizlabs/php_codesniffer' => array(
-            'pretty_version' => '3.12.0',
-            'version' => '3.12.0.0',
-            'reference' => '2d1b63db139c3c6ea0c927698e5160f8b3b8d630',
+            'pretty_version' => '3.12.1',
+            'version' => '3.12.1.0',
+            'reference' => 'ea16a1f3719783345febd3aab41beb55c8c84bfd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
             'aliases' => array(),
             'dev_requirement' => true,
         ),
-        'troychaplin/multi-block-mayhem' => array(
+        'troychaplin/multi-block-starter' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3e581a2ff1f02cf8f0089eca3ca40c4388ec670b',
+            'reference' => '3fae70cc8e7bc170d2afce4cd7211b0795297a66',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

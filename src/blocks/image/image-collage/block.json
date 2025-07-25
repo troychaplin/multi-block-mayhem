@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Image Collage",
 	"category": "media",
-	"description": "An block that displays a collage of images in a css grid.",
+	"description": "A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.",
 	"supports": {
 		"align": ["full", "wide"],
 		"alignWide": true,

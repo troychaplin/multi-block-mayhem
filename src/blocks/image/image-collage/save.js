@@ -4,6 +4,7 @@ export default function save({ attributes }) {
 	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps.save({
+		className: 'multi-block-mayhem-image-collage',
 		style: {
 			'--mbm-image-collage-cols': String(columns),
 			'--mbm-image-collage-gap': `${gap}px`,

@@ -1,6 +1,217 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'swatch-cards' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/swatch-cards',
+		'version' => '0.1.0',
+		'title' => 'Swatch Cards',
+		'category' => 'media',
+		'description' => 'A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.',
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'providesContext' => array(
+			'multi-block-mayhem/swatch-cards-columns' => 'columns'
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'gap' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'radius' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'example' => array(
+			'attributes' => array(
+				'columns' => 3,
+				'gap' => 5,
+				'borderRadius' => 0,
+				'aspectRatio' => '4/3'
+			),
+			'innerBlocks' => array(
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				),
+				array(
+					'name' => 'core/image',
+					'attributes' => array(
+						'columnSpan' => '1'
+					)
+				)
+			)
+		)
+	),
+	'swatch-cards-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'multi-block-mayhem/swatch-cards-image',
+		'version' => '0.1.0',
+		'title' => 'Swatch Cards: Image',
+		'category' => 'media',
+		'description' => 'A single image block that supports the primary image collage.',
+		'parent' => array(
+			'multi-block-mayhem/image-collage'
+		),
+		'usesContext' => array(
+			'multi-block-mayhem/image-collage-columns',
+			'multi-block-mayhem/image-collage-aspect-ratio'
+		),
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => null
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'focalPoint' => array(
+				'type' => 'object',
+				'default' => array(
+					'x' => 0.5,
+					'y' => 0.5
+				)
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'zoom' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'swatch-cards-text' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'mbm/swatch-cards-text',
+		'version' => '0.1.0',
+		'title' => 'Swatch Cards: Text',
+		'category' => 'media',
+		'description' => 'A single text block that supports the primary swatch card block.',
+		'parent' => array(
+			'mbm/swatch-cards'
+		),
+		'usesContext' => array(
+			'mbm/swatch-cards-columns',
+			'mbm/swatch-cards-aspect-ratio'
+		),
+		'supports' => array(
+			'align' => array(
+				'full',
+				'wide'
+			),
+			'alignWide' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Add a heading'
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'columns' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'aspectRatio' => array(
+				'type' => 'string',
+				'default' => '4/3'
+			)
+		),
+		'textdomain' => 'multi-block-mayhem',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'dynamic' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -72,7 +283,7 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Image Collage',
 		'category' => 'media',
-		'description' => 'An block that displays a collage of images in a css grid.',
+		'description' => 'A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.',
 		'supports' => array(
 			'align' => array(
 				'full',
@@ -159,14 +370,14 @@ return array(
 			)
 		)
 	),
-	'image-collage-item' => array(
+	'image-collage-image' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'multi-block-mayhem/image-collage-item',
+		'name' => 'multi-block-mayhem/image-collage-image',
 		'version' => '0.1.0',
-		'title' => 'Image Collage',
+		'title' => 'Image Collage: Single Image',
 		'category' => 'media',
-		'description' => 'An block that displays a collage of images in a css grid.',
+		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
 			'multi-block-mayhem/image-collage'
 		),
@@ -206,13 +417,13 @@ return array(
 				'type' => 'number',
 				'default' => null
 			),
-			'columnSpan' => array(
-				'type' => 'number',
-				'default' => 1
-			),
 			'zoom' => array(
 				'type' => 'number',
 				'default' => 0
+			),
+			'columnSpan' => array(
+				'type' => 'number',
+				'default' => 1
 			),
 			'columns' => array(
 				'type' => 'number',
