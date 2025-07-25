@@ -4,8 +4,8 @@ import './editor.scss';
 
 export default function Edit() {
 	return (
-		<p {...useBlockProps()}>
-			{__('Custom Embed (static block) in the editor', 'wp-multi-block-starter')}
+		<p { ...useBlockProps() }>
+			{ __( '{{title}} – hello from the editor!', '{{textdomain}}' ) }
 		</p>
 	);
 }
