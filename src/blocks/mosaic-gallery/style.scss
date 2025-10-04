@@ -3,6 +3,7 @@
 	column-gap: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 
 	.wp-block-image {
+		break-inside: avoid;
 		margin-bottom: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 
 		img {

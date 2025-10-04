@@ -8,6 +8,8 @@
        column-gap: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 }
 .wp-block-multi-block-mayhem-mosaic-gallery:not(.multi-block-mayhem-editor) .wp-block-image {
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
   margin-bottom: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 }
 .wp-block-multi-block-mayhem-mosaic-gallery:not(.multi-block-mayhem-editor) .wp-block-image img {
