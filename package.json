@@ -1,72 +1,35 @@
 {
 	"name": "multi-block-mayhem",
 	"version": "0.1.0",
-	"description": "A plugin that brings a collection of blocks and related functionality to the WordPress block editor.",
+	"description": "A mulit-block plugin with categorized static, dynamic, and interactive blocks.",
 	"author": "Troy Chaplin",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
-	"lint-staged": {
-		"*.{css,scss}": [
-			"stylelint --fix",
-			"git add"
-		],
-		"*.js": [
-			"wp-scripts format",
-			"wp-scripts lint-js",
-			"git add"
-		],
-		"*.php": [
-			"composer run format",
-			"git add"
-		]
-	},
 	"scripts": {
-		"start": "concurrently \"npm run start:blocks\" \"npm run start:scripts\"",
-		"start:blocks": "wp-scripts start --experimental-modules --webpack-copy-php",
-		"start:scripts": "webpack --config webpack.scripts.js --watch",
-		"build": "rm -rf build && npm run build:blocks && npm run build:interactive && npm run build-blocks-manifest && npm run size",
-		"build:blocks": "wp-scripts build --webpack-copy-php --config webpack.scripts.js",
-		"build:interactive": "wp-scripts build --experimental-modules --webpack-copy-php",
-		"build-blocks-manifest": "wp-scripts build-blocks-manifest --output=src/blocks-manifest.php",
-		"postbuild": "npm run build-blocks-manifest",
-		"format": "npm run format:js && npm run format:php && npm run format:css",
-		"format:css": "stylelint \"**/*.scss\" --fix",
-		"format:php": "composer run format",
-		"format:js": "wp-scripts lint-js --fix",
-		"lint": "npm run lint:js && npm run lint:php && npm run lint:css",
-		"lint:css": "stylelint \"**/*.css\"",
-		"lint:php": "composer run lint",
+		"build": "wp-scripts build --experimental-modules --blocks-manifest",
+		"lint": "npm-run-all lint:*",
+		"format": "npm-run-all format:*",
+		"lint:css": "wp-scripts lint-style",
+		"format:css": "wp-scripts lint-style --fix",
 		"lint:js": "wp-scripts lint-js",
-		"size": "size-limit",
-		"clean": "rm -rf node_modules && rm package-lock.json && npm install",
+		"format:js": "wp-scripts lint-js --fix",
+		"lint:php": "composer run lint",
+		"format:php": "composer format",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --experimental-modules --blocks-manifest"
 	},
-	"files": [
-		"[^.]*"
-	],
 	"devDependencies": {
-		"@size-limit/preset-small-lib": "^11.2.0",
-		"@wordpress/blocks": "^14.15.0",
-		"@wordpress/data": "^10.26.0",
-		"@wordpress/dom-ready": "^4.26.0",
-		"@wordpress/element": "^6.26.0",
-		"@wordpress/env": "^10.26.0",
-		"@wordpress/eslint-plugin": "^22.12.0",
-		"@wordpress/i18n": "^5.26.0",
-		"@wordpress/icons": "^10.26.0",
-		"@wordpress/interactivity": "^6.26.0",
-		"@wordpress/prettier-config": "^4.26.0",
-		"@wordpress/scripts": "^30.19.0",
-		"@wordpress/stylelint-config": "^23.18.0",
-		"concurrently": "^9.2.0",
-		"eslint-config-prettier": "10.1.5",
-		"husky": "^9.1.7",
-		"prop-types": "^15.8.1",
-		"size-limit": "^11.2.0",
-		"stylelint": "^16.21.1",
-		"stylelint-scss": "^6.12.1",
-		"webpack": "^5.100.1",
-		"webpack-cli": "^6.0.1"
+		"@wordpress/blocks": "^15.5.0",
+		"@wordpress/data": "^10.32.0",
+		"@wordpress/dom-ready": "^4.32.0",
+		"@wordpress/element": "^6.32.0",
+		"@wordpress/env": "^10.32.0",
+		"@wordpress/i18n": "^6.5.0",
+		"@wordpress/icons": "^10.32.0",
+		"@wordpress/interactivity": "^6.32.0",
+		"@wordpress/scripts": "^30.25.0",
+		"npm-run-all": "^4.1.5",
+		"prop-types": "^15.8.1"
 	}
 }

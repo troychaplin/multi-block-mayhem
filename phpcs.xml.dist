@@ -1,72 +1,38 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Plugin Coding Standards">
-    <description>A custom set of rules to check for a WordPress plugin</description>
+	<description>A custom set of rules to check for a WordPress plugin</description>
 
-    <!-- What to scan -->
-    <file>.</file>
-    <exclude-pattern>/build/</exclude-pattern>
-    <exclude-pattern>/node_modules/</exclude-pattern>
-    <exclude-pattern>/vendor/</exclude-pattern>
-	<exclude-pattern>src/blocks-manifest.php</exclude-pattern>
-	<exclude-pattern>src/blocks/examples/</exclude-pattern>
+	<!-- What to scan -->
+	<file>.</file>
 
-    <!-- How to scan -->
-    <arg value="sp"/>
-    <arg name="basepath" value="."/>
-    <arg name="colors"/>
-    <arg name="extensions" value="php"/>
-    <arg name="parallel" value="8"/>
+	<exclude-pattern>/build/</exclude-pattern>
+	<exclude-pattern>/node_modules/</exclude-pattern>
+	<exclude-pattern>/vendor/</exclude-pattern>
 
-    <!-- Rules: WordPress Coding Standards -->
-    <config name="minimum_supported_wp_version" value="6.6"/>
-    <config name="text_domain" value="multi-block-mayhem"/>
-    
-    <rule ref="WordPress">
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
-        <exclude name="WordPress.Files.FileName"/>
-    </rule>
+	<!-- How to scan -->
+	<arg value="sp"/><!-- Set -s to include sniff rules in report and -p to enable progress reporting.  -->
+	<arg name="basepath" value="."/><!-- Report file paths relative to the current directory. -->
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/><!-- Scan only PHP files. -->
 
-    <!-- WordPress Functions -->
-    <rule ref="WordPress.WP.DeprecatedFunctions"/>
+	<!-- Rules: WordPress Coding Standards -->
+	<rule ref="WordPress" />
 
-    <!-- Security rules -->
-    <rule ref="WordPress.Security.EscapeOutput"/>
-    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+	<!-- Ensure that all variables in global context start with this prefix -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="multi_block_mayhem"/>
+			</property>
+		</properties>
+	</rule>
 
-    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-        <properties>
-            <property name="prefixes" type="array">
-                <element value="Multi_Block_Mayhem"/>
-                <element value="mb_mayhem"/>
-            </property>
-        </properties>
-    </rule>
-
-    <rule ref="WordPress.WP.I18n">
-        <properties>
-            <property name="text_domain" type="array">
-                <element value="multi-block-mayhem"/>
-            </property>
-        </properties>
-    </rule>
-
-    <!-- Additional rules -->
-    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
-    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
-	<rule ref="Generic.Commenting.DocComment.MissingShort"/>
-    <rule ref="Generic.Commenting.Todo"/>
-    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
-    <rule ref="Generic.Files.LineLength">
-        <properties>
-            <property name="lineLimit" value="250"/>
-            <property name="absoluteLineLimit" value="0"/>
-        </properties>
-    </rule>
-    <rule ref="Generic.Formatting.SpaceAfterNot"/>
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <properties>
-            <property name="indent" value="4"/>
-            <property name="tabIndent" value="false"/>
-        </properties>
-    </rule>
-</ruleset> 
+	<!-- Ensure that all text-domains use our custom value. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="multi-block-mayhem"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>
