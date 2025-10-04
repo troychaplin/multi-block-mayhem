@@ -23,6 +23,7 @@
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="multi_block_mayhem"/>
+				<element value="mb_mayhem"/>
 			</property>
 		</properties>
 	</rule>
