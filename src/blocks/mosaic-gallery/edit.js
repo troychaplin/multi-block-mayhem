@@ -4,10 +4,12 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import {
+	RangeControl,
+    __experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
+} from '@wordpress/components';
 import './editor.scss';
-import './innerblock-settings';
-import './innerblock-styles';
 
 export default function Edit( { attributes, setAttributes, style } ) {
 	const { columns, gap, radius } = attributes;
@@ -28,40 +30,73 @@ export default function Edit( { attributes, setAttributes, style } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Mosaic Settings', 'multi-block-mayhem' ) }
+				<ToolsPanel
+					label={ __( 'Mosaic Settings', 'multi-block-mayhem' ) }
+					resetAll={ () =>
+						setAttributes( {
+							columns: 3,
+							gap: 10,
+							radius: 0,
+						} )
+					}
 				>
-					<RangeControl
-						label={ __(
-							'Number of Columns',
-							'multi-block-mayhem'
-						) }
-						min={ 1 }
-						max={ 6 }
-						value={ columns }
-						onChange={ ( value ) =>
-							setAttributes( { columns: value } )
-						}
-					/>
-					<RangeControl
-						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
-						min={ 0 }
-						max={ 50 }
-						value={ gap }
-						onChange={ ( value ) =>
-							setAttributes( { gap: value } )
-						}
-					/>
-					<RangeControl
-						label={ __( 'Border Radius', 'multi-block-mayhem' ) }
-						min={ 0 }
-						max={ 50 }
-						value={ radius }
-						onChange={ ( value ) =>
-							setAttributes( { radius: value } )
-						}
-					/>
-				</PanelBody>
+					<ToolsPanelItem
+						hasValue={ () => !! columns }
+						label={ __( 'Number of Columns' ) }
+						onDeselect={ () => setAttributes( { columns: 3 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __(
+								'Number of Columns',
+								'multi-block-mayhem'
+							) }
+							min={ 2 }
+							max={ 12 }
+							value={ columns }
+							onChange={ ( value ) =>
+								setAttributes( { columns: value } )
+							}
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () => !! gap }
+						label={ __( 'Gallery Gap' ) }
+						onDeselect={ () => setAttributes( { gap: 10 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
+							min={ 0 }
+							max={ 50 }
+							value={ gap }
+							onChange={ ( value ) =>
+								setAttributes( { gap: value } )
+							}
+						/>
+					</ToolsPanelItem>
+
+					<ToolsPanelItem
+						hasValue={ () => !! radius }
+						label={ __( 'Border Radius' ) }
+						onDeselect={ () => setAttributes( { radius: 0 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __(
+								'Border Radius',
+								'multi-block-mayhem'
+							) }
+							min={ 0 }
+							max={ 50 }
+							value={ radius }
+							onChange={ ( value ) =>
+								setAttributes( { radius: value } )
+							}
+						/>
+					</ToolsPanelItem>
+				</ToolsPanel>
 			</InspectorControls>
 
 			<div { ...blockProps }>
