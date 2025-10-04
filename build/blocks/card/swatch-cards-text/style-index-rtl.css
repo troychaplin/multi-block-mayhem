@@ -1,1 +1,33 @@
-.mbm-swatch-cards-text{aspect-ratio:var(--mbm-swatch-cards-aspect-ratio);background-color:#efefef;border-radius:var(--mbm-swatch-cards-radius);overflow:hidden}.mbm-swatch-cards-text.has-col-span-1{grid-column:span 1/span 1;grid-row:span 1/span 1}.mbm-swatch-cards-text.has-col-span-2{grid-column:span 2/span 2;grid-row:span 2/span 2}.mbm-swatch-cards-text.has-col-span-3{grid-column:span 3/span 3;grid-row:span 3/span 3}.mbm-swatch-cards-text.has-col-span-4{grid-column:span 4/span 4;grid-row:span 4/span 4}.mbm-swatch-cards-text.has-col-span-5{grid-column:span 5/span 5;grid-row:span 5/span 5}.mbm-swatch-cards-text.has-col-span-6{grid-column:span 6/span 6;grid-row:span 6/span 6}
+/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/card/swatch-cards-text/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************/
+.mbm-swatch-cards-text {
+  overflow: hidden;
+  background-color: #efefef;
+  border-radius: var(--mbm-swatch-cards-radius);
+  aspect-ratio: var(--mbm-swatch-cards-aspect-ratio);
+}
+.mbm-swatch-cards-text.has-col-span-1 {
+  grid-column: span 1/span 1;
+  grid-row: span 1/span 1;
+}
+.mbm-swatch-cards-text.has-col-span-2 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+}
+.mbm-swatch-cards-text.has-col-span-3 {
+  grid-column: span 3/span 3;
+  grid-row: span 3/span 3;
+}
+.mbm-swatch-cards-text.has-col-span-4 {
+  grid-column: span 4/span 4;
+  grid-row: span 4/span 4;
+}
+.mbm-swatch-cards-text.has-col-span-5 {
+  grid-column: span 5/span 5;
+  grid-row: span 5/span 5;
+}
+.mbm-swatch-cards-text.has-col-span-6 {
+  grid-column: span 6/span 6;
+  grid-row: span 6/span 6;
+}

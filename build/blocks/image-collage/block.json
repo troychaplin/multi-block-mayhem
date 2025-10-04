@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "multi-block-mayhem/image-collage",
+  "version": "0.1.0",
+  "title": "Image Collage",
+  "category": "media",
+  "description": "A collage of images in a CSS grid with customizable columns, gap, and aspect ratio.",
+  "supports": {
+    "align": [
+      "full",
+      "wide"
+    ],
+    "alignWide": true,
+    "html": false
+  },
+  "providesContext": {
+    "multi-block-mayhem/image-collage-columns": "columns"
+  },
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "gap": {
+      "type": "number",
+      "default": 5
+    },
+    "radius": {
+      "type": "number",
+      "default": 5
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "4/3"
+    }
+  },
+  "textdomain": "multi-block-mayhem",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {
+    "attributes": {
+      "columns": 3,
+      "gap": 5,
+      "borderRadius": 0,
+      "aspectRatio": "4/3"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      },
+      {
+        "name": "core/image",
+        "attributes": {
+          "columnSpan": "1"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+/**
+ * Image Collage Single Item Editor Styles
+ */
+
+// Define a placeholder selector with the shared properties
+%shared-swatch-cards-styles {
+	border-radius: var(--mbm-swatch-cards-radius);
+	aspect-ratio: var(--mbm-swatch-cards-aspect-ratio);
+	grid-column:
+		span var(--mbm-swatch-cards-col-span) / span
+		var(--mbm-swatch-cards-col-span);
+	grid-row:
+		span var(--mbm-swatch-cards-col-span) / span
+		var(--mbm-swatch-cards-col-span);
+}
+
+.wp-block.wp-block-mbm-swatch-cards-text {
+	overflow: hidden;
+	background-color: #efefef;
+
+	@extend %shared-swatch-cards-styles;
+
+	div {
+		padding: 25px;
+	}
+}
