@@ -4,14 +4,14 @@
 
 // Define a placeholder selector with the shared properties
 %shared-image-collage-styles {
-	border-radius: var(--mbm-image-collage-radius);
-	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	border-radius: var(--mb-mayhem-image-collage-radius);
+	aspect-ratio: var(--mb-mayhem-image-collage-aspect-ratio);
 	grid-column:
-		span var(--mbm-image-collage-col-span) / span
-		var(--mbm-image-collage-col-span);
+		span var(--mb-mayhem-image-collage-col-span) / span
+		var(--mb-mayhem-image-collage-col-span);
 	grid-row:
-		span var(--mbm-image-collage-col-span) / span
-		var(--mbm-image-collage-col-span);
+		span var(--mb-mayhem-image-collage-col-span) / span
+		var(--mb-mayhem-image-collage-col-span);
 }
 
 .wp-block.wp-block-multi-block-mayhem-image-collage-image.multi-block-mayhem-placeholder {

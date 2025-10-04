@@ -1,7 +1,7 @@
 .multi-block-mayhem-image-collage-image {
 	overflow: hidden;
-	border-radius: var(--mbm-image-collage-radius);
-	aspect-ratio: var(--mbm-image-collage-aspect-ratio);
+	border-radius: var(--mb-mayhem-image-collage-radius);
+	aspect-ratio: var(--mb-mayhem-image-collage-aspect-ratio);
 
 	&.has-col-span-1 {
 		grid-column: span 1 / span 1;

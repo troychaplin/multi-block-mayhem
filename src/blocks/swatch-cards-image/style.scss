@@ -1,7 +1,7 @@
 .multi-block-mayhem-swatch-cards-image {
 	overflow: hidden;
-	border-radius: var(--mbm-swatch-cards-radius);
-	aspect-ratio: var(--mbm-swatch-cards-aspect-ratio);
+	border-radius: var(--mb-mayhem-swatch-cards-radius);
+	aspect-ratio: var(--mb-mayhem-swatch-cards-aspect-ratio);
 
 	&.has-col-span-1 {
 		grid-column: span 1 / span 1;

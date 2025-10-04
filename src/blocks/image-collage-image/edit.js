@@ -28,8 +28,8 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		className: blockClasses,
 		style: {
 			...style,
-			'--mbm-image-collage-col-span': columnSpan,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mb-mayhem-image-collage-col-span': columnSpan,
+			'--mb-mayhem-image-collage-aspect-ratio': aspectRatio,
 		},
 	} );
 

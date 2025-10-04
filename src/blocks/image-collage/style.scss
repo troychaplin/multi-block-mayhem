@@ -1,5 +1,5 @@
 .multi-block-mayhem-image-collage {
 	display: grid;
-	grid-template-columns: repeat(var(--mbm-image-collage-cols), minmax(0, 1fr));
-	grid-gap: var(--mbm-image-collage-gap);
+	grid-template-columns: repeat(var(--mb-mayhem-image-collage-cols), minmax(0, 1fr));
+	grid-gap: var(--mb-mayhem-image-collage-gap);
 }

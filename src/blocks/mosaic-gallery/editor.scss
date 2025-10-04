@@ -1,15 +1,16 @@
 .wp-block-multi-block-mayhem-mosaic-gallery.multi-block-mayhem-editor {
 
 	.block-editor-inner-blocks .block-editor-block-list__layout {
-		column-count: var(--mbm-mosaic-gallery-cols, 3);
-		column-gap: var(--mbm-mosaic-gallery-gap, 1rem);
+		column-count: var(--mb-mayhem-mosaic-gallery-cols, 3);
+		column-gap: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 	}
 
 	.wp-block-image {
-		margin-bottom: var(--mbm-mosaic-gallery-gap, 1rem);
+		break-inside: avoid;
+		margin-bottom: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
 
 		img {
-			border-radius: var(--mbm-mosaic-gallery-radius, 0);
+			border-radius: var(--mb-mayhem-mosaic-gallery-radius, 0);
 		}
 	}
 }
