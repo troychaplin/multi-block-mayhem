@@ -42,7 +42,10 @@ export default function Edit( { attributes, setAttributes, style } ) {
 				>
 					<ToolsPanelItem
 						hasValue={ () => !! columns }
-						label={ __( 'Number of Columns' ) }
+						label={ __(
+                            'Number of Columns',
+                            'multi-block-mayhem'
+                        ) }
 						onDeselect={ () => setAttributes( { columns: 3 } ) }
 						isShownByDefault
 					>
@@ -59,10 +62,9 @@ export default function Edit( { attributes, setAttributes, style } ) {
 							}
 						/>
 					</ToolsPanelItem>
-
 					<ToolsPanelItem
 						hasValue={ () => !! gap }
-						label={ __( 'Gallery Gap' ) }
+						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
 						onDeselect={ () => setAttributes( { gap: 10 } ) }
 						isShownByDefault
 					>
@@ -76,10 +78,9 @@ export default function Edit( { attributes, setAttributes, style } ) {
 							}
 						/>
 					</ToolsPanelItem>
-
 					<ToolsPanelItem
 						hasValue={ () => !! radius }
-						label={ __( 'Border Radius' ) }
+						label={ __( 'Border Radius', 'multi-block-mayhem' ) }
 						onDeselect={ () => setAttributes( { radius: 0 } ) }
 						isShownByDefault
 					>
