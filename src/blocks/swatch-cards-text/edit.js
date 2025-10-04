@@ -10,8 +10,8 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		className: 'multi-block-mayhem-editor',
 		style: {
 			...style,
-			'--mbm-swatch-cards-col-span': columnSpan,
-			'--mbm-swatch-cards-aspect-ratio': aspectRatio,
+			'--mb-mayhem-swatch-cards-col-span': columnSpan,
+			'--mb-mayhem-swatch-cards-aspect-ratio': aspectRatio,
 		},
 	} );
 

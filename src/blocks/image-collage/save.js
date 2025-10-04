@@ -6,10 +6,10 @@ export default function save( { attributes } ) {
 	const blockProps = useBlockProps.save( {
 		className: 'multi-block-mayhem-image-collage',
 		style: {
-			'--mbm-image-collage-cols': String( columns ),
-			'--mbm-image-collage-gap': `${ gap }px`,
-			'--mbm-image-collage-radius': `${ radius }px`,
-			'--mbm-image-collage-aspect-ratio': aspectRatio,
+			'--mb-mayhem-image-collage-cols': String( columns ),
+			'--mb-mayhem-image-collage-gap': `${ gap }px`,
+			'--mb-mayhem-image-collage-radius': `${ radius }px`,
+			'--mb-mayhem-image-collage-aspect-ratio': aspectRatio,
 		},
 	} );
 

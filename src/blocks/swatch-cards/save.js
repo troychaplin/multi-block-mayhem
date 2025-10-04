@@ -6,10 +6,10 @@ export default function save( { attributes } ) {
 	const blockProps = useBlockProps.save( {
 		className: 'mbm-swatch-cards',
 		style: {
-			'--mbm-swatch-cards-cols': String( columns ),
-			'--mbm-swatch-cards-gap': `${ gap }px`,
-			'--mbm-swatch-cards-radius': `${ radius }px`,
-			'--mbm-swatch-cards-aspect-ratio': aspectRatio,
+			'--mb-mayhem-swatch-cards-cols': String( columns ),
+			'--mb-mayhem-swatch-cards-gap': `${ gap }px`,
+			'--mb-mayhem-swatch-cards-radius': `${ radius }px`,
+			'--mb-mayhem-swatch-cards-aspect-ratio': aspectRatio,
 		},
 	} );
 

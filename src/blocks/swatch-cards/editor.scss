@@ -9,8 +9,8 @@
 
 		.block-editor-block-list__layout {
 			display: grid;
-			grid-template-columns: repeat(var(--mbm-swatch-cards-cols), minmax(0, 1fr));
-			grid-gap: var(--mbm-swatch-cards-gap);
+			grid-template-columns: repeat(var(--mb-mayhem-swatch-cards-cols), minmax(0, 1fr));
+			grid-gap: var(--mb-mayhem-swatch-cards-gap);
 		}
 	}
 }

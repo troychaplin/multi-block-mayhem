@@ -1,1 +1,11 @@
-.wp-block.wp-block-mbm-swatch-cards .block-editor-inner-blocks .block-editor-block-list__layout{display:grid;grid-template-columns:repeat(var(--mbm-swatch-cards-cols),minmax(0,1fr));grid-gap:var(--mbm-swatch-cards-gap)}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/swatch-cards/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Image Collage Editor Styles
+ */
+.wp-block.wp-block-mbm-swatch-cards .block-editor-inner-blocks .block-editor-block-list__layout {
+  display: grid;
+  grid-template-columns: repeat(var(--mb-mayhem-swatch-cards-cols), minmax(0, 1fr));
+  grid-gap: var(--mb-mayhem-swatch-cards-gap);
+}
