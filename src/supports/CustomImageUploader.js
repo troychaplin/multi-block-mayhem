@@ -220,10 +220,12 @@ const SIZE_NOTICE_STYLES = {
 				imageId: imageDetails.id,
 				imageWidth: imageDetails.width,
 				imageHeight: imageDetails.height,
+				// Preserve the current imageResolution setting
+				imageResolution: attributes.imageResolution || imageSize,
 			} );
 			setError( null ); // Clear any previous errors
 		}
-	}, [ imageDetails, setAttributes ] );
+	}, [ imageDetails, setAttributes, attributes.imageResolution, imageSize ] );
 
 	/**
 	 * Handle image selection from the media library.
@@ -246,6 +248,8 @@ const SIZE_NOTICE_STYLES = {
 						imageId: null,
 						imageWidth: null,
 						imageHeight: null,
+						// Preserve the current imageResolution setting
+						imageResolution: attributes.imageResolution || imageSize,
 					} );
 					return;
 				}
@@ -280,6 +284,8 @@ const SIZE_NOTICE_STYLES = {
 					imageId: media.id,
 					imageWidth: details.width,
 					imageHeight: details.height,
+					// Preserve the current imageResolution setting
+					imageResolution: attributes.imageResolution || imageSize,
 				} );
 			} catch ( err ) {
 				console.error( 'Error selecting image:', err );
@@ -306,12 +312,14 @@ const SIZE_NOTICE_STYLES = {
 				imageId: null,
 				imageWidth: null,
 				imageHeight: null,
+				// Preserve the current imageResolution setting
+				imageResolution: attributes.imageResolution || imageSize,
 			} );
 		} catch ( err ) {
 			console.error( 'Error removing image:', err );
 			setError( __( 'Failed to remove image', 'multi-block-mayhem' ) );
 		}
-	}, [ setAttributes ] );
+	}, [ setAttributes, attributes.imageResolution, imageSize ] );
 
 	// Determine UI states
 	const showWarning = Boolean(

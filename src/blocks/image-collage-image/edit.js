@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback, useMemo } from '@wordpress/element';
+import { useState, useCallback, useMemo, useEffect } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	RangeControl,
@@ -65,6 +65,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		};
 	}, [ columnSpan ] );
 
+
 	return (
 		<>
 			<InspectorControls>
@@ -120,7 +121,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 
                             </ToolsPanelItem>
                             <ToolsPanelItem
-                                hasValue={ () => focalPoint.x !== 0.5 || focalPoint.y !== 0.5 }
+                                hasValue={ () => imageResolution !== 'large' }
                                 label={ __( 'Image Resolution', 'multi-block-mayhem' ) }
                                 onDeselect={ ( ) => {
                                     setAttributes( { imageResolution: 'large' } );

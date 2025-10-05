@@ -18,7 +18,8 @@ return array(
 			'html' => false
 		),
 		'providesContext' => array(
-			'multi-block-mayhem/image-collage-columns' => 'columns'
+			'multi-block-mayhem/image-collage-columns' => 'columns',
+			'multi-block-mayhem/image-collage-aspect-ratio' => 'aspectRatio'
 		),
 		'attributes' => array(
 			'columns' => array(
@@ -53,7 +54,7 @@ return array(
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '2'
 					)
 				),
 				array(
@@ -119,33 +120,6 @@ return array(
 			'html' => false
 		),
 		'attributes' => array(
-			'imageUrl' => array(
-				'type' => 'string',
-				'default' => null
-			),
-			'imageId' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'focalPoint' => array(
-				'type' => 'object',
-				'default' => array(
-					'x' => 0.5,
-					'y' => 0.5
-				)
-			),
-			'imageWidth' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'imageHeight' => array(
-				'type' => 'number',
-				'default' => null
-			),
-			'zoom' => array(
-				'type' => 'number',
-				'default' => 0
-			),
 			'columnSpan' => array(
 				'type' => 'number',
 				'default' => 1
@@ -157,6 +131,37 @@ return array(
 			'aspectRatio' => array(
 				'type' => 'string',
 				'default' => '4/3'
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => null
+			),
+			'imageResolution' => array(
+				'type' => 'string',
+				'default' => 'large'
+			),
+			'imageWidth' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'imageHeight' => array(
+				'type' => 'number',
+				'default' => null
+			),
+			'focalPoint' => array(
+				'type' => 'object',
+				'default' => array(
+					'x' => 0.5,
+					'y' => 0.5
+				)
+			),
+			'zoom' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
