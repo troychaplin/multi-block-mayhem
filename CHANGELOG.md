@@ -19,4 +19,6 @@ Prefix the change with one of these keywords:
 
 ### Added
 
--   Mosaic block with core/image innerblocks
+-   `Mosaic Gallery` block with core/image innerblocks
+-   `Image Collage` block with custom innerblock for single image item
+-   `Custom Image Upload` component that handles image upload / removal, focal point, size ans zoom
