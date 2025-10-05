@@ -8,7 +8,7 @@ import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, style } ) {
-	const { columns, gap, radius, aspectRatio } = attributes;
+	const { columns, gap, radius, aspectRatio, imageSize } = attributes;
 
 	const blockProps = useBlockProps( {
 		className: 'multi-block-mayhem-editor',
@@ -98,6 +98,31 @@ export default function Edit( { attributes, setAttributes, style } ) {
 						] }
 						onChange={ ( value ) =>
 							setAttributes( { aspectRatio: value } )
+						}
+					/>
+					<SelectControl
+						label={ __( 'Image Size', 'multi-block-mayhem' ) }
+						value={ imageSize }
+						options={ [
+							{
+								label: __( 'Thumbnail', 'multi-block-mayhem' ),
+								value: 'thumbnail',
+							},
+							{
+								label: __( 'Medium', 'multi-block-mayhem' ),
+								value: 'medium',
+							},
+							{
+								label: __( 'Large', 'multi-block-mayhem' ),
+								value: 'large',
+							},
+							{
+								label: __( 'Full Size', 'multi-block-mayhem' ),
+								value: 'full',
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { imageSize: value } )
 						}
 					/>
 				</PanelBody>

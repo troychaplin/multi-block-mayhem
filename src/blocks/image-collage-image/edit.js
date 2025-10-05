@@ -40,6 +40,9 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		aspectRatio: context[ 'multi-block-mayhem/image-collage-aspect-ratio' ],
 	} );
 
+	// Get imageSize from parent context
+	const contextImageSize = context[ 'multi-block-mayhem/image-collage-image-size' ] || 'large';
+
 	const onFocalPointChange = useCallback(
 		( newFocalPoint ) => {
 			setFocalPoint( newFocalPoint );
@@ -56,10 +59,10 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		transform: `scale(1.${ String( zoom ).padStart( 2, '0' ) })`,
 	};
 
-	// Memoize the image size based on column span
+	// Use the image size from parent context
 	const imageSize = useMemo( () => {
-		return columnSpan === 1 ? 'medium' : 'large';
-	}, [ columnSpan ] );
+		return contextImageSize;
+	}, [ contextImageSize ] );
 
 	// Memoize the minimum dimensions based on column span
 	const minDimensions = useMemo( () => {

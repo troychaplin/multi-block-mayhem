@@ -15,7 +15,9 @@
     "html": false
   },
   "providesContext": {
-    "multi-block-mayhem/image-collage-columns": "columns"
+    "multi-block-mayhem/image-collage-columns": "columns",
+    "multi-block-mayhem/image-collage-aspect-ratio": "aspectRatio",
+    "multi-block-mayhem/image-collage-image-size": "imageSize"
   },
   "attributes": {
     "columns": {
@@ -33,6 +35,10 @@
     "aspectRatio": {
       "type": "string",
       "default": "4/3"
+    },
+    "imageSize": {
+      "type": "string",
+      "default": "large"
     }
   },
   "textdomain": "multi-block-mayhem",
@@ -44,7 +50,8 @@
       "columns": 3,
       "gap": 5,
       "borderRadius": 0,
-      "aspectRatio": "4/3"
+      "aspectRatio": "4/3",
+      "imageSize": "large"
     },
     "innerBlocks": [
       {

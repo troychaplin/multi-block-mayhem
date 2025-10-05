@@ -434,23 +434,16 @@ const SIZE_NOTICE_STYLES = {
 };
 
 CustomImageUploader.propTypes = {
-	/** Current image URL */
 	imageUrl: PropTypes.string,
-	/** Function to update block attributes */
 	setAttributes: PropTypes.func.isRequired,
-	/** Preferred image size to use */
 	imageSize: PropTypes.string,
-	/** Minimum required width for the image */
 	minWidth: PropTypes.number,
-	/** Minimum required height for the image */
 	minHeight: PropTypes.number,
-	/** Block attributes containing image metadata */
 	attributes: PropTypes.shape( {
 		imageId: PropTypes.number,
 		imageWidth: PropTypes.number,
 		imageHeight: PropTypes.number,
 	} ),
-	/** Whether to enforce minimum dimensions strictly */
 	force: PropTypes.bool,
 };
 
