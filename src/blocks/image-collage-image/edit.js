@@ -1,12 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback, useMemo } from '@wordpress/element';
+import { useState, useCallback } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
-	PanelBody,
 	RangeControl,
+	SelectControl,
 	FocalPointPicker,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
-import { CustomImageUploader } from '../../supports/CustomImageUploader';
+import { CustomImageUploader } from '../../supports/custom-image-uploader';
+import { imageResolutionOptions } from '../../supports/block-controller-options';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, context, style } ) {
@@ -18,7 +21,14 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns, zoom, aspectRatio } = attributes;
+	const {
+		columnSpan,
+		columns,
+		aspectRatio,
+		imageUrl,
+		imageResolution,
+		zoom,
+	} = attributes;
 
 	const blockClasses = imageUrl
 		? 'multi-block-mayhem-editor'
@@ -55,66 +65,143 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		transform: `scale(1.${ String( zoom ).padStart( 2, '0' ) })`,
 	};
 
-	// Memoize the image size based on column span
-	const imageSize = useMemo( () => {
-		return columnSpan === 1 ? 'medium' : 'large';
-	}, [ columnSpan ] );
-
-	// Memoize the minimum dimensions based on column span
-	const minDimensions = useMemo( () => {
-		return {
-			minWidth: columnSpan === 1 ? 600 : 1024,
-			minHeight: columnSpan === 1 ? 450 : 768,
-		};
-	}, [ columnSpan ] );
-
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Image Settings', 'multi-block-mayhem' ) }
+				<ToolsPanel
+					label={ __( 'Image Settings', 'multi-block-mayhem' ) }
+					resetAll={ () =>
+						setAttributes( {
+							columnSpan: 1,
+							imageUrl: '',
+							imageId: null,
+							imageWidth: null,
+							imageHeight: null,
+							imageResolution: 'large',
+							zoom: 0,
+						} )
+					}
 				>
-					<RangeControl
+					<ToolsPanelItem
+						hasValue={ () => columnSpan !== 1 }
 						label={ __( 'Column Span', 'multi-block-mayhem' ) }
-						min={ 1 }
-						max={ columns }
-						value={ columnSpan }
-						onChange={ ( value ) =>
-							setAttributes( { columnSpan: value } )
+						onDeselect={ () => setAttributes( { columnSpan: 1 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __( 'Column Span', 'multi-block-mayhem' ) }
+							min={ 1 }
+							max={ columns }
+							value={ columnSpan }
+							onChange={ ( value ) =>
+								setAttributes( { columnSpan: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
+						hasValue={ () => !! imageUrl }
+						label={ __( 'Image Upload', 'multi-block-mayhem' ) }
+						onDeselect={ () =>
+							setAttributes( {
+								imageUrl: '',
+								imageId: null,
+								imageWidth: null,
+								imageHeight: null,
+							} )
 						}
-					/>
+						isShownByDefault
+					>
+						<CustomImageUploader
+							imageUrl={ imageUrl }
+							setAttributes={ setAttributes }
+							imageSize={ imageResolution }
+							attributes={ attributes }
+						/>
+					</ToolsPanelItem>
 					{ imageUrl && (
 						<>
-							<FocalPointPicker
-								url={ imageUrl }
-								value={ focalPoint }
-								onDragStart={ setFocalPoint }
-								onDrag={ onFocalPointChange }
-								onChange={ onFocalPointChange }
-							/>
-							<RangeControl
+							<ToolsPanelItem
+								hasValue={ () =>
+									focalPoint.x !== 0.5 || focalPoint.y !== 0.5
+								}
+								label={ __(
+									'Focal Point',
+									'multi-block-mayhem'
+								) }
+								onDeselect={ () => {
+									const defaultFocalPoint = {
+										x: 0.5,
+										y: 0.5,
+									};
+									setFocalPoint( defaultFocalPoint );
+									setAttributes( {
+										focalPoint: defaultFocalPoint,
+									} );
+								} }
+								isShownByDefault
+							>
+								<FocalPointPicker
+									url={ imageUrl }
+									value={ focalPoint }
+									onDragStart={ setFocalPoint }
+									onDrag={ onFocalPointChange }
+									onChange={ onFocalPointChange }
+								/>
+							</ToolsPanelItem>
+							<ToolsPanelItem
+								hasValue={ () => imageResolution !== 'large' }
+								label={ __(
+									'Image Resolution',
+									'multi-block-mayhem'
+								) }
+								onDeselect={ () => {
+									setAttributes( {
+										imageResolution: 'large',
+									} );
+								} }
+								isShownByDefault
+							>
+								<SelectControl
+									label={ __(
+										'Image Resolution',
+										'multi-block-mayhem'
+									) }
+									value={ imageResolution }
+									options={ imageResolutionOptions }
+									onChange={ ( value ) =>
+										setAttributes( {
+											imageResolution: value,
+										} )
+									}
+								/>
+							</ToolsPanelItem>
+							<ToolsPanelItem
+								hasValue={ () => !! zoom }
 								label={ __(
 									'Image Zoom',
 									'multi-block-mayhem'
 								) }
-								min={ 0 }
-								max={ 50 }
-								value={ zoom }
-								onChange={ ( value ) =>
-									setAttributes( { zoom: value } )
+								onDeselect={ () =>
+									setAttributes( { zoom: 0 } )
 								}
-							/>
+								isShownByDefault
+							>
+								<RangeControl
+									label={ __(
+										'Image Zoom',
+										'multi-block-mayhem'
+									) }
+									min={ 0 }
+									max={ 50 }
+									value={ zoom }
+									onChange={ ( value ) =>
+										setAttributes( { zoom: value } )
+									}
+								/>
+							</ToolsPanelItem>
 						</>
 					) }
-					<CustomImageUploader
-						imageUrl={ imageUrl }
-						setAttributes={ setAttributes }
-						imageSize={ imageSize }
-						minWidth={ minDimensions.minWidth }
-						minHeight={ minDimensions.minHeight }
-						attributes={ attributes }
-					/>
-				</PanelBody>
+				</ToolsPanel>
 			</InspectorControls>
 
 			{ imageUrl ? (

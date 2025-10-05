@@ -43,12 +43,12 @@ class Enqueues extends Plugin_Module {
 	 * Enqueues the block assets for the editor.
 	 */
 	public function enqueue_block_assets() {
-		$asset_meta = $this->build_dir->get_asset_meta( 'multi-block-mayhem-editor.js' );
+		$asset_meta = $this->build_dir->get_asset_meta( 'editor.js' );
 
 		if ( $asset_meta ) {
 			wp_enqueue_script(
 				'multi-block-mayhem-editor-js',
-				$this->build_dir->get_url( 'multi-block-mayhem-editor.js' ),
+				$this->build_dir->get_url( 'editor.js' ),
 				$asset_meta['dependencies'],
 				$asset_meta['version'],
 				false
@@ -60,12 +60,12 @@ class Enqueues extends Plugin_Module {
 	 * Enqueues the block assets for the frontend.
 	 */
 	public function enqueue_frontend_assets() {
-		$asset_meta = $this->build_dir->get_asset_meta( 'multi-block-mayhem-frontend.js' );
+		$asset_meta = $this->build_dir->get_asset_meta( 'frontend.js' );
 
 		if ( $asset_meta ) {
 			wp_enqueue_script(
 				'multi-block-mayhem-frontend-js',
-				$this->build_dir->get_url( 'multi-block-mayhem-frontend.js' ),
+				$this->build_dir->get_url( 'frontend.js' ),
 				$asset_meta['dependencies'],
 				$asset_meta['version'],
 				true

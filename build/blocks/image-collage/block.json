@@ -15,7 +15,8 @@
     "html": false
   },
   "providesContext": {
-    "multi-block-mayhem/image-collage-columns": "columns"
+    "multi-block-mayhem/image-collage-columns": "columns",
+    "multi-block-mayhem/image-collage-aspect-ratio": "aspectRatio"
   },
   "attributes": {
     "columns": {
@@ -50,7 +51,7 @@
       {
         "name": "core/image",
         "attributes": {
-          "columnSpan": "1"
+          "columnSpan": "2"
         }
       },
       {

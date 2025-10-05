@@ -27,6 +27,6 @@ $mb_mayhem_inline_styles = sprintf(
 );
 ?>
 
-<div class="mbm-image-collage-image <?php echo esc_attr( $mb_mayhem_col_span ); ?>">
+<div class="multi-block-mayhem-image-collage-image <?php echo esc_attr( $mb_mayhem_col_span ); ?>">
 	<div style="<?php echo esc_attr( $mb_mayhem_inline_styles ); ?>"></div>
 </div>

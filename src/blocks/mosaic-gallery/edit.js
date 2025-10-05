@@ -6,7 +6,7 @@ import {
 } from '@wordpress/block-editor';
 import {
 	RangeControl,
-    __experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import './editor.scss';
@@ -43,9 +43,9 @@ export default function Edit( { attributes, setAttributes, style } ) {
 					<ToolsPanelItem
 						hasValue={ () => !! columns }
 						label={ __(
-                            'Number of Columns',
-                            'multi-block-mayhem'
-                        ) }
+							'Number of Columns',
+							'multi-block-mayhem'
+						) }
 						onDeselect={ () => setAttributes( { columns: 3 } ) }
 						isShownByDefault
 					>
