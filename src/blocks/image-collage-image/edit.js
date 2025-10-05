@@ -2,7 +2,6 @@ import { __ } from '@wordpress/i18n';
 import { useState, useCallback, useMemo } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
-	PanelBody,
 	RangeControl,
 	FocalPointPicker,
     __experimentalToolsPanel as ToolsPanel,
