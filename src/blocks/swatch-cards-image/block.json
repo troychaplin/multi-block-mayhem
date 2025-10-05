@@ -6,7 +6,7 @@
 	"title": "Swatch Cards: Image",
 	"category": "media",
 	"description": "A single image block that supports the primary image collage.",
-	"parent": ["multi-block-mayhem/image-collage"],
+	"parent": ["multi-block-mayhem/swatch-cards"],
 	"usesContext": [
 		"multi-block-mayhem/image-collage-columns",
 		"multi-block-mayhem/image-collage-aspect-ratio"

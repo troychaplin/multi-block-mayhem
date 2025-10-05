@@ -74,9 +74,12 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 					resetAll={ () =>
 						setAttributes( {
 							columnSpan: 1,
-                            imageUrl: null,
-                            imageResolution: 'large',
-                            zoom: 0,
+							imageUrl: '',
+							imageId: null,
+							imageWidth: null,
+							imageHeight: null,
+							imageResolution: 'large',
+							zoom: 0,
 						} )
 					}
 				>
@@ -98,7 +101,31 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
                             }
                         />
                     </ToolsPanelItem>
-
+                    <ToolsPanelItem
+                        hasValue={ () => !! imageUrl }
+                        label={ __(
+                            'Image Upload',
+                            'multi-block-mayhem'
+                        ) }
+                        onDeselect={ ( ) =>
+                            setAttributes( { 
+								imageUrl: '', 
+								imageId: null, 
+								imageWidth: null, 
+								imageHeight: null 
+							} )
+                        }
+                        isShownByDefault
+                    >
+                        <CustomImageUploader
+                            imageUrl={ imageUrl }
+                            setAttributes={ setAttributes }
+                            imageSize={ imageResolution }
+                            minWidth={ minDimensions.minWidth }
+                            minHeight={ minDimensions.minHeight }
+                            attributes={ attributes }
+                        />
+                    </ToolsPanelItem>
 					{ imageUrl && (
                         <>
                             <ToolsPanelItem
@@ -181,15 +208,6 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
                         </>
 					) }
 				</ToolsPanel>
-
-                <CustomImageUploader
-                    imageUrl={ imageUrl }
-                    setAttributes={ setAttributes }
-                    imageSize={ imageResolution }
-                    minWidth={ minDimensions.minWidth }
-                    minHeight={ minDimensions.minHeight }
-                    attributes={ attributes }
-                />
 			</InspectorControls>
 
 			{ imageUrl ? (

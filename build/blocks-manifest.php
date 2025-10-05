@@ -359,7 +359,7 @@ return array(
 		'category' => 'media',
 		'description' => 'A single image block that supports the primary image collage.',
 		'parent' => array(
-			'multi-block-mayhem/image-collage'
+			'multi-block-mayhem/swatch-cards'
 		),
 		'usesContext' => array(
 			'multi-block-mayhem/image-collage-columns',
