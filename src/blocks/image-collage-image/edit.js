@@ -3,6 +3,7 @@ import { useState, useCallback, useMemo } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	RangeControl,
+    SelectControl,
 	FocalPointPicker,
     __experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
@@ -19,7 +20,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		}
 	);
 
-	const { imageUrl, columnSpan, columns, zoom, aspectRatio } = attributes;
+	const { columnSpan, columns, aspectRatio, imageUrl, imageResolution, zoom } = attributes;
 
 	const blockClasses = imageUrl
 		? 'multi-block-mayhem-editor'
@@ -40,9 +41,6 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		aspectRatio: context[ 'multi-block-mayhem/image-collage-aspect-ratio' ],
 	} );
 
-	// Get imageSize from parent context
-	const contextImageSize = context[ 'multi-block-mayhem/image-collage-image-size' ] || 'large';
-
 	const onFocalPointChange = useCallback(
 		( newFocalPoint ) => {
 			setFocalPoint( newFocalPoint );
@@ -58,11 +56,6 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		backgroundSize: 'cover',
 		transform: `scale(1.${ String( zoom ).padStart( 2, '0' ) })`,
 	};
-
-	// Use the image size from parent context
-	const imageSize = useMemo( () => {
-		return contextImageSize;
-	}, [ contextImageSize ] );
 
 	// Memoize the minimum dimensions based on column span
 	const minDimensions = useMemo( () => {
@@ -81,6 +74,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 						setAttributes( {
 							columnSpan: 1,
                             imageUrl: null,
+                            imageResolution: 'large',
                             zoom: 0,
 						} )
 					}
@@ -126,6 +120,40 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 
                             </ToolsPanelItem>
                             <ToolsPanelItem
+                                hasValue={ () => focalPoint.x !== 0.5 || focalPoint.y !== 0.5 }
+                                label={ __( 'Image Resolution', 'multi-block-mayhem' ) }
+                                onDeselect={ ( ) => {
+                                    setAttributes( { imageResolution: 'large' } );
+                                } }
+                                isShownByDefault
+                            > 
+                                <SelectControl
+                                    label={ __( 'Image Resolution', 'multi-block-mayhem' ) }
+                                    value={ imageResolution }
+                                    options={ [
+                                        {
+                                            label: __( 'Thumbnail', 'multi-block-mayhem' ),
+                                            value: 'thumbnail',
+                                        },
+                                        {
+                                            label: __( 'Medium', 'multi-block-mayhem' ),
+                                            value: 'medium',
+                                        },
+                                        {
+                                            label: __( 'Large', 'multi-block-mayhem' ),
+                                            value: 'large',
+                                        },
+                                        {
+                                            label: __( 'Full Size', 'multi-block-mayhem' ),
+                                            value: 'full',
+                                        },
+                                    ] }
+                                    onChange={ ( value ) =>
+                                        setAttributes( { imageResolution: value } )
+                                    }
+                                />
+                            </ToolsPanelItem>
+                            <ToolsPanelItem
                                 hasValue={ () => !! zoom }
                                 label={ __(
                                     'Image Zoom',
@@ -156,7 +184,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
                 <CustomImageUploader
                     imageUrl={ imageUrl }
                     setAttributes={ setAttributes }
-                    imageSize={ imageSize }
+                    imageSize={ imageResolution }
                     minWidth={ minDimensions.minWidth }
                     minHeight={ minDimensions.minHeight }
                     attributes={ attributes }

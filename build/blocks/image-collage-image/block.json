@@ -22,33 +22,6 @@
     "html": false
   },
   "attributes": {
-    "imageUrl": {
-      "type": "string",
-      "default": null
-    },
-    "imageId": {
-      "type": "number",
-      "default": null
-    },
-    "focalPoint": {
-      "type": "object",
-      "default": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "imageWidth": {
-      "type": "number",
-      "default": null
-    },
-    "imageHeight": {
-      "type": "number",
-      "default": null
-    },
-    "zoom": {
-      "type": "number",
-      "default": 0
-    },
     "columnSpan": {
       "type": "number",
       "default": 1
@@ -60,6 +33,37 @@
     "aspectRatio": {
       "type": "string",
       "default": "4/3"
+    },
+    "imageId": {
+      "type": "number",
+      "default": null
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": null
+    },
+    "imageResolution": {
+      "type": "string",
+      "default": "large"
+    },
+    "imageWidth": {
+      "type": "number",
+      "default": null
+    },
+    "imageHeight": {
+      "type": "number",
+      "default": null
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "zoom": {
+      "type": "number",
+      "default": 0
     }
   },
   "textdomain": "multi-block-mayhem",
