@@ -6,7 +6,7 @@ import {
 	RangeControl,
 	FocalPointPicker,
 } from '@wordpress/components';
-import { CustomImageUploader } from '../../supports/CustomImageUploader';
+import { CustomImageUploader } from '../../supports/custom-image-uploader';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, context, style } ) {

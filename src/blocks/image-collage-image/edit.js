@@ -8,7 +8,8 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
-import { CustomImageUploader } from '../../supports/CustomImageUploader';
+import { CustomImageUploader } from '../../supports/custom-image-uploader';
+import { imageResolutionOptions } from '../../supports/block-controller-options';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, context, style } ) {
@@ -166,36 +167,7 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 										'multi-block-mayhem'
 									) }
 									value={ imageResolution }
-									options={ [
-										{
-											label: __(
-												'Thumbnail',
-												'multi-block-mayhem'
-											),
-											value: 'thumbnail',
-										},
-										{
-											label: __(
-												'Medium',
-												'multi-block-mayhem'
-											),
-											value: 'medium',
-										},
-										{
-											label: __(
-												'Large',
-												'multi-block-mayhem'
-											),
-											value: 'large',
-										},
-										{
-											label: __(
-												'Full Size',
-												'multi-block-mayhem'
-											),
-											value: 'full',
-										},
-									] }
+									options={ imageResolutionOptions }
 									onChange={ ( value ) =>
 										setAttributes( {
 											imageResolution: value,

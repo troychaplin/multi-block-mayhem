@@ -5,6 +5,7 @@ import {
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
+import { aspectRatioOptions } from '../../supports/block-controller-options';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, style } ) {
@@ -66,36 +67,7 @@ export default function Edit( { attributes, setAttributes, style } ) {
 					<SelectControl
 						label="Aspect Ratio"
 						value={ aspectRatio }
-						options={ [
-							{
-								label: 'Square - 1:1',
-								value: '1/1',
-							},
-							{
-								label: 'Standard - 4:3',
-								value: '4/3',
-							},
-							{
-								label: 'Portrait - 3:4',
-								value: '3/4',
-							},
-							{
-								label: 'Classic - 3:2',
-								value: '3/2',
-							},
-							{
-								label: 'Classic Portrait - 2:3',
-								value: '2/3',
-							},
-							{
-								label: 'Wide - 16:9',
-								value: '16/9',
-							},
-							{
-								label: 'Tall - 9:16',
-								value: '9/16',
-							},
-						] }
+						options={ aspectRatioOptions }
 						onChange={ ( value ) =>
 							setAttributes( { aspectRatio: value } )
 						}
