@@ -4,7 +4,9 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
+import { RangeControl, SelectControl,
+	__experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanelItem as ToolsPanelItem, } from '@wordpress/components';
 import { aspectRatioOptions } from '../../supports/block-controller-options';
 import './editor.scss';
 
@@ -31,48 +33,89 @@ export default function Edit( { attributes, setAttributes, style } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Collage Settings', 'multi-block-mayhem' ) }
+                <ToolsPanel
+					label={ __( 'Collage Settings', 'multi-block-mayhem' ) }
+					resetAll={ () =>
+						setAttributes( {
+							columns: 3,
+							gap: 10,
+							radius: 0,
+							aspectRatio: '4/3',
+						} )
+					}
 				>
-					<RangeControl
+                    <ToolsPanelItem
+						hasValue={ () => !! columns }
 						label={ __(
 							'Number of Columns',
 							'multi-block-mayhem'
 						) }
-						min={ 1 }
-						max={ 6 }
-						value={ columns }
-						onChange={ ( value ) =>
-							setAttributes( { columns: value } )
-						}
-					/>
-					<RangeControl
+						onDeselect={ () => setAttributes( { columns: 3 } ) }
+						isShownByDefault
+					>
+                        <RangeControl
+                            label={ __(
+                                'Number of Columns',
+                                'multi-block-mayhem'
+                            ) }
+                            min={ 1 }
+                            max={ 6 }
+                            value={ columns }
+                            onChange={ ( value ) =>
+                                setAttributes( { columns: value } )
+                            }
+                        />
+                    </ToolsPanelItem><ToolsPanelItem
+						hasValue={ () => !! gap }
 						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
-						min={ 0 }
-						max={ 50 }
-						value={ gap }
-						onChange={ ( value ) =>
-							setAttributes( { gap: value } )
-						}
-					/>
-					<RangeControl
+						onDeselect={ () => setAttributes( { gap: 10 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
+							min={ 0 }
+							max={ 50 }
+							value={ gap }
+							onChange={ ( value ) =>
+								setAttributes( { gap: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
+						hasValue={ () => !! radius }
 						label={ __( 'Border Radius', 'multi-block-mayhem' ) }
-						min={ 0 }
-						max={ 50 }
-						value={ radius }
-						onChange={ ( value ) =>
-							setAttributes( { radius: value } )
-						}
-					/>
-					<SelectControl
-						label="Aspect Ratio"
-						value={ aspectRatio }
-						options={ aspectRatioOptions }
-						onChange={ ( value ) =>
-							setAttributes( { aspectRatio: value } )
-						}
-					/>
-				</PanelBody>
+						onDeselect={ () => setAttributes( { radius: 0 } ) }
+						isShownByDefault
+					>
+						<RangeControl
+							label={ __(
+								'Border Radius',
+								'multi-block-mayhem'
+							) }
+							min={ 0 }
+							max={ 50 }
+							value={ radius }
+							onChange={ ( value ) =>
+								setAttributes( { radius: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
+						hasValue={ () => !! aspectRatio }
+						label={ __( 'Aspect Ratio', 'multi-block-mayhem' ) }
+						onDeselect={ () => setAttributes( { aspectRatio: '4/3' } ) }
+						isShownByDefault
+					>
+                        <SelectControl
+                            label="Aspect Ratio"
+                            value={ aspectRatio }
+                            options={ aspectRatioOptions }
+                            onChange={ ( value ) =>
+                                setAttributes( { aspectRatio: value } )
+                            }
+                        />
+					</ToolsPanelItem>
+				</ToolsPanel>
 			</InspectorControls>
 
 			<div { ...blockProps }>
