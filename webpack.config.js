@@ -9,14 +9,8 @@ module.exports = [
 		...scriptConfig,
 		entry: {
 			...scriptConfig.entry(),
-			'multi-block-mayhem-editor': path.resolve(
-				__dirname,
-				'src/multi-block-mayhem-editor.js'
-			),
-			'multi-block-mayhem-frontend': path.resolve(
-				__dirname,
-				'src/multi-block-mayhem-frontend.js'
-			),
+			editor: path.resolve( __dirname, 'src/editor.js' ),
+			frontend: path.resolve( __dirname, 'src/frontend.js' ),
 		},
 	},
 	moduleConfig,
