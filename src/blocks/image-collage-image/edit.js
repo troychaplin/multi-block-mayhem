@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useCallback, useMemo, useEffect } from '@wordpress/element';
+import { useState, useCallback } from '@wordpress/element';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import {
 	RangeControl,
-    SelectControl,
+	SelectControl,
 	FocalPointPicker,
-    __experimentalToolsPanel as ToolsPanel,
+	__experimentalToolsPanel as ToolsPanel,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 } from '@wordpress/components';
 import { CustomImageUploader } from '../../supports/CustomImageUploader';
@@ -20,7 +20,14 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		}
 	);
 
-	const { columnSpan, columns, aspectRatio, imageUrl, imageResolution, zoom } = attributes;
+	const {
+		columnSpan,
+		columns,
+		aspectRatio,
+		imageUrl,
+		imageResolution,
+		zoom,
+	} = attributes;
 
 	const blockClasses = imageUrl
 		? 'multi-block-mayhem-editor'
@@ -57,19 +64,10 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 		transform: `scale(1.${ String( zoom ).padStart( 2, '0' ) })`,
 	};
 
-	// Memoize the minimum dimensions based on column span
-	const minDimensions = useMemo( () => {
-		return {
-			minWidth: columnSpan === 1 ? 600 : 1024,
-			minHeight: columnSpan === 1 ? 450 : 768,
-		};
-	}, [ columnSpan ] );
-
-
 	return (
 		<>
 			<InspectorControls>
-                <ToolsPanel
+				<ToolsPanel
 					label={ __( 'Image Settings', 'multi-block-mayhem' ) }
 					resetAll={ () =>
 						setAttributes( {
@@ -83,129 +81,153 @@ export default function Edit( { attributes, setAttributes, context, style } ) {
 						} )
 					}
 				>
-                    <ToolsPanelItem
+					<ToolsPanelItem
 						hasValue={ () => columnSpan !== 1 }
 						label={ __( 'Column Span', 'multi-block-mayhem' ) }
-						onDeselect={ ( ) =>
-                            setAttributes( { columnSpan: 1 } )
-                        }
+						onDeselect={ () => setAttributes( { columnSpan: 1 } ) }
 						isShownByDefault
 					>
-                        <RangeControl
-                            label={ __( 'Column Span', 'multi-block-mayhem' ) }
-                            min={ 1 }
-                            max={ columns }
-                            value={ columnSpan }
-                            onChange={ ( value ) =>
-                                setAttributes( { columnSpan: value } )
-                            }
-                        />
-                    </ToolsPanelItem>
-                    <ToolsPanelItem
-                        hasValue={ () => !! imageUrl }
-                        label={ __(
-                            'Image Upload',
-                            'multi-block-mayhem'
-                        ) }
-                        onDeselect={ ( ) =>
-                            setAttributes( { 
-								imageUrl: '', 
-								imageId: null, 
-								imageWidth: null, 
-								imageHeight: null 
+						<RangeControl
+							label={ __( 'Column Span', 'multi-block-mayhem' ) }
+							min={ 1 }
+							max={ columns }
+							value={ columnSpan }
+							onChange={ ( value ) =>
+								setAttributes( { columnSpan: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
+						hasValue={ () => !! imageUrl }
+						label={ __( 'Image Upload', 'multi-block-mayhem' ) }
+						onDeselect={ () =>
+							setAttributes( {
+								imageUrl: '',
+								imageId: null,
+								imageWidth: null,
+								imageHeight: null,
 							} )
-                        }
-                        isShownByDefault
-                    >
-                        <CustomImageUploader
-                            imageUrl={ imageUrl }
-                            setAttributes={ setAttributes }
-                            imageSize={ imageResolution }
-                            minWidth={ minDimensions.minWidth }
-                            minHeight={ minDimensions.minHeight }
-                            attributes={ attributes }
-                        />
-                    </ToolsPanelItem>
+						}
+						isShownByDefault
+					>
+						<CustomImageUploader
+							imageUrl={ imageUrl }
+							setAttributes={ setAttributes }
+							imageSize={ imageResolution }
+							attributes={ attributes }
+						/>
+					</ToolsPanelItem>
 					{ imageUrl && (
-                        <>
-                            <ToolsPanelItem
-                                hasValue={ () => focalPoint.x !== 0.5 || focalPoint.y !== 0.5 }
-                                label={ __( 'Focal Point', 'multi-block-mayhem' ) }
-                                onDeselect={ ( ) => {
-                                    const defaultFocalPoint = { x: 0.5, y: 0.5 };
-                                    setFocalPoint( defaultFocalPoint );
-                                    setAttributes( { focalPoint: defaultFocalPoint } );
-                                } }
-                                isShownByDefault
-                            >
-                                <FocalPointPicker
-                                    url={ imageUrl }
-                                    value={ focalPoint }
-                                    onDragStart={ setFocalPoint }
-                                    onDrag={ onFocalPointChange }
-                                    onChange={ onFocalPointChange }
-                                />
-
-                            </ToolsPanelItem>
-                            <ToolsPanelItem
-                                hasValue={ () => imageResolution !== 'large' }
-                                label={ __( 'Image Resolution', 'multi-block-mayhem' ) }
-                                onDeselect={ ( ) => {
-                                    setAttributes( { imageResolution: 'large' } );
-                                } }
-                                isShownByDefault
-                            > 
-                                <SelectControl
-                                    label={ __( 'Image Resolution', 'multi-block-mayhem' ) }
-                                    value={ imageResolution }
-                                    options={ [
-                                        {
-                                            label: __( 'Thumbnail', 'multi-block-mayhem' ),
-                                            value: 'thumbnail',
-                                        },
-                                        {
-                                            label: __( 'Medium', 'multi-block-mayhem' ),
-                                            value: 'medium',
-                                        },
-                                        {
-                                            label: __( 'Large', 'multi-block-mayhem' ),
-                                            value: 'large',
-                                        },
-                                        {
-                                            label: __( 'Full Size', 'multi-block-mayhem' ),
-                                            value: 'full',
-                                        },
-                                    ] }
-                                    onChange={ ( value ) =>
-                                        setAttributes( { imageResolution: value } )
-                                    }
-                                />
-                            </ToolsPanelItem>
-                            <ToolsPanelItem
-                                hasValue={ () => !! zoom }
-                                label={ __(
-                                    'Image Zoom',
-                                    'multi-block-mayhem'
-                                ) }
-                                onDeselect={ ( ) =>
-                                    setAttributes( { zoom: 0 } )
-                                }
-                                isShownByDefault
-                            >
-                                <RangeControl
-                                    label={ __(
-                                        'Image Zoom',
-                                        'multi-block-mayhem'
-                                    ) }
-                                    min={ 0 }
-                                    max={ 50 }
-                                    value={ zoom }
-                                    onChange={ ( value ) =>
-                                        setAttributes( { zoom: value } )
-                                    }
-                                />
-                            </ToolsPanelItem>
-                        </>
+						<>
+							<ToolsPanelItem
+								hasValue={ () =>
+									focalPoint.x !== 0.5 || focalPoint.y !== 0.5
+								}
+								label={ __(
+									'Focal Point',
+									'multi-block-mayhem'
+								) }
+								onDeselect={ () => {
+									const defaultFocalPoint = {
+										x: 0.5,
+										y: 0.5,
+									};
+									setFocalPoint( defaultFocalPoint );
+									setAttributes( {
+										focalPoint: defaultFocalPoint,
+									} );
+								} }
+								isShownByDefault
+							>
+								<FocalPointPicker
+									url={ imageUrl }
+									value={ focalPoint }
+									onDragStart={ setFocalPoint }
+									onDrag={ onFocalPointChange }
+									onChange={ onFocalPointChange }
+								/>
+							</ToolsPanelItem>
+							<ToolsPanelItem
+								hasValue={ () => imageResolution !== 'large' }
+								label={ __(
+									'Image Resolution',
+									'multi-block-mayhem'
+								) }
+								onDeselect={ () => {
+									setAttributes( {
+										imageResolution: 'large',
+									} );
+								} }
+								isShownByDefault
+							>
+								<SelectControl
+									label={ __(
+										'Image Resolution',
+										'multi-block-mayhem'
+									) }
+									value={ imageResolution }
+									options={ [
+										{
+											label: __(
+												'Thumbnail',
+												'multi-block-mayhem'
+											),
+											value: 'thumbnail',
+										},
+										{
+											label: __(
+												'Medium',
+												'multi-block-mayhem'
+											),
+											value: 'medium',
+										},
+										{
+											label: __(
+												'Large',
+												'multi-block-mayhem'
+											),
+											value: 'large',
+										},
+										{
+											label: __(
+												'Full Size',
+												'multi-block-mayhem'
+											),
+											value: 'full',
+										},
+									] }
+									onChange={ ( value ) =>
+										setAttributes( {
+											imageResolution: value,
+										} )
+									}
+								/>
+							</ToolsPanelItem>
+							<ToolsPanelItem
+								hasValue={ () => !! zoom }
+								label={ __(
+									'Image Zoom',
+									'multi-block-mayhem'
+								) }
+								onDeselect={ () =>
+									setAttributes( { zoom: 0 } )
+								}
+								isShownByDefault
+							>
+								<RangeControl
+									label={ __(
+										'Image Zoom',
+										'multi-block-mayhem'
+									) }
+									min={ 0 }
+									max={ 50 }
+									value={ zoom }
+									onChange={ ( value ) =>
+										setAttributes( { zoom: value } )
+									}
+								/>
+							</ToolsPanelItem>
+						</>
 					) }
 				</ToolsPanel>
 			</InspectorControls>

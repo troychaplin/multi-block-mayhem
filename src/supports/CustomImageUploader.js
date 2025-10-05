@@ -40,7 +40,7 @@ const SIZE_NOTICE_STYLES = {
  * @param {boolean}  props.force         Whether to enforce minimum dimensions strictly
  * @return {JSX.Element} The CustomImageUploader component with controls and validation
  */
-	export const CustomImageUploader = ( {
+export const CustomImageUploader = ( {
 	imageUrl,
 	setAttributes,
 	imageSize = DEFAULT_IMAGE_SIZE,
@@ -57,12 +57,13 @@ const SIZE_NOTICE_STYLES = {
 	// Consolidated image validation and messaging logic
 	const imageValidation = useMemo( () => {
 		// If we don't have dimensions yet, assume they're valid until we get them
-		const hasMinimumDimensions = ! attributes?.imageWidth || ! attributes?.imageHeight || (
-			( ! minWidth || attributes.imageWidth >= minWidth ) &&
-			( ! minHeight || attributes.imageHeight >= minHeight )
-		);
-		
-		const recommendationMessage = (() => {
+		const hasMinimumDimensions =
+			! attributes?.imageWidth ||
+			! attributes?.imageHeight ||
+			( ( ! minWidth || attributes.imageWidth >= minWidth ) &&
+				( ! minHeight || attributes.imageHeight >= minHeight ) );
+
+		const recommendationMessage = ( () => {
 			if ( minWidth && minHeight ) {
 				return `${ minWidth }px × ${ minHeight }px`;
 			}
@@ -73,8 +74,8 @@ const SIZE_NOTICE_STYLES = {
 				return `${ minHeight }px high`;
 			}
 			return '';
-		})();
-		
+		} )();
+
 		return { hasMinimumDimensions, recommendationMessage };
 	}, [
 		attributes?.imageWidth,
@@ -107,7 +108,7 @@ const SIZE_NOTICE_STYLES = {
 				// Try to get specified size first - check both media_details.sizes and direct sizes
 				if ( imageSize ) {
 					let sizeData = null;
-					
+
 					// Check media_details.sizes first (older format)
 					if ( media.media_details?.sizes?.[ imageSize ] ) {
 						sizeData = media.media_details.sizes[ imageSize ];
@@ -117,7 +118,7 @@ const SIZE_NOTICE_STYLES = {
 							height: sizeData.height,
 						};
 					}
-					
+
 					// Check direct sizes property (newer format)
 					if ( media.sizes?.[ imageSize ] ) {
 						sizeData = media.sizes[ imageSize ];
@@ -132,7 +133,7 @@ const SIZE_NOTICE_STYLES = {
 				// Try fallback sizes in order
 				for ( const size of FALLBACK_SIZES ) {
 					let sizeData = null;
-					
+
 					// Check media_details.sizes first
 					if ( media.media_details?.sizes?.[ size ] ) {
 						sizeData = media.media_details.sizes[ size ];
@@ -142,7 +143,7 @@ const SIZE_NOTICE_STYLES = {
 							height: sizeData.height,
 						};
 					}
-					
+
 					// Check direct sizes property
 					if ( media.sizes?.[ size ] ) {
 						sizeData = media.sizes[ size ];
@@ -160,19 +161,19 @@ const SIZE_NOTICE_STYLES = {
 					// Handle case where dimensions might be in different locations
 					const width = media.width || media.media_details?.width;
 					const height = media.height || media.media_details?.height;
-					
+
 					if ( width && height ) {
 						return {
-							url: url,
-							width: width,
-							height: height,
+							url,
+							width,
+							height,
 						};
 					}
-					
+
 					// If we have a URL but no dimensions, still return it but with null dimensions
 					// This allows the image to be selected and dimensions can be fetched later
 					return {
-						url: url,
+						url,
 						width: null,
 						height: null,
 					};
@@ -180,8 +181,9 @@ const SIZE_NOTICE_STYLES = {
 
 				return null;
 			} catch ( err ) {
-				console.error( 'Error getting image details:', err );
-				setError( __( 'Failed to load image details', 'multi-block-mayhem' ) );
+				setError(
+					__( 'Failed to load image details', 'multi-block-mayhem' )
+				);
 				return null;
 			}
 		},
@@ -204,8 +206,12 @@ const SIZE_NOTICE_STYLES = {
 				const details = getImageDetails( media );
 				return details ? { ...details, id: media.id } : null;
 			} catch ( err ) {
-				console.error( 'Error fetching media:', err );
-				setError( __( 'Failed to load image from media library', 'multi-block-mayhem' ) );
+				setError(
+					__(
+						'Failed to load image from media library',
+						'multi-block-mayhem'
+					)
+				);
 				return null;
 			}
 		},
@@ -239,7 +245,7 @@ const SIZE_NOTICE_STYLES = {
 		( media ) => {
 			setIsLoading( true );
 			setError( null );
-			
+
 			try {
 				if ( ! media || ! media.id ) {
 					setImageId( null );
@@ -249,31 +255,42 @@ const SIZE_NOTICE_STYLES = {
 						imageWidth: null,
 						imageHeight: null,
 						// Preserve the current imageResolution setting
-						imageResolution: attributes.imageResolution || imageSize,
+						imageResolution:
+							attributes.imageResolution || imageSize,
 					} );
 					return;
 				}
 
 				// Get image details immediately
 				const details = getImageDetails( media );
-				
+
 				if ( ! details || ! details.url ) {
-					setError( __( 'Invalid image selected', 'multi-block-mayhem' ) );
+					setError(
+						__( 'Invalid image selected', 'multi-block-mayhem' )
+					);
 					return;
 				}
 
 				// Check if image meets minimum dimensions when force is true
 				// Only check if we have dimensions available
-				const meetsMinDimensions = !details.width || !details.height || (
-					( ! minWidth || details.width >= minWidth ) &&
-					( ! minHeight || details.height >= minHeight )
-				);
+				const meetsMinDimensions =
+					! details.width ||
+					! details.height ||
+					( ( ! minWidth || details.width >= minWidth ) &&
+						( ! minHeight || details.height >= minHeight ) );
 
-				if ( force && details.width && details.height && ! meetsMinDimensions ) {
-					setError( __( 
-						'Selected image does not meet minimum size requirements', 
-						'multi-block-mayhem' 
-					) );
+				if (
+					force &&
+					details.width &&
+					details.height &&
+					! meetsMinDimensions
+				) {
+					setError(
+						__(
+							'Selected image does not meet minimum size requirements',
+							'multi-block-mayhem'
+						)
+					);
 					return;
 				}
 
@@ -288,13 +305,22 @@ const SIZE_NOTICE_STYLES = {
 					imageResolution: attributes.imageResolution || imageSize,
 				} );
 			} catch ( err ) {
-				console.error( 'Error selecting image:', err );
-				setError( __( 'Failed to select image', 'multi-block-mayhem' ) );
+				setError(
+					__( 'Failed to select image', 'multi-block-mayhem' )
+				);
 			} finally {
 				setIsLoading( false );
 			}
 		},
-		[ getImageDetails, minWidth, minHeight, force, setAttributes ]
+		[
+			getImageDetails,
+			minWidth,
+			minHeight,
+			force,
+			setAttributes,
+			attributes.imageResolution,
+			imageSize,
+		]
 	);
 
 	/**
@@ -312,11 +338,9 @@ const SIZE_NOTICE_STYLES = {
 				imageId: null,
 				imageWidth: null,
 				imageHeight: null,
-				// Preserve the current imageResolution setting
 				imageResolution: attributes.imageResolution || imageSize,
 			} );
 		} catch ( err ) {
-			console.error( 'Error removing image:', err );
 			setError( __( 'Failed to remove image', 'multi-block-mayhem' ) );
 		}
 	}, [ setAttributes, attributes.imageResolution, imageSize ] );
@@ -353,24 +377,42 @@ const SIZE_NOTICE_STYLES = {
 				render={ ( { open } ) => (
 					<div className="mbm-image-controls">
 						<ButtonGroup>
-							<Button 
-								onClick={ open } 
+							<Button
+								onClick={ open }
 								variant="primary"
 								disabled={ isLoading }
-								aria-label={ imageUrl ? 
-									__( 'Replace current image', 'multi-block-mayhem' ) : 
-									__( 'Select an image', 'multi-block-mayhem' ) 
+								aria-label={
+									imageUrl
+										? __(
+												'Replace current image',
+												'multi-block-mayhem'
+										  )
+										: __(
+												'Select an image',
+												'multi-block-mayhem'
+										  )
 								}
 							>
 								{ isLoading && <Spinner /> }
-								{ imageUrl ? __( 'Replace Image', 'multi-block-mayhem' ) : __( 'Select Image', 'multi-block-mayhem' ) }
+								{ imageUrl
+									? __(
+											'Replace Image',
+											'multi-block-mayhem'
+									  )
+									: __(
+											'Select Image',
+											'multi-block-mayhem'
+									  ) }
 							</Button>
 							{ imageUrl && (
 								<Button
 									onClick={ removeImage }
 									variant="secondary"
 									style={ { marginLeft: '8px' } }
-									aria-label={ __( 'Remove current image', 'multi-block-mayhem' ) }
+									aria-label={ __(
+										'Remove current image',
+										'multi-block-mayhem'
+									) }
 								>
 									{ __( 'Remove', 'multi-block-mayhem' ) }
 								</Button>
@@ -410,13 +452,13 @@ const SIZE_NOTICE_STYLES = {
 					className="mbm-image-warning"
 					role="alert"
 				>
-					{ __( 
-						'Current image size', 
-						'multi-block-mayhem' 
-					) } ({ attributes.imageWidth }px × { attributes.imageHeight }px) { __( 
-						'is smaller than recommended', 
-						'multi-block-mayhem' 
-					) } { recommendationMessage }
+					{ __( 'Current image size', 'multi-block-mayhem' ) } (
+					{ attributes.imageWidth }px × { attributes.imageHeight }px){ ' ' }
+					{ __(
+						'is smaller than recommended',
+						'multi-block-mayhem'
+					) }{ ' ' }
+					{ recommendationMessage }
 				</Notice>
 			) }
 
@@ -426,12 +468,16 @@ const SIZE_NOTICE_STYLES = {
 					className="mbm-size-notice"
 					style={ SIZE_NOTICE_STYLES }
 					role="note"
-					aria-label={ __( 'Image size requirements', 'multi-block-mayhem' ) }
+					aria-label={ __(
+						'Image size requirements',
+						'multi-block-mayhem'
+					) }
 				>
-					{ force ? __( 'Required', 'multi-block-mayhem' ) : __( 'Recommended', 'multi-block-mayhem' ) } { __( 
-						'image size', 
-						'multi-block-mayhem' 
-					) }: { recommendationMessage }
+					{ force
+						? __( 'Required', 'multi-block-mayhem' )
+						: __( 'Recommended', 'multi-block-mayhem' ) }{ ' ' }
+					{ __( 'image size', 'multi-block-mayhem' ) }:{ ' ' }
+					{ recommendationMessage }
 				</div>
 			) }
 

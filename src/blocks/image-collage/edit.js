@@ -8,7 +8,7 @@ import { PanelBody, RangeControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes, style } ) {
-	const { columns, gap, radius, aspectRatio, } = attributes;
+	const { columns, gap, radius, aspectRatio } = attributes;
 
 	const blockProps = useBlockProps( {
 		className: 'multi-block-mayhem-editor',
