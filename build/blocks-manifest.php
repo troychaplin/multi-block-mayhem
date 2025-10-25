@@ -48,49 +48,56 @@ return array(
 				'columns' => 3,
 				'gap' => 5,
 				'borderRadius' => 0,
-				'aspectRatio' => '4/3'
+				'aspectRatio' => '1/1'
 			),
 			'innerBlocks' => array(
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '2'
+						'columnSpan' => '2',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				),
 				array(
 					'name' => 'core/image',
 					'attributes' => array(
-						'columnSpan' => '1'
+						'columnSpan' => '1',
+						'height' => 100
 					)
 				)
 			)

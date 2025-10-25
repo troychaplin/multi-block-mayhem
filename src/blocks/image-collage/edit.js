@@ -4,9 +4,12 @@ import {
 	useBlockProps,
 	InspectorControls,
 } from '@wordpress/block-editor';
-import { RangeControl, SelectControl,
+import {
+	RangeControl,
+	SelectControl,
 	__experimentalToolsPanel as ToolsPanel,
-	__experimentalToolsPanelItem as ToolsPanelItem, } from '@wordpress/components';
+	__experimentalToolsPanelItem as ToolsPanelItem,
+} from '@wordpress/components';
 import { aspectRatioOptions } from '../../supports/block-controller-options';
 import './editor.scss';
 
@@ -33,7 +36,7 @@ export default function Edit( { attributes, setAttributes, style } ) {
 	return (
 		<>
 			<InspectorControls>
-                <ToolsPanel
+				<ToolsPanel
 					label={ __( 'Collage Settings', 'multi-block-mayhem' ) }
 					resetAll={ () =>
 						setAttributes( {
@@ -44,7 +47,7 @@ export default function Edit( { attributes, setAttributes, style } ) {
 						} )
 					}
 				>
-                    <ToolsPanelItem
+					<ToolsPanelItem
 						hasValue={ () => !! columns }
 						label={ __(
 							'Number of Columns',
@@ -53,19 +56,20 @@ export default function Edit( { attributes, setAttributes, style } ) {
 						onDeselect={ () => setAttributes( { columns: 3 } ) }
 						isShownByDefault
 					>
-                        <RangeControl
-                            label={ __(
-                                'Number of Columns',
-                                'multi-block-mayhem'
-                            ) }
-                            min={ 1 }
-                            max={ 6 }
-                            value={ columns }
-                            onChange={ ( value ) =>
-                                setAttributes( { columns: value } )
-                            }
-                        />
-                    </ToolsPanelItem><ToolsPanelItem
+						<RangeControl
+							label={ __(
+								'Number of Columns',
+								'multi-block-mayhem'
+							) }
+							min={ 1 }
+							max={ 6 }
+							value={ columns }
+							onChange={ ( value ) =>
+								setAttributes( { columns: value } )
+							}
+						/>
+					</ToolsPanelItem>
+					<ToolsPanelItem
 						hasValue={ () => !! gap }
 						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
 						onDeselect={ () => setAttributes( { gap: 10 } ) }
@@ -103,17 +107,19 @@ export default function Edit( { attributes, setAttributes, style } ) {
 					<ToolsPanelItem
 						hasValue={ () => !! aspectRatio }
 						label={ __( 'Aspect Ratio', 'multi-block-mayhem' ) }
-						onDeselect={ () => setAttributes( { aspectRatio: '4/3' } ) }
+						onDeselect={ () =>
+							setAttributes( { aspectRatio: '4/3' } )
+						}
 						isShownByDefault
 					>
-                        <SelectControl
-                            label="Aspect Ratio"
-                            value={ aspectRatio }
-                            options={ aspectRatioOptions }
-                            onChange={ ( value ) =>
-                                setAttributes( { aspectRatio: value } )
-                            }
-                        />
+						<SelectControl
+							label="Aspect Ratio"
+							value={ aspectRatio }
+							options={ aspectRatioOptions }
+							onChange={ ( value ) =>
+								setAttributes( { aspectRatio: value } )
+							}
+						/>
 					</ToolsPanelItem>
 				</ToolsPanel>
 			</InspectorControls>
