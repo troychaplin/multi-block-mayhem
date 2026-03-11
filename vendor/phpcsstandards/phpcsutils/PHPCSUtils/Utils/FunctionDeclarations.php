@@ -16,6 +16,7 @@ use PHPCSUtils\Exceptions\OutOfBoundsStackPtr;
 use PHPCSUtils\Exceptions\TypeError;
 use PHPCSUtils\Exceptions\UnexpectedTokenType;
 use PHPCSUtils\Exceptions\ValueError;
+use PHPCSUtils\Internal\AttributeHelper;
 use PHPCSUtils\Internal\Cache;
 use PHPCSUtils\Tokens\Collections;
 use PHPCSUtils\Utils\GetTokensAsString;
@@ -149,6 +150,7 @@ final class FunctionDeclarations
      *   - `"has_body"` index could be set to `true` for functions without body in the case of
      *      parse errors or live coding.
      * - Defensive coding against incorrect calls to this method.
+     * - Defensive coding against incorrect results due to parse errors in the code under scan.
      * - More efficient checking whether a function has a body.
      * - Support for PHP 8.0 identifier name tokens in return types, cross-version PHP & PHPCS.
      * - The results of this function call are cached during a PHPCS run for faster response times.
@@ -276,7 +278,10 @@ final class FunctionDeclarations
                     break;
                 }
 
-                if ($scopeOpener === null && $tokens[$i]['code'] === \T_SEMICOLON) {
+                if ($scopeOpener === null
+                    && ($tokens[$i]['code'] === \T_SEMICOLON
+                    || $tokens[$i]['code'] === \T_OPEN_CURLY_BRACKET)
+                ) {
                     // End of abstract/interface function definition.
                     break;
                 }
@@ -663,6 +668,29 @@ final class FunctionDeclarations
 
         Cache::set($phpcsFile, __METHOD__, $stackPtr, $vars);
         return $vars;
+    }
+
+    /**
+     * Retrieve the stack pointers to the attribute openers for any attribute block
+     * which applies to the function declaration.
+     *
+     * @since 1.2.0
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
+     * @param int                         $stackPtr  The position in the stack of the function token to
+     *                                               acquire the attributes for.
+     *
+     * @return array<int> Array with the stack pointers to the applicable attribute openers
+     *                    or an empty array if there are no attributes attached to the function declaration.
+     *
+     * @throws \PHPCSUtils\Exceptions\TypeError           If the $stackPtr parameter is not an integer.
+     * @throws \PHPCSUtils\Exceptions\OutOfBoundsStackPtr If the token passed does not exist in the $phpcsFile.
+     * @throws \PHPCSUtils\Exceptions\UnexpectedTokenType If the token passed is not a T_FUNCTION, T_CLOSURE
+     *                                                    or T_FN token.
+     */
+    public static function getAttributeOpeners(File $phpcsFile, $stackPtr)
+    {
+        return AttributeHelper::getOpeners($phpcsFile, $stackPtr, 'function');
     }
 
     /**

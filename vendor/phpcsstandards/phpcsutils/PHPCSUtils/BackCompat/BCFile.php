@@ -29,7 +29,7 @@
  * @author    Klaus Purer <klaus.purer@protonmail.ch>
  *
  * @copyright 2006-2019 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
+ * @license   https://github.com/PHPCSStandards/PHP_CodeSniffer/blob/HEAD/licence.txt BSD Licence
  */
 
 namespace PHPCSUtils\BackCompat;
@@ -524,7 +524,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::getMethodProperties()      Original source.
      * @see \PHPCSUtils\Utils\FunctionDeclarations::getProperties() PHPCSUtils native improved version.
@@ -583,7 +583,7 @@ final class BCFile
      *
      * @since 1.0.0
      * @since 1.1.0 Sync with PHPCS 4.0.0, remove parse error warning and support PHP 8.4 properties in interfaces. PHPCS(new)#991
-     * @since 1.1.2 Sync with PHPCS 3.13.3, support for abstract properties. PHPCS(new)#xxx
+     * @since 1.1.2 Sync with PHPCS 3.13.3, support for abstract properties. PHPCS(new)#1183
      *
      * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                         $stackPtr  The position in the stack of the `T_VARIABLE` token to
@@ -601,6 +601,10 @@ final class BCFile
 
         if ($tokens[$stackPtr]['code'] !== T_VARIABLE) {
             throw new RuntimeException('$stackPtr must be of type T_VARIABLE');
+        }
+
+        if (empty($tokens[$stackPtr]['conditions']) === true) {
+            throw new RuntimeException('$stackPtr is not a class member var');
         }
 
         $conditions = $tokens[$stackPtr]['conditions'];
@@ -761,7 +765,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 1.3.0.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::getClassProperties()          Original source.
      * @see \PHPCSUtils\Utils\ObjectDeclarations::getClassProperties() PHPCSUtils native improved version.
@@ -789,7 +793,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::isReference() Original source.
      * @see \PHPCSUtils\Utils\Operators::isReference() PHPCSUtils native improved version.
@@ -815,7 +819,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::getTokensAsString() Original source.
      * @see \PHPCSUtils\Utils\GetTokensAsString              Related set of functions.
@@ -844,7 +848,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 2.1.0.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::findStartOfStatement() Original source.
      *
@@ -868,7 +872,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 2.1.0.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::findEndOfStatement() Original source.
      *
@@ -892,7 +896,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 0.0.5.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::hasCondition()  Original source.
      * @see \PHPCSUtils\Utils\Conditions::hasCondition() PHPCSUtils native alternative.
@@ -917,7 +921,7 @@ final class BCFile
      *
      * Changelog for the PHPCS native function:
      * - Introduced in PHPCS 1.3.0.
-     * - The upstream method has received no significant updates since PHPCS 3.13.3.
+     * - The upstream method has received no significant updates since PHPCS 3.13.5.
      *
      * @see \PHP_CodeSniffer\Files\File::getCondition()  Original source.
      * @see \PHPCSUtils\Utils\Conditions::getCondition() More versatile alternative.

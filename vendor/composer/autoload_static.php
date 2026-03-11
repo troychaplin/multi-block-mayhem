@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite6297ad6a53537abcba068c1ef052801
+class ComposerStaticInit29785b2b8340625124cbafc1905dc41e
 {
     public static $prefixLengthsPsr4 = array (
         'P' => 
@@ -42,6 +42,7 @@ class ComposerStaticInite6297ad6a53537abcba068c1ef052801
         'PHPCSUtils\\Exceptions\\UnexpectedTokenType' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Exceptions/UnexpectedTokenType.php',
         'PHPCSUtils\\Exceptions\\ValueError' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Exceptions/ValueError.php',
         'PHPCSUtils\\Fixers\\SpacesFixer' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Fixers/SpacesFixer.php',
+        'PHPCSUtils\\Internal\\AttributeHelper' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Internal/AttributeHelper.php',
         'PHPCSUtils\\Internal\\Cache' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Internal/Cache.php',
         'PHPCSUtils\\Internal\\IsShortArrayOrList' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Internal/IsShortArrayOrList.php',
         'PHPCSUtils\\Internal\\IsShortArrayOrListWithCache' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Internal/IsShortArrayOrListWithCache.php',
@@ -53,6 +54,7 @@ class ComposerStaticInite6297ad6a53537abcba068c1ef052801
         'PHPCSUtils\\Tokens\\Collections' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Tokens/Collections.php',
         'PHPCSUtils\\Tokens\\TokenHelper' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Tokens/TokenHelper.php',
         'PHPCSUtils\\Utils\\Arrays' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Utils/Arrays.php',
+        'PHPCSUtils\\Utils\\AttributeBlock' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Utils/AttributeBlock.php',
         'PHPCSUtils\\Utils\\Conditions' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Utils/Conditions.php',
         'PHPCSUtils\\Utils\\Constants' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Utils/Constants.php',
         'PHPCSUtils\\Utils\\Context' => __DIR__ . '/..' . '/phpcsstandards/phpcsutils/PHPCSUtils/Utils/Context.php',
@@ -81,9 +83,9 @@ class ComposerStaticInite6297ad6a53537abcba068c1ef052801
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite6297ad6a53537abcba068c1ef052801::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite6297ad6a53537abcba068c1ef052801::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite6297ad6a53537abcba068c1ef052801::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit29785b2b8340625124cbafc1905dc41e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit29785b2b8340625124cbafc1905dc41e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit29785b2b8340625124cbafc1905dc41e::$classMap;
 
         }, null, ClassLoader::class);
     }

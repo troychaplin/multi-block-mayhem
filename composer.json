@@ -9,7 +9,7 @@
 		]
 	},
 	"require-dev": {
-		"wp-coding-standards/wpcs": "^3.2"
+		"wp-coding-standards/wpcs": "^3.3.0"
 	},
 	"config": {
 		"allow-plugins": {
