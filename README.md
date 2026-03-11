@@ -1,174 +1,208 @@
 # Multi Block Mayhem
 
-A collection of advanced WordPress blocks for creating stunning visual layouts. Multi Block Mayhem provides professional-grade blocks for galleries, collages, and interactive content that go beyond the standard WordPress block library.
+A collection of advanced WordPress blocks for creating visual layouts. Multi Block Mayhem provides blocks for galleries, collages, and interactive content that go beyond the standard WordPress block library.
 
 ## Table of Contents
 
-- [Available Blocks](#-available-blocks)
-- [Quick Start](#-quick-start)
-- [Block Documentation](#-block-documentation)
-- [Development](#️-development)
-- [Contributing](#-contributing)
-- [Technical Specifications](#-technical-specifications)
-- [Project Structure](#-project-structure)
+- [Available Blocks](#available-blocks)
+- [Quick Start](#quick-start)
+- [Documentation](#documentation)
+- [Development](#development)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 🎨 Available Blocks
+## Available Blocks
 
-### Gallery & Layout Blocks
+### Image Collage
 
-- **[Mosaic Gallery](src/blocks/mosaic-gallery/README.md)** - Create Pinterest-style masonry layouts with CSS columns
-- **[Image Collage](src/blocks/image-collage/README.md)** - Build magazine-style grid layouts with column spanning
+A CSS grid-based image collage with customizable columns, aspect ratios, and column spanning. Each image supports focal point positioning, zoom, and multiple resolution options.
 
-### Supporting Blocks
+- **Parent block:** `multi-block-mayhem/image-collage`
+- **Child block:** `multi-block-mayhem/image-collage-image`
+- [Full documentation](docs/blocks/image-collage.md)
 
-- **[Image Collage Image](src/blocks/image-collage-image/README.md)** - Advanced image block for collages with focal points and spanning
+### Mosaic Gallery
 
-## ✨ Key Features
+A masonry-style gallery using CSS columns. Images flow naturally based on their height, creating a Pinterest-like layout. Uses `core/image` blocks as children.
 
-- **Modern CSS Layouts**: CSS Grid, Flexbox, and CSS Columns for responsive designs
-- **Advanced Image Controls**: Focal points, zoom, multiple resolutions, and custom uploaders
-- **Responsive Design**: All blocks automatically adapt to different screen sizes
-- **Performance Optimized**: Efficient asset loading and PHP rendering where appropriate
-- **Developer Friendly**: Clean code, WordPress standards, and comprehensive documentation
+- **Block:** `multi-block-mayhem/mosaic-gallery`
+- [Full documentation](docs/blocks/mosaic-gallery.md)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
-1. **Download the plugin** and upload it to your WordPress site
-2. **Activate** the plugin in your WordPress admin
-3. **Start building** - the blocks will appear in the Media category of the block inserter
+1. Download the plugin and upload it to your WordPress site
+2. Activate the plugin in your WordPress admin
+3. The blocks appear in the **Media** category of the block inserter
 
 ### Basic Usage
 
-1. **Add a block** from the Media category in the block editor
-2. **Configure settings** using the block's sidebar controls
-3. **Add content** by uploading images or adding text as needed
-4. **Customize appearance** with spacing, borders, and layout options
+1. Add a block from the Media category in the block editor
+2. Configure settings using the sidebar controls
+3. Add content by uploading images
+4. Customize appearance with spacing, borders, and layout options
 
-## 📖 Block Documentation
+## Documentation
 
-Each block includes comprehensive documentation:
+### Blocks
 
-- **User guides** with step-by-step instructions
-- **Feature explanations** with tips and best practices
-- **Technical documentation** for developers
-- **Example layouts** and use cases
+- [Image Collage](docs/blocks/image-collage.md) — Grid-based collage with parent/child block documentation
+- [Mosaic Gallery](docs/blocks/mosaic-gallery.md) — Masonry-style gallery
 
-Click on any block name above to view its complete documentation.
+### Shared Utilities
 
-## 🛠️ Development
+- [Custom Image Uploader](docs/supports/custom-image-uploader.md) — Reusable image upload component with validation
+- [Block Controller Options](docs/supports/block-controller-options.md) — Shared aspect ratio and image resolution constants
+
+### Modifications
+
+- [Block Styles](docs/modifications/block-styles.md) — Editor-side block style registration/unregistration
+
+### Other
+
+- [Changelog](CHANGELOG.md)
+- [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)
+
+## Development
 
 ### Prerequisites
 
-- WordPress 5.8+ (Block Editor support)
-- Node.js 16+ (for development)
-- Composer (for PHP dependencies)
+- WordPress 6.6+
+- Node.js 20+ (see `.nvmrc`)
+- PHP 7.0+
+- Composer
 
-### Local Development Setup
+### Setup
 
 ```bash
-# Clone the repository
-git clone [repository-url]
-cd multi-block-mayhem
+# Use correct Node version
+nvm use
 
 # Install dependencies
 npm install
 composer install
 
-# Start development
+# Start development with hot reloading
 npm start
 ```
 
-### Building for Production
+### Build
 
 ```bash
 npm run build
 ```
 
-### Development Commands
+### Commands
 
-- `npm start` - Start development with hot reloading
-- `npm run build` - Build production assets
-- `npm run lint:js` - Lint JavaScript files
-- `npm run lint:css` - Lint CSS files
-- `npm run format` - Format code to WordPress standards
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start development with hot reloading |
+| `npm run build` | Build production assets |
+| `npm run lint` | Run all linters (JS, CSS, PHP) |
+| `npm run format` | Format all code (JS, CSS, PHP) |
+| `npm run lint:js` | Lint JavaScript files |
+| `npm run format:js` | Fix JavaScript lint issues |
+| `npm run lint:css` | Lint CSS/SCSS files |
+| `npm run format:css` | Fix CSS lint issues |
+| `npm run lint:php` | Lint PHP files (via phpcs) |
+| `npm run format:php` | Fix PHP lint issues (via phpcbf) |
+| `npm run packages-update` | Update WordPress packages |
+| `npm run plugin-zip` | Create distributable plugin zip |
 
-## 🤝 Contributing
+## Architecture
 
-We welcome contributions! Here's how you can help:
+### PHP Classes
 
-### Reporting Issues
+The plugin uses a modular PHP architecture under the `Multi_Block_Mayhem` namespace. Classes are autoloaded via Composer from the `classes/` directory.
 
-1. **Check existing issues** first
-2. **Provide details** about your WordPress version, theme, and steps to reproduce
-3. **Include screenshots** when possible
+| Class | File | Purpose |
+|-------|------|---------|
+| `Plugin_Module` | `class-plugin-module.php` | Abstract base class requiring an `init()` method |
+| `Plugin_Paths` | `class-plugin-paths.php` | Utility for resolving plugin URLs, paths, and asset metadata |
+| `Register_Blocks` | `class-register-blocks.php` | Registers all blocks from `build/blocks-manifest.php` |
+| `Enqueues` | `class-enqueues.php` | Enqueues editor and frontend scripts/styles |
 
-### Suggesting Features
+### Initialization Flow
 
-1. **Open a discussion** to propose new features
-2. **Describe the use case** and how it would benefit users
-3. **Consider existing blocks** and how it might fit
-
-### Code Contributions
-
-1. **Fork the repository**
-2. **Create a feature branch** from `main`
-3. **Follow WordPress coding standards**
-4. **Add tests** for new functionality
-5. **Update documentation** as needed
-6. **Submit a pull request**
-
-### Development Guidelines
-
-- **Follow WordPress coding standards** (PHP_CodeSniffer, ESLint)
-- **Write clear commit messages**
-- **Update documentation** for any new features
-- **Test across different themes and WordPress versions**
-- **Ensure accessibility compliance**
-
-## 📋 Technical Specifications
-
-### Block Architecture
-
-- **Static Blocks**: JavaScript-rendered blocks with save functions
-- **Dynamic Blocks**: PHP server-side rendered blocks
-- **Interactive Blocks**: Client-side JavaScript functionality
+```
+plugin.php
+  -> Load Composer autoload
+  -> Instantiate Register_Blocks -> hooks into init
+  -> Instantiate Enqueues -> hooks into enqueue_block_editor_assets + wp_enqueue_scripts
+```
 
 ### Build System
 
-- **Webpack-based** build process
-- **Automatic versioning** through WordPress asset system
-- **Optimized bundles** for editor and frontend
-- **CSS preprocessing** with SCSS support
+- Webpack-based via `@wordpress/scripts`
+- Custom `webpack.config.js` adds `editor.js` and `frontend.js` entry points
+- Block assets compiled from `src/blocks/` into `build/blocks/`
+- Asset metadata (`.asset.php` files) generated automatically for dependency management
 
-### Performance Features
+### Block Types
 
-- **Conditional asset loading** - scripts only load when blocks are used
-- **PHP rendering** for dynamic content to improve performance
-- **Optimized images** with multiple resolution support
-- **Minimal dependencies** for fast loading
+- **Static blocks** — JavaScript save function renders markup (Image Collage, Mosaic Gallery parents)
+- **Dynamic blocks** — PHP `render.php` for server-side rendering (Image Collage Image)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 multi-block-mayhem/
-├── build/                    # Compiled assets
-├── src/                      # Source code
-│   ├── blocks/               # Individual block implementations
-│   │   ├── mosaic-gallery/   # Masonry gallery block
-│   │   ├── image-collage/    # Grid-based collage block
-│   │   └── swatch-cards/     # Color swatch display block
-│   └── supports/             # Shared components
-├── classes/                  # PHP classes
-├── vendor/                   # Composer dependencies
-└── node_modules/             # Node dependencies
+├── plugin.php                  # Plugin entry point
+├── webpack.config.js           # Build configuration
+├── package.json                # Node dependencies and scripts
+├── composer.json               # PHP dependencies and autoloading
+├── phpcs.xml.dist              # PHP coding standards config
+├── .eslintrc.js                # JavaScript linting config
+├── .editorconfig               # Editor formatting config
+├── .nvmrc                      # Node version
+├── CHANGELOG.md                # Version history
+├── classes/                    # PHP classes (PSR-4 autoloaded)
+│   ├── class-plugin-module.php
+│   ├── class-plugin-paths.php
+│   ├── class-register-blocks.php
+│   └── class-enqueues.php
+├── src/                        # Source code
+│   ├── blocks/                 # Block implementations
+│   │   ├── image-collage/      # Parent: CSS grid collage
+│   │   ├── image-collage-image/# Child: individual collage image
+│   │   └── mosaic-gallery/     # Parent: masonry gallery
+│   ├── supports/               # Shared components and utilities
+│   │   ├── custom-image-uploader.js
+│   │   └── block-controller-options.js
+│   ├── modifications/          # Editor-side block modifications
+│   │   └── block-styles.js
+│   ├── editor.js               # Editor entry point
+│   └── frontend.js             # Frontend entry point
+├── docs/                       # Documentation
+│   ├── blocks/                 # Block documentation
+│   ├── supports/               # Utility documentation
+│   └── modifications/          # Modification documentation
+├── .github/                    # GitHub templates
+│   └── PULL_REQUEST_TEMPLATE.md
+├── build/                      # Compiled assets (generated)
+├── vendor/                     # Composer dependencies
+└── node_modules/               # Node dependencies
 ```
 
-## 📄 License
+## Contributing
+
+### Reporting Issues
+
+1. Check existing issues first
+2. Provide your WordPress version, theme, and steps to reproduce
+3. Include screenshots when possible
+
+### Code Contributions
+
+1. Fork the repository
+2. Create a feature branch from `main`
+3. Follow WordPress coding standards (phpcs, eslint)
+4. Update documentation for new features
+5. Submit a pull request using the [PR template](.github/PULL_REQUEST_TEMPLATE.md)
+
+## License
 
 This plugin is licensed under the GPL v2 or later.
-
-## 🙏 Credits
-
-Built with modern WordPress development practices and the WordPress Block Editor APIs.
