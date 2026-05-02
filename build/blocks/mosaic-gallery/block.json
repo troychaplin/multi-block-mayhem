@@ -12,20 +12,43 @@
       "wide"
     ],
     "alignWide": true,
-    "html": false
+    "html": false,
+    "spacing": {
+      "blockGap": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "padding": true,
+      "__experimentalSkipSerialization": [
+        "blockGap"
+      ],
+      "__experimentalDefaultControls": {
+        "blockGap": true,
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "color": {
+      "background": true,
+      "gradients": true
+    }
   },
   "attributes": {
     "columns": {
       "type": "number",
       "default": 3
-    },
-    "gap": {
-      "type": "number",
-      "default": 10
-    },
-    "radius": {
-      "type": "number",
-      "default": 0
     }
   },
   "textdomain": "multi-block-mayhem",
@@ -34,9 +57,7 @@
   "style": "file:./style-index.css",
   "example": {
     "attributes": {
-      "columns": 3,
-      "gap": 10,
-      "borderRadius": 5
+      "columns": 3
     },
     "innerBlocks": [
       {

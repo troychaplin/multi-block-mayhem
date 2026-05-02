@@ -191,20 +191,43 @@ return array(
 				'wide'
 			),
 			'alignWide' => true,
-			'html' => false
+			'html' => false,
+			'spacing' => array(
+				'blockGap' => true,
+				'margin' => array(
+					'top',
+					'bottom'
+				),
+				'padding' => true,
+				'__experimentalSkipSerialization' => array(
+					'blockGap'
+				),
+				'__experimentalDefaultControls' => array(
+					'blockGap' => true,
+					'padding' => true
+				)
+			),
+			'__experimentalBorder' => array(
+				'color' => true,
+				'radius' => true,
+				'style' => true,
+				'width' => true,
+				'__experimentalDefaultControls' => array(
+					'color' => true,
+					'radius' => true,
+					'style' => true,
+					'width' => true
+				)
+			),
+			'color' => array(
+				'background' => true,
+				'gradients' => true
+			)
 		),
 		'attributes' => array(
 			'columns' => array(
 				'type' => 'number',
 				'default' => 3
-			),
-			'gap' => array(
-				'type' => 'number',
-				'default' => 10
-			),
-			'radius' => array(
-				'type' => 'number',
-				'default' => 0
 			)
 		),
 		'textdomain' => 'multi-block-mayhem',
@@ -213,9 +236,7 @@ return array(
 		'style' => 'file:./style-index.css',
 		'example' => array(
 			'attributes' => array(
-				'columns' => 3,
-				'gap' => 10,
-				'borderRadius' => 5
+				'columns' => 3
 			),
 			'innerBlocks' => array(
 				array(

@@ -2,15 +2,11 @@
 
 	.block-editor-inner-blocks .block-editor-block-list__layout {
 		column-count: var(--mb-mayhem-mosaic-gallery-cols, 3);
-		column-gap: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
+		column-gap: var(--wp--style--block-gap, 0.5em);
 	}
 
 	.wp-block-image {
 		break-inside: avoid;
-		margin-bottom: var(--mb-mayhem-mosaic-gallery-gap, 1rem);
-
-		img {
-			border-radius: var(--mb-mayhem-mosaic-gallery-radius, 0);
-		}
+		margin-bottom: var(--wp--style--block-gap, 0.5em);
 	}
 }

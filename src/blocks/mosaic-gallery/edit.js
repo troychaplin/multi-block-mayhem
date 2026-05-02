@@ -11,16 +11,15 @@ import {
 } from '@wordpress/components';
 import './editor.scss';
 
-export default function Edit( { attributes, setAttributes, style } ) {
-	const { columns, gap, radius } = attributes;
+export default function Edit( { attributes, setAttributes } ) {
+	const { columns } = attributes;
+	const blockGap = attributes?.style?.spacing?.blockGap;
 
 	const blockProps = useBlockProps( {
 		className: 'multi-block-mayhem-editor',
 		style: {
-			...style,
 			'--mb-mayhem-mosaic-gallery-cols': String( columns ),
-			'--mb-mayhem-mosaic-gallery-gap': `${ gap }px`,
-			'--mb-mayhem-mosaic-gallery-radius': `${ radius }px`,
+			'--wp--style--block-gap': blockGap || '0.5em',
 		},
 	} );
 
@@ -32,16 +31,10 @@ export default function Edit( { attributes, setAttributes, style } ) {
 			<InspectorControls>
 				<ToolsPanel
 					label={ __( 'Mosaic Settings', 'multi-block-mayhem' ) }
-					resetAll={ () =>
-						setAttributes( {
-							columns: 3,
-							gap: 10,
-							radius: 0,
-						} )
-					}
+					resetAll={ () => setAttributes( { columns: 3 } ) }
 				>
 					<ToolsPanelItem
-						hasValue={ () => !! columns }
+						hasValue={ () => columns !== 3 }
 						label={ __(
 							'Number of Columns',
 							'multi-block-mayhem'
@@ -59,41 +52,6 @@ export default function Edit( { attributes, setAttributes, style } ) {
 							value={ columns }
 							onChange={ ( value ) =>
 								setAttributes( { columns: value } )
-							}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={ () => !! gap }
-						label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
-						onDeselect={ () => setAttributes( { gap: 10 } ) }
-						isShownByDefault
-					>
-						<RangeControl
-							label={ __( 'Gallery Gap', 'multi-block-mayhem' ) }
-							min={ 0 }
-							max={ 50 }
-							value={ gap }
-							onChange={ ( value ) =>
-								setAttributes( { gap: value } )
-							}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={ () => !! radius }
-						label={ __( 'Border Radius', 'multi-block-mayhem' ) }
-						onDeselect={ () => setAttributes( { radius: 0 } ) }
-						isShownByDefault
-					>
-						<RangeControl
-							label={ __(
-								'Border Radius',
-								'multi-block-mayhem'
-							) }
-							min={ 0 }
-							max={ 50 }
-							value={ radius }
-							onChange={ ( value ) =>
-								setAttributes( { radius: value } )
 							}
 						/>
 					</ToolsPanelItem>

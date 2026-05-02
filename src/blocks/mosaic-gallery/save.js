@@ -1,13 +1,13 @@
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
 export default function save( { attributes } ) {
-	const { columns, gap, radius } = attributes;
+	const { columns } = attributes;
+	const blockGap = attributes?.style?.spacing?.blockGap;
 
 	const blockProps = useBlockProps.save( {
 		style: {
 			'--mb-mayhem-mosaic-gallery-cols': String( columns ),
-			'--mb-mayhem-mosaic-gallery-gap': `${ gap }px`,
-			'--mb-mayhem-mosaic-gallery-radius': `${ radius }px`,
+			'--wp--style--block-gap': blockGap || '0.5em',
 		},
 	} );
 
